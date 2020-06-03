@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Translation>
+  <TranslationVersion>4</TranslationVersion>
+  <item>
+    <key>ErrorHotKeyAAT</key>
+    <value>{0} konnte nicht als Hotkey für Alternate Auto-Type registriert werden</value>
+  </item>
+  <item>
+    <key>ErrorHotKeyPWOnly</key>
+    <value>{0} konnte nicht als Hotkey zur Passworteingabe registriert werden</value>
+  </item>
+  <item>
+    <key>Options</key>
+    <value>Alternate Auto-Type Konfiguration</value>
+  </item>
+  <item>
+    <key>GlobalAutotypeHotKey</key>
+    <value>Global Auto-Type Hotkey:</value>
+  </item>
+  <item>
+    <key>PasswordOnlyHotKey</key>
+    <value>NUR Passwort</value>
+  </item>
+  <item>
+    <key>PasswordEnterHotKey</key>
+    <value>Passwort + Enter</value>
+  </item>
+  <item>
+    <key>AATHotKey</key>
+    <value>Alternate Auto-Type Hotkey:</value>
+  </item>
+  <item>
+    <key>Integration</key>
+    <value>Auto-Type-Eintragsauswahl Erweiterungen</value>
+  </item>
+  <item>
+    <key>ColumnsSortable</key>
+    <value>Spaltenüberschriften klicken zum Sortieren</value>
+  </item>
+  <item>
+    <key>AddDBColumn</key>
+    <value>DB-Spalte anzeigen bei Einträgen aus mehreren Datenbanken</value>
+  </item>
+  <item>
+    <key>SpecialColumns</key>
+    <value>Auto-Type NUR für Benutzername / Passwort beim Klick auf Benutzername / Passwort</value>
+  </item>
+  <item>
+    <key>KeepATOpen</key>
+    <value>Auto-Type-Eintragsauswahl NICHT schließen</value>
+  </item>
+  <item>
+	<key>ExcludeExpiredGroups</key>
+	<value>Ignoriere Einträge in abgelaufenen Gruppen</value>
+  </item>
+  <item>
+	<key>AATFormShowGroups</key>
+	<value>Gruppiere sortierte Einträge</value>
+  </item>
+  <item>
+	<key>ColumnsSortRemember</key>
+	<value>Spaltensortierung speichern</value>
+  </item>
+</Translation>

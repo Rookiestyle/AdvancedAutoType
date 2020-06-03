@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Translation>
+  <TranslationVersion>3</TranslationVersion>
+  <item>
+    <key>ErrorHotKeyAAT</key>
+    <value>{0} Не удалось зарегистрировать горячую клавишу для альтернативного автонабора</value>
+  </item>
+  <item>
+    <key>ErrorHotKeyPWOnly</key>
+    <value>{0} Не удалось зарегистрировать горячую клавишу для автонабора пароля</value>
+  </item>
+  <item>
+    <key>Options</key>
+    <value>Настройки плагина</value>
+  </item>
+  <item>
+    <key>GlobalAutotypeHotKey</key>
+    <value>Глобальный автонабор:</value>
+  </item>
+  <item>
+    <key>PasswordOnlyHotKey</key>
+    <value>Только пароль</value>
+  </item>
+  <item>
+    <key>AATHotKey</key>
+    <value>Альтернативный автонабор:</value>
+  </item>
+  <item>
+    <key>PasswordEnterHotKey</key>
+    <value>Пароль + Enter</value>
+  </item>
+  <item>
+    <key>Hotkeys</key>
+    <value>Горячие клавиши</value>
+  </item>
+  <item>
+    <key>Integration</key>
+    <value>Улучшения формы выбора записи для автонабора</value>
+  </item>
+  <item>
+    <key>ColumnsSortable</key>
+    <value>Сортировка щелчком по заголовку столбца</value>
+  </item>
+  <item>
+    <key>AddDBColumn</key>
+    <value>Добавление столбца с именем базы данных, если отображаются записи из нескольких БД</value>
+  </item>
+  <item>
+    <key>SpecialColumns</key>
+    <value>Автонабор только логина / пароля щелчком по столбцу с логином / паролем</value>
+  </item>
+  <item>
+    <key>KeepATOpen</key>
+    <value>Не закрывать форму выбора записи для автонабора</value>
+  </item>
+  <item>
+    <key>ExcludeExpiredGroups</key>
+    <value>Исключить истекшие записи</value>
+  </item>
+  <item>
+    <key>AATFormShowGroups</key>
+    <value>Группировать по сортируемому столбцу</value>
+  </item>
+  <item>
+    <key>ColumnsSortRemember</key>
+    <value>Запомнить настройки сортировки</value>
+  </item>
+</Translation>

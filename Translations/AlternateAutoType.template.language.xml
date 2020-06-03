@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Translation>
+  <TranslationVersion>0</TranslationVersion>
+  <item>
+    <key>ErrorHotKeyAAT</key>
+    <value>{0} could not be registered as alternate auto-type hotkey</value>
+  </item>
+  <item>
+    <key>ErrorHotKeyPWOnly</key>
+    <value>{0} could not be registered as password only hotkey</value>
+  </item>
+  <item>
+    <key>Options</key>
+    <value>Alternate Auto-Type configuration</value>
+  </item>
+  <item>
+    <key>GlobalAutotypeHotKey</key>
+    <value>Global Auto-Type Hotkey:</value>
+  </item>
+  <item>
+    <key>PasswordOnlyHotKey</key>
+    <value>Password Only</value>
+  </item>
+  <item>
+    <key>AATHotKey</key>
+    <value>Alternate Auto-Type Hotkey:</value>
+  </item>
+  <item>
+    <key>PasswordEnterHotKey</key>
+    <value>Password + Enter</value>
+  </item>
+  <item>
+    <key>Hotkeys</key>
+    <value>Hotkeys</value>
+  </item>
+  <item>
+    <key>Integration</key>
+    <value>Auto-Type Entry Selection form enhancements</value>
+  </item>
+  <item>
+    <key>ColumnsSortable</key>
+    <value>Click column headers to sort entries</value>
+  </item>
+  <item>
+    <key>AddDBColumn</key>
+    <value>Add DB column if entries from at least 2 databases are shown</value>
+  </item>
+  <item>
+    <key>SpecialColumns</key>
+    <value>Auto-Type ONLY username / password when clicking username / password</value>
+  </item>
+  <item>
+    <key>KeepATOpen</key>
+    <value>Don't close Auto-Type Entry Selection form</value>
+  </item>
+    <item>
+	<key>ExcludeExpiredGroups</key>
+	<value>Exclude entries in expired groups</value>
+  </item>
+  <item>
+	<key>AATFormShowGroups</key>
+	<value>Group by sort column</value>
+  </item>
+  <item>
+	<key>ColumnsSortRemember</key>
+	<value>Preserve sort settings</value>
+  </item>
+</Translation>
