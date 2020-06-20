@@ -101,11 +101,11 @@ namespace AlternateAutoType
 		private string AdjustSequence(string sequence, bool bResetPWOnly)
 		{
 			/*
-             * Option 1: Hotkey for password only is used => return {PASSWORD}
-             * Option 2: No placeholder => nothing to do
+			 * Option 1: Hotkey for password only is used => return {PASSWORD}
+			 * Option 2: No placeholder => nothing to do
 			 * Option 3: Placeholder and hotkey for AAT is used => return sequence part AFTER placeholder
-             * Option 4: Placeholder and hotkey for AAT is not used => return sequence part BEFORE placeholder
-            */
+			 * Option 4: Placeholder and hotkey for AAT is not used => return sequence part BEFORE placeholder
+			 */
 			bool bPWOnly = PWOnlyHotkeyPressed;
 			if (bResetPWOnly) CheckKPAutoTypePasswordHotkey(false);
 			if (bPWOnly)
@@ -137,6 +137,11 @@ namespace AlternateAutoType
 		private void HotKeyPressed(object sender, HotKeyEventArgs e)
 		{
 			m_sequence = e.ID;
+			List<string> lMsg = new List<string>();
+			lMsg.Add("Hotkey id: " + m_sequence.ToString());
+			lMsg.Add("PW only hotkey: " + Config.PWOnlyHotkeyID.ToString() + " - " + (Config.PWOnlyHotkeyID == e.ID).ToString());
+			lMsg.Add("AAT only hotkey: " + Config.AATHotkeyID + " - " + (Config.AATHotkeyID == e.ID).ToString());
+			PluginDebug.AddInfo("Alternate Auto-Type hotkey detected", 0, lMsg.ToArray());
 			m_host.MainWindow.ExecuteGlobalAutoType();
 			m_sequence = 0;
 		}
@@ -218,6 +223,7 @@ namespace AlternateAutoType
 					lCtx.RemoveAt(i);
 				}
 			}
+			//CheckKPAutoTypePasswordHotkey(false);
 		}
 
 		private void OnWindowRemoved(object sender, GwmWindowEventArgs e)
@@ -443,7 +449,7 @@ namespace AlternateAutoType
 				if (col.Text == Config.PWColumnHeader)
 					colAATPassword = col.Index;
 			}
-			if (colAATPassword < 0)
+			if ((colPassword < 0) && (colAATPassword < 0))
 			{
 				ColumnHeader h = new ColumnHeader();
 				h.Text = Config.PWColumnHeader;
