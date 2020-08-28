@@ -27,21 +27,33 @@ namespace PluginTools
 		public static bool AddHandler(Form form, EventHandler<WndProcEventArgs> handler)
 		{
 			if (form == null) return false;
-			WndProcHookForm f = new WndProcHookForm(form);
+			WndProcHookForm f = null;
+			m_forms.TryGetValue(form, out f);
+			if (f == null)
+			{
+				f = new WndProcHookForm(form);
+				m_forms[form] = f;
+			}
 			f.WndProcEvent += handler;
-			m_forms.Add(form, f);
 			return true;
 		}
 
-		public static bool RemoveHandler(Form form)
+		public static void RemoveHandler(Form form)
 		{
-			if (form == null) return true;
+			if (form == null) return;
+			WndProcHookForm f = null;
+			m_forms.TryGetValue(form, out f);
+			if (f != null) f.Cleanup();
+			m_forms.Remove(form);
+		}
+
+		public static void RemoveHandler(Form form, EventHandler<WndProcEventArgs> handler)
+		{
+			if (form == null) return;
 			WndProcHookForm f = null;
 			bool found = m_forms.TryGetValue(form, out f);
-			if (found)
-				f.Cleanup();
-			m_forms.Remove(form);
-			return found;
+			if (!found) return;
+			f.WndProcEvent -= handler;
 		}
 
 		private class WndProcHookForm : NativeWindow

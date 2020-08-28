@@ -65,8 +65,7 @@ namespace AlternateAutoType
 			Tools.OptionsFormShown += OptionsFormShown;
 			Tools.OptionsFormClosed += ConfigWrite;
 
-			WndProcHook.AddHandler(m_host.MainWindow, WndProcHandler);
-
+			if (Config.PWEnter) WndProcHook.AddHandler(m_host.MainWindow, WndProcHandler);
 			return true;
 		}
 
@@ -108,11 +107,9 @@ namespace AlternateAutoType
 			 */
 			bool bPWOnly = PWOnlyHotkeyPressed;
 			if (bResetPWOnly) CheckKPAutoTypePasswordHotkey(false);
-			if (bPWOnly)
-				return Config.PWEnter ? "{PASSWORD}{ENTER}" : "{PASSWORD}";
+			if (bPWOnly && Config.PWEnter) return sequence + "{ENTER}";
 			int pos = sequence.IndexOf(Config.Placeholder);
-			if (pos < 0)
-				return sequence;
+			if (pos < 0) return sequence;
 			if (AATHotkeyPressed)
 				return sequence.Substring(pos + Config.Placeholder.Length);
 			else
@@ -130,7 +127,7 @@ namespace AlternateAutoType
 		private void CheckKPAutoTypePasswordHotkey(bool bSet)
 		{
 			m_bKPAutoTypePasswordHotkey = false;
-			if (!bSet || !Config.KPAutoTypePWPossible) return;
+			if (!Config.PWEnter || !bSet || !Config.KPAutoTypePWPossible) return;
 			m_bKPAutoTypePasswordHotkey = bSet;
 		}
 
@@ -437,6 +434,7 @@ namespace AlternateAutoType
 
 		private void ColorSpecialColumns(ListView lv)
 		{
+			if (lv.Items.Count < 1) return;
 			int colUsername = -1;
 			int colPassword = -1;
 			int colAATPassword = -1;
@@ -466,25 +464,29 @@ namespace AlternateAutoType
 					lv.Items[i].SubItems.Insert(colAATPassword, new ListViewItem.ListViewSubItem(lv.Items[i], KeePassLib.PwDefs.HiddenPassword));
 				UIUtil.ResizeColumns(lv, true);
 			}
+			Color b = lv.Items[0].BackColor;
+			Color f = lv.Items[0].ForeColor;
+			if (KeePass.Program.Config.MainWindow.EntryListAlternatingBgColors)	b = UIUtil.GetAlternateColorEx(b);
+			else
+			{
+				b = UIUtil.ColorMiddle(b, UIUtil.ColorMiddle(b, f));
+				if (UIUtil.IsDarkColor(b)) f = UIUtil.LightenColor(b, 1);
+				else f = UIUtil.DarkenColor(b, 1);
+			}
 			foreach (ListViewItem li in lv.Items)
 			{
 				li.UseItemStyleForSubItems = false;
-				if (colUsername > -1)
-				{
-					li.SubItems[colUsername].BackColor = SystemColors.Info;
-					li.SubItems[colUsername].ForeColor = SystemColors.InfoText;
-				}
-				if (colPassword > -1)
-				{
-					li.SubItems[colPassword].BackColor = SystemColors.Info;
-					li.SubItems[colPassword].ForeColor = SystemColors.InfoText;
-				}
-				if (colAATPassword > -1)
-				{
-					li.SubItems[colAATPassword].BackColor = SystemColors.Info;
-					li.SubItems[colAATPassword].ForeColor = SystemColors.InfoText;
-				}
+				AdjustColors(li, colUsername, b, f);
+				AdjustColors(li, colPassword, b, f);
+				AdjustColors(li, colAATPassword, b, f);
 			}
+		}
+
+		private void AdjustColors(ListViewItem li, int i, Color b, Color f)
+		{
+			if (i < 0) return;
+			li.SubItems[i].BackColor = b;
+			li.SubItems[i].ForeColor = f;
 		}
 
 		private void HandleDBColumn(ListView lv)
@@ -581,7 +583,12 @@ namespace AlternateAutoType
 			bool shown;
 			Options options = (Options)Tools.GetPluginFromOptions(this, out shown);
 			if (!shown) return;
-			Config.PWEnter = options.cbPWHotkey.SelectedIndex == 1;
+
+			bool bPWEnter = options.cbPWHotkey.SelectedIndex == 1;
+			if (Config.PWEnter &&(bPWEnter != Config.PWEnter)) WndProcHook.RemoveHandler(m_host.MainWindow);
+			Config.PWEnter = bPWEnter;
+			if (Config.PWEnter) WndProcHook.AddHandler(m_host.MainWindow, WndProcHandler);
+
 			HotkeysDeactivate();
 			Config.AATHotkey = options.AATHotkey;
 			Config.PWOnlyHotkey = options.PWOnlyHotkey;
