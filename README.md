@@ -59,7 +59,7 @@ These translation files need to be placed in a folder called *Translations* insi
 If a text is missing in the translation file, it is backfilled with English text.
 You're welcome to add additional translation files by creating a pull request as described in the [wiki](https://github.com/Rookiestyle/AlternateAutoType/wiki/Create-or-update-translations).
 
-Naming convention for translation files: `AlternateAutoType.<language identifier>.language.xml`\
+Naming convention for translation files: `<plugin name>.<language identifier>.language.xml`\
 Example: `AlternateAutoType.de.language.xml`
   
 The language identifier in the filename must match the language identifier inside the KeePass language that you can select using *View -> Change language...*\
