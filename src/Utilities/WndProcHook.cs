@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-
 namespace PluginTools
 {
-	#region WndProc for other forms
 	public class WndProcEventArgs : EventArgs
 	{
 		public Form form;
@@ -102,5 +100,4 @@ namespace PluginTools
 			}
 		}
 	}
-	#endregion
 }
