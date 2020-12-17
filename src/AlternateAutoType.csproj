@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlternateAutoType.cs" />
+    <Compile Include="AWM.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="HotkeyManager.cs" />
     <Compile Include="ListViewComparer.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Utilities\Tools_Controls.cs" />
     <Compile Include="Utilities\Tools_Main.cs" />
     <Compile Include="Utilities\Tools_Options.cs" />
+    <Compile Include="Utilities\Tools_UI.cs" />
     <Compile Include="Utilities\WndProcHook.cs" />
   </ItemGroup>
   <ItemGroup>

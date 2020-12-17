@@ -48,10 +48,17 @@ Password only hotkey will autotype the password - {ENTER} is optional and the {A
 As you can see, ALternateAutoType ensures that only entries having an alternative sequence defined are shown.
 
 ## Auto-Type password only
-Although KeePass now offers this as onemore hotkey out of the box, I decided to keep it a part of this plugin.\
+Although KeePass now offers this as one more hotkey out of the box, I decided to keep it a part of this plugin.\
 Alternate Auto-Type will let you chose between two options:  
 - AutoType the password
 - Auto-Type password foloowed by [ENTER] to automatically submit the login form
+
+## Quick add window titles to Auto-Type sequences  
+Alternate Auto-Type offers a shortcut to add window titles to entries' Auto-Type sequences.
+
+Select the entry/entries and pick the window title from the context menu.  
+Press [Shift] to directly edit the added sequence.
+
 
 # Translations
 Alternate Auto-Type is provided with English language built-in and allow usage of translation files.

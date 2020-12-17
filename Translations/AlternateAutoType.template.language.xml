@@ -53,16 +53,26 @@
     <key>KeepATOpen</key>
     <value>Don't close Auto-Type Entry Selection form</value>
   </item>
-    <item>
-	<key>ExcludeExpiredGroups</key>
-	<value>Exclude entries in expired groups</value>
+  <item>
+    <key>ExcludeExpiredGroups</key>
+    <value>Exclude entries in expired groups</value>
   </item>
   <item>
-	<key>AATFormShowGroups</key>
-	<value>Group by sort column</value>
+    <key>AATFormShowGroups</key>
+    <value>Group by sort column</value>
   </item>
   <item>
-	<key>ColumnsSortRemember</key>
-	<value>Preserve sort settings</value>
+    <key>ColumnsSortRemember</key>
+    <value>Preserve sort settings</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateInfo</key>
+    <value>This window title is already defined as Auto-Type sequence.</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateDetails</key>
+    <value>If you want to edit the existing Auto-Type sequence, click '{0}'.
+If you want to add another Auto-Type sequence, click '{1}'.
+If you want to skip these entries, please click '{2}'.</value>
   </item>
 </Translation>

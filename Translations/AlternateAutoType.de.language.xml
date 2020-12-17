@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Translation>
-  <TranslationVersion>4</TranslationVersion>
+  <TranslationVersion>5</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} konnte nicht als Hotkey für Alternate Auto-Type registriert werden</value>
@@ -22,12 +22,16 @@
     <value>NUR Passwort</value>
   </item>
   <item>
+    <key>AATHotKey</key>
+    <value>Alternate Auto-Type Hotkey:</value>
+  </item>
+  <item>
     <key>PasswordEnterHotKey</key>
     <value>Passwort + Enter</value>
   </item>
   <item>
-    <key>AATHotKey</key>
-    <value>Alternate Auto-Type Hotkey:</value>
+    <key>Hotkeys</key>
+    <value>Hotkeys</value>
   </item>
   <item>
     <key>Integration</key>
@@ -50,15 +54,25 @@
     <value>Auto-Type-Eintragsauswahl NICHT schließen</value>
   </item>
   <item>
-	<key>ExcludeExpiredGroups</key>
-	<value>Ignoriere Einträge in abgelaufenen Gruppen</value>
+    <key>ExcludeExpiredGroups</key>
+    <value>Ignoriere Einträge in abgelaufenen Gruppen</value>
   </item>
   <item>
-	<key>AATFormShowGroups</key>
-	<value>Gruppiere sortierte Einträge</value>
+    <key>AATFormShowGroups</key>
+    <value>Gruppiere sortierte Einträge</value>
   </item>
   <item>
-	<key>ColumnsSortRemember</key>
-	<value>Spaltensortierung speichern</value>
+    <key>ColumnsSortRemember</key>
+    <value>Spaltensortierung speichern</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateInfo</key>
+    <value>Der Fenstertitel ist bereits als Auto-Type-Eintrag definiert.</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateDetails</key>
+    <value>Klicke '{0}', um den vorhandenen Eintrag zu bearbeiten.
+Klicke '{1}', um einen weiteren Eintrag hinzuzufügen.
+Klicke '{2}', um nichts zu tun.</value>
   </item>
 </Translation>
