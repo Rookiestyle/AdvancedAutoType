@@ -26,6 +26,8 @@ namespace AlternateAutoType
 		private ColumnHeader m_SortColumn = null;
 		private SortOrder m_SortOrder = SortOrder.Ascending;
 
+		private AutotypeWindowWatcher m_aww = null;
+
 		private bool AATHotkeyPressed
 		{
 			get { return (m_sequence != 0) && (m_sequence == Config.AATHotkeyID); }
@@ -66,6 +68,10 @@ namespace AlternateAutoType
 			Tools.OptionsFormClosed += ConfigWrite;
 
 			if (Config.PWEnter) WndProcHook.AddHandler(m_host.MainWindow, WndProcHandler);
+
+			m_aww = new AutotypeWindowWatcher(SmallIcon);
+			m_aww.Enable();
+
 			return true;
 		}
 
@@ -80,6 +86,7 @@ namespace AlternateAutoType
 		public override void Terminate()
 		{
 			if (m_host == null) return;
+			m_aww.Disable();
 			WndProcHook.RemoveHandler(m_host.MainWindow);
 			HotkeysDeactivate();
 			SprEngine.FilterPlaceholderHints.Remove(Config.Placeholder);
