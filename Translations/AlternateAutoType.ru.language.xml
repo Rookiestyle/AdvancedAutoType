@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Translation>
-  <TranslationVersion>3</TranslationVersion>
+  <TranslationVersion>4</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} Не удалось зарегистрировать горячую клавишу для альтернативного автонабора</value>
@@ -64,5 +64,15 @@
   <item>
     <key>ColumnsSortRemember</key>
     <value>Запомнить настройки сортировки</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateInfo</key>
+    <value>Заголовок этого окна уже определен как последовательность автонабора.</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateDetails</key>
+    <value>Если вы хотите изменить существующую последовательность автонабора, щелкните '{0}'.
+Если вы хотите добавить другую последовательность автонабора, щелкните '{1}'.
+Если вы хотите пропустить эти записи, пожалуйста, щелкните '{2}'.</value>
   </item>
 </Translation>
