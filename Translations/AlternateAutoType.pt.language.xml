@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Translation>
+  <TranslationVersion>0</TranslationVersion>
+  <item>
+    <key>ErrorHotKeyAAT</key>
+    <value>{0} não pôde ser registrado como tecla de atalho de Preenchimento Automático alternativa</value>
+  </item>
+  <item>
+    <key>ErrorHotKeyPWOnly</key>
+    <value>{0} não pôde ser registrado como tecla de atalho somente senha</value>
+  </item>
+  <item>
+    <key>Options</key>
+    <value>Configuração de Preenchimento Automático Alternativo</value>
+  </item>
+  <item>
+    <key>GlobalAutotypeHotKey</key>
+    <value>Atalho de Preenchimento Automático global:</value>
+  </item>
+  <item>
+    <key>PasswordOnlyHotKey</key>
+    <value>Somente senha</value>
+  </item>
+  <item>
+    <key>AATHotKey</key>
+    <value>Tecla de Preenchimento Automática Alternativa:</value>
+  </item>
+  <item>
+    <key>PasswordEnterHotKey</key>
+    <value>Senha + Enter</value>
+  </item>
+  <item>
+    <key>Hotkeys</key>
+    <value>Atalhos</value>
+  </item>
+  <item>
+    <key>Integration</key>
+    <value>Aprimoramentos do formulário de seleção de entrada de Preenchimento Automático</value>
+  </item>
+  <item>
+    <key>ColumnsSortable</key>
+    <value>Clique nos cabeçalhos das colunas para classificar as entradas</value>
+  </item>
+  <item>
+    <key>AddDBColumn</key>
+    <value>Adicionar coluna DB se entradas de pelo menos 2 bancos de dados forem mostradas</value>
+  </item>
+  <item>
+    <key>SpecialColumns</key>
+    <value>Preenchimento Automático SOMENTE nome de usuário / senha ao clicar em nome de usuário / senha</value>
+  </item>
+  <item>
+    <key>KeepATOpen</key>
+    <value>Não fechar formulário de Preenchimento Automático</value>
+  </item>
+  <item>
+    <key>ExcludeExpiredGroups</key>
+    <value>Exclua entradas em grupos expirados</value>
+  </item>
+  <item>
+    <key>AATFormShowGroups</key>
+    <value>Agrupar por coluna de classificação</value>
+  </item>
+  <item>
+    <key>ColumnsSortRemember</key>
+    <value>Preservar configurações de classificação</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateInfo</key>
+    <value>Este título de janela já está definido como sequência de Tipo Automático.</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateDetails</key>
+    <value>Se você deseja editar a sequência de Preenchimento Automático existente, clique em '{0}'.
+Se desejar adicionar outra sequência de Preenchimento Automático, clique em '{1}'.
+Se você quiser pular essas entradas, clique em '{2}'.</value>
+  </item>
+</Translation>
