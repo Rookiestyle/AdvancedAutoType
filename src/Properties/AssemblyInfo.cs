@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("rookiestyle")]
 [assembly: AssemblyProduct ("KeePass Plugin")]
-[assembly: AssemblyCopyright("Copyright 2020")]
+[assembly: AssemblyCopyright("Copyright 2021")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 // This sets the default COM visibility of types in the assembly to invisible.
@@ -24,7 +24,7 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can use the default the Revision and 
 // Build Numbers by using the '*' as shown below:
-[assembly: AssemblyVersion("1.13")]
-[assembly: AssemblyFileVersion("1.13")]
+[assembly: AssemblyVersion("1.14")]
+[assembly: AssemblyFileVersion("1.14")]
 [assembly: Guid("78C152F3-EAF8-4FFC-9BE3-F5DC0CD66E5D")]
 

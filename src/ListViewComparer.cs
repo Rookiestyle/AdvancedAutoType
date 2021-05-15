@@ -43,5 +43,50 @@ namespace AlternateAutoType
 
 			return direction * string.Compare(stringA, stringB, StringComparison.CurrentCultureIgnoreCase);
 		}
+		public void UpdateColumnSortingIcons(ListView lv)
+		{
+			if (lv == null) return;
+			if (KeePass.UI.UIUtil.SetSortIcon(lv, Column, SortOrder)) return;
+
+			// if(m_lvEntries.SmallImageList == null) return;
+
+			if (Column < 0) return;
+
+			string strAsc = "  \u2191"; // Must have same length
+			string strDsc = "  \u2193"; // Must have same length
+			if (KeePass.Util.WinUtil.IsWindows9x || KeePass.Util.WinUtil.IsWindows2000 || KeePass.Util.WinUtil.IsWindowsXP ||
+				KeePassLib.Native.NativeLib.IsUnix())
+			{
+				strAsc = @"  ^";
+				strDsc = @"  v";
+			}
+			else if (KeePass.Util.WinUtil.IsAtLeastWindowsVista)
+			{
+				strAsc = "  \u25B3";
+				strDsc = "  \u25BD";
+			}
+
+			foreach (ColumnHeader ch in lv.Columns)
+			{
+				string strCur = ch.Text, strNew = null;
+
+				if (strCur.EndsWith(strAsc) || strCur.EndsWith(strDsc))
+				{
+					strNew = strCur.Substring(0, strCur.Length - strAsc.Length);
+					strCur = strNew;
+				}
+
+				if ((ch.Index == Column) &&
+					(SortOrder != SortOrder.None))
+				{
+					if (SortOrder == SortOrder.Ascending)
+						strNew = strCur + strAsc;
+					else if (SortOrder == SortOrder.Descending)
+						strNew = strCur + strDsc;
+				}
+
+				if (strNew != null) ch.Text = strNew;
+			}
+		}
 	}
 }

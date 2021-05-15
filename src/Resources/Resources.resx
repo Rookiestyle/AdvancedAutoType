@@ -121,10 +121,4 @@
   <data name="smallicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>smallicon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sort_asc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sort_asc.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sort_desc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sort_desc.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

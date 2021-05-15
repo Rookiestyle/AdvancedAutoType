@@ -382,16 +382,21 @@ namespace AlternateAutoType
 				else
 					Config.ColumnsSortColumn = -1 * (e.Column + 1);
 			}
-
-			lv.SmallImageList.Images.RemoveByKey(Config.SortIcon);
-			if (m_SortOrder == SortOrder.Ascending)
-				lv.SmallImageList.Images.Add(Config.SortIcon, Resources.sort_asc);
-			else
-				lv.SmallImageList.Images.Add(Config.SortIcon, Resources.sort_desc);
 			m_SortColumn = sortColumn;
-			m_SortColumn.ImageKey = Config.SortIcon;
 
-			lv.ListViewItemSorter = new ListViewComparer(e.Column, m_SortOrder);
+			ListViewComparer lvc = lv.ListViewItemSorter as ListViewComparer;
+			if (lvc == null)
+			{
+				lvc = new ListViewComparer(e.Column, m_SortOrder);
+				lv.ListViewItemSorter = lvc;
+			}
+			lvc.Column = e.Column;
+			lvc.SortOrder = m_SortOrder;
+			lv.Sort();
+			
+			lv.ListViewItemSorter = lvc;
+			lvc.UpdateColumnSortingIcons(lv);
+
 
 			AdjustGroups(lv, e.Column);
 		}
