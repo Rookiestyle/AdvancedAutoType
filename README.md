@@ -45,13 +45,13 @@ AAT hotkey will autotype {S:PIN}{ENTER}
 Password only hotkey will autotype the password - {ENTER} is optional and the {AAT} placeholder is NOT required in this case
 
 <img src="images/AlternateAutoType%20-%20AAT.png" alt="Entry selection AAT" />
-As you can see, ALternateAutoType ensures that only entries having an alternative sequence defined are shown.
+As you can see, AlternateAutoType ensures that only entries having an alternative sequence defined are shown.
 
 ## Auto-Type password only
 Although KeePass now offers this as one more hotkey out of the box, I decided to keep it a part of this plugin.\
-Alternate Auto-Type will let you chose between two options:  
+Alternate Auto-Type will let you choose between two options:  
 - AutoType the password
-- Auto-Type password foloowed by [ENTER] to automatically submit the login form
+- Auto-Type password followed by [ENTER] to automatically submit the login form
 
 ## Quick add window titles to Auto-Type sequences  
 Alternate Auto-Type offers a shortcut to add window titles to entries' Auto-Type sequences.
