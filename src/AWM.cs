@@ -185,7 +185,8 @@ namespace AlternateAutoType
 			if ((dup == AWMDuplicateHandling.Edit || bShift) && m_miEditSelectedEntry != null)
 			{
 				m_sAddedWindowText = s;
-				m_miEditSelectedEntry.Invoke(KeePass.Program.MainForm, new object[] { false });
+				if (Tools.KeePassVersion < new Version(2, 49)) m_miEditSelectedEntry.Invoke(KeePass.Program.MainForm, new object[] { false });
+				else m_miEditSelectedEntry.Invoke(KeePass.Program.MainForm, new object[] { 0 });
 			}
 		}
 
@@ -309,8 +310,8 @@ namespace AlternateAutoType
 			private static Form f = null;
 			private static ComboBox WindowTexts = null;
 			private static List<Image> Images = null;
-			private static MethodInfo PopulateWindowsList = null;
-			private static MethodInfo DoDrawItem = null;
+			private static MethodInfo m_miPopulateWindowsList = null;
+			private static MethodInfo m_miDoDrawItem = null;
 
 			internal static EventHandler<MeasureItemEventArgs> OnAddWindow = null;
 
@@ -356,7 +357,7 @@ namespace AlternateAutoType
 					}
 					Images.Clear();
 				}
-				PopulateWindowsList.Invoke(f, null);
+				m_miPopulateWindowsList.Invoke(f, null);
 
 
 				//On Windows the window names are added one by one using a new thread
@@ -389,17 +390,17 @@ namespace AlternateAutoType
 				lMsg.Add("m_vWndImages: " + Images == null ? "Not found" : "Found");
 
 				if (KeePassLib.Native.NativeLib.IsUnix())
-					PopulateWindowsList = f.GetType().GetMethod("PopulateWindowsListUnix", BindingFlags.Instance | BindingFlags.NonPublic);
+					m_miPopulateWindowsList = f.GetType().GetMethod("PopulateWindowsListUnix", BindingFlags.Instance | BindingFlags.NonPublic);
 				else
-					PopulateWindowsList = f.GetType().GetMethod("PopulateWindowsListWin", BindingFlags.Instance | BindingFlags.NonPublic);
-				lMsg.Add("PopulateWindowsList: " + PopulateWindowsList == null ? "Not found" : PopulateWindowsList.Name);
+					m_miPopulateWindowsList = f.GetType().GetMethod("PopulateWindowsListWin", BindingFlags.Instance | BindingFlags.NonPublic);
+				lMsg.Add("PopulateWindowsList: " + m_miPopulateWindowsList == null ? "Not found" : m_miPopulateWindowsList.Name);
 
-				DoDrawItem = WindowTexts.GetType().GetMethod("OnDrawItem", BindingFlags.Instance | BindingFlags.NonPublic);
-				lMsg.Add("DoDrawItem: " + DoDrawItem == null ? "Not found" : DoDrawItem.Name);
+				m_miDoDrawItem = WindowTexts.GetType().GetMethod("OnDrawItem", BindingFlags.Instance | BindingFlags.NonPublic);
+				lMsg.Add("DoDrawItem: " + m_miDoDrawItem == null ? "Not found" : m_miDoDrawItem.Name);
 
 				PluginDebug.AddInfo("Init AutoTypeWindowwatcher", 0, lMsg.ToArray());
 
-				if (WindowTexts == null || PopulateWindowsList == null || DoDrawItem == null)
+				if (WindowTexts == null || m_miPopulateWindowsList == null || m_miDoDrawItem == null)
 				{
 					f.Dispose();
 					f = null;
@@ -417,7 +418,7 @@ namespace AlternateAutoType
 			internal static void DrawItem(object sender, DrawItemEventArgs e)
 			{
 				if (!Valid) return;
-				DoDrawItem.Invoke(WindowTexts, new object[] { e });
+				m_miDoDrawItem.Invoke(WindowTexts, new object[] { e });
 			}
 		}
 	}
