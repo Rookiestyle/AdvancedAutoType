@@ -67,7 +67,7 @@ namespace AlternateAutoType
 			GlobalWindowManager.WindowRemoved += OnWindowRemoved;
 
 			Tools.OptionsFormShown += OptionsFormShown;
-			Tools.OptionsFormClosed += ConfigWrite;
+			Tools.OptionsFormClosed += OptionsForm_Closed;
 
 			if (Config.PWEnter) WndProcHook.AddHandler(m_host.MainWindow, WndProcHandler);
 
@@ -98,7 +98,7 @@ namespace AlternateAutoType
 			m_host.MainWindow.ToolsMenu.DropDownItems.Remove(m_menuItem);
 
 			Tools.OptionsFormShown -= OptionsFormShown;
-			Tools.OptionsFormClosed -= ConfigWrite;
+			Tools.OptionsFormClosed -= OptionsForm_Closed;
 			GlobalWindowManager.WindowAdded -= OnWindowAdded;
 			GlobalWindowManager.WindowRemoved -= OnWindowRemoved;
 
@@ -597,7 +597,7 @@ namespace AlternateAutoType
 			Tools.AddPluginToOptionsForm(this, options);
 		}
 
-		private void ConfigWrite(object sender, Tools.OptionsFormsEventArgs e)
+		private void OptionsForm_Closed(object sender, Tools.OptionsFormsEventArgs e)
 		{
 			if (e.form.DialogResult != DialogResult.OK) return;
 			bool shown;

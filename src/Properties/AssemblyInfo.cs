@@ -8,11 +8,14 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AlternateAutoType")]
-[assembly: AssemblyDescription("Adds a hotkey for typing only the password. Adds an alternate hotkey for a second autotype sequence, KeePass types EITHER everything before OR everything after {AAT}")]
+[assembly: AssemblyDescription(@"Hotkeys for typing only the password and an alternative autotype sequence.
+KeePass types EITHER everything before OR everything after {AAT}. 
+
+Various other enhancements, check the options")]
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("rookiestyle")]
 [assembly: AssemblyProduct ("KeePass Plugin")]
-[assembly: AssemblyCopyright("Copyright 2021")]
+[assembly: AssemblyCopyright("Copyright 2020-2021")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 // This sets the default COM visibility of types in the assembly to invisible.
@@ -24,7 +27,7 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can use the default the Revision and 
 // Build Numbers by using the '*' as shown below:
-[assembly: AssemblyVersion("1.15")]
-[assembly: AssemblyFileVersion("1.15")]
+[assembly: AssemblyVersion("1.16")]
+[assembly: AssemblyFileVersion("1.16")]
 [assembly: Guid("78C152F3-EAF8-4FFC-9BE3-F5DC0CD66E5D")]
 

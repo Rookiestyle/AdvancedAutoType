@@ -4,11 +4,13 @@ using KeePass.UI;
 using PluginTranslation;
 using PluginTools;
 using System;
+using System.Linq;
 
 namespace AlternateAutoType
 {
 	public partial class Options : UserControl
 	{
+		private Form m_ParentForm = null;
 		public Options()
 		{
 			InitializeComponent();
@@ -30,10 +32,21 @@ namespace AlternateAutoType
 			cbColumnsRememberSort.Text = PluginTranslate.ColumnsSortRemember;
 
 			SetHotKey(tbGAT, (Keys)KeePass.Program.Config.Integration.HotKeyGlobalAutoType);
-			tbGAT.Enabled = false;
 
 			lAAT.Enabled = tbAAT.Enabled = !KeePassLib.Native.NativeLib.IsUnix();
 			cbSpecialColumns.Enabled = cbKeepATOpen.Enabled = !KeePassLib.Native.NativeLib.IsUnix();
+		}
+
+        private void OnPropagateHotKeys(object sender, EventArgs e)
+        {
+			string sControl = sender == tbGAT ? "m_hkAutotype" : "m_hkAutotypePassword";
+			var c = Tools.GetControl(sControl, m_ParentForm) as HotKeyControlEx;
+			if (c == null) return;
+			c.Text = (sender as HotKeyControlEx).Text;
+			var st = new System.Diagnostics.StackTrace().GetFrames();
+			var sfPluginOptionsEntered = st.Where(x => x.GetMethod().Name.ToLowerInvariant().Contains("pluginoptionsenter")).FirstOrDefault();
+			if (sfPluginOptionsEntered == null) SetHotKey(c, GetHotKey(sender as HotKeyControlEx));
+			else SetHotKey(sender as HotKeyControlEx, GetHotKey(c));
 		}
 
 		public Keys AATHotkey
@@ -50,43 +63,12 @@ namespace AlternateAutoType
 
 		private void SetHotKey(HotKeyControlEx hkBox, Keys hk)
 		{
-			if ((hkBox == tbPWOnly) && Config.KPAutoTypePWPossible)
-			{
-				hkBox.TabStop = hkBox.Enabled = false;
-				hkBox.ReadOnly = true;
-			}
-			try
-			{
-				var check = hkBox.GetType().GetProperty("HotKeyModifiers");
-				if (check == null)
-				{
-					// only available with KeePass versions > 2.41
-					hkBox.HotKey = hk;
-					return;
-				}
-				hkBox.HotKey = hk & Keys.KeyCode;
-				check.SetValue(hkBox, hk & Keys.Modifiers, null);
-				var render = hkBox.GetType().GetMethod("RenderHotKey");
-				if (render == null) return;
-				render.Invoke(hkBox, null);
-			}
-			catch { }
+			hkBox.HotKey = hk;
 		}
 
 		private Keys GetHotKey(HotKeyControlEx hkBox)
 		{
-			try
-			{
-				var check = hkBox.GetType().GetProperty("HotKeyModifiers");
-				if (check == null)
-				{
-					// only available with KeePass versions > 2.41
-					return hkBox.HotKey;
-				}
-				return hkBox.HotKey | (Keys)check.GetValue(hkBox, null);
-			}
-			catch { }
-			return Keys.None;
+			return hkBox.HotKey;
 		}
 
 		private void cbSpecialColumns_CheckedChanged(object sender, System.EventArgs e)
@@ -101,6 +83,17 @@ namespace AlternateAutoType
 
 		internal void OptionsForm_Shown(object sender, EventArgs e)
 		{
+			//HotKey cannot be set in our controls if they are place inside the UserControl
+			//Reason: HotKeyManager.HandleHotKeyIntoSelf
+			//  This checks for OptionsForm.ActiveControl which will be the UserControl
+			//  but neds to be HotKeyControlEx
+			//
+			//Move all controls from UserControl in TabPage to TabPage
+			//Make UserControl invisible (do NOT remove: OptionsForm_Closed won't work otherwise)
+			m_ParentForm = ParentForm;
+			while (Controls.Count > 0) Parent.Controls.Add(Controls[0]);
+			Height = Width = 0;
+			Visible = false;
 			lGATP.Visible = cbPWEnter.Visible = Config.KPAutoTypePWPossible;
 			cbPWHotkey.Visible = cbPWHotkey.TabStop = !Config.KPAutoTypePWPossible;
 			cbPWEnter.Checked = Config.PWEnter;
@@ -110,16 +103,19 @@ namespace AlternateAutoType
 			if (c != null) lGAT.Text = c.Text;
 			c = Tools.GetControl("m_lblAutotypePassword", sender as Form);
 			if (c != null) lGATP.Text = c.Text;
-			c = Tools.GetControl("m_tabIntegration", sender as Form);
-			if (c == null) return;
-			(c as TabPage).Leave += IntegrationTab_Leave;
+			TabPage tpPluginOptions = Parent.Parent.Parent as TabPage; //TabPage AlternateAutoType - TabControl - TabPage Plugin Options
+			if (tpPluginOptions != null) tpPluginOptions.Enter += PluginOptionsEnter;
 		}
 
-		private void IntegrationTab_Leave(object sender, EventArgs e)
+		private void PluginOptionsEnter(object sender, EventArgs e)
 		{
-			Control c = Tools.GetControl("m_hkAutotype", ParentForm);
-			if (c != null) tbGAT.Text = c.Text;
-			c = Tools.GetControl("m_hkAutotypePassword", ParentForm);
+			Control c = Tools.GetControl("m_hkAutotype", m_ParentForm);
+			if (c != null)
+			{
+				tbGAT.Text = c.Text;
+				SetHotKey(tbGAT, GetHotKey(c as HotKeyControlEx));
+			}
+			c = Tools.GetControl("m_hkAutotypePassword", m_ParentForm);
 			if (c != null)
 			{
 				tbPWOnly.Text = c.Text;
@@ -136,5 +132,5 @@ namespace AlternateAutoType
 		{
 			if (cbKeepATOpen.Checked) cbSpecialColumns.Checked = true;
 		}
-	}
+    }
 }
