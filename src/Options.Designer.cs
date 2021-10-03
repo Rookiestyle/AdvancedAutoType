@@ -40,6 +40,7 @@
             this.lAAT = new System.Windows.Forms.Label();
             this.tbAAT = new KeePass.UI.HotKeyControlEx();
             this.gIntegration = new System.Windows.Forms.GroupBox();
+            this.cbSpecialColumnsRespectPWEnter = new System.Windows.Forms.CheckBox();
             this.cbColumnsRememberSort = new System.Windows.Forms.CheckBox();
             this.cbExcludeExpiredGroups = new System.Windows.Forms.CheckBox();
             this.cbKeepATOpen = new System.Windows.Forms.CheckBox();
@@ -159,6 +160,7 @@
             // gIntegration
             // 
             this.gIntegration.AutoSize = true;
+            this.gIntegration.Controls.Add(this.cbSpecialColumnsRespectPWEnter);
             this.gIntegration.Controls.Add(this.cbColumnsRememberSort);
             this.gIntegration.Controls.Add(this.cbExcludeExpiredGroups);
             this.gIntegration.Controls.Add(this.cbKeepATOpen);
@@ -170,10 +172,21 @@
             this.gIntegration.Margin = new System.Windows.Forms.Padding(5);
             this.gIntegration.Name = "gIntegration";
             this.gIntegration.Padding = new System.Windows.Forms.Padding(5);
-            this.gIntegration.Size = new System.Drawing.Size(933, 356);
+            this.gIntegration.Size = new System.Drawing.Size(933, 403);
             this.gIntegration.TabIndex = 7;
             this.gIntegration.TabStop = false;
             this.gIntegration.Text = "Integration";
+            // 
+            // cbSpecialColumnsRespectPWEnter
+            // 
+            this.cbSpecialColumnsRespectPWEnter.AutoSize = true;
+            this.cbSpecialColumnsRespectPWEnter.Location = new System.Drawing.Point(62, 279);
+            this.cbSpecialColumnsRespectPWEnter.Margin = new System.Windows.Forms.Padding(5);
+            this.cbSpecialColumnsRespectPWEnter.Name = "cbSpecialColumnsRespectPWEnter";
+            this.cbSpecialColumnsRespectPWEnter.Size = new System.Drawing.Size(507, 36);
+            this.cbSpecialColumnsRespectPWEnter.TabIndex = 9;
+            this.cbSpecialColumnsRespectPWEnter.Text = "cbSpecialColumnsRespectPWEnter";
+            this.cbSpecialColumnsRespectPWEnter.UseVisualStyleBackColor = true;
             // 
             // cbColumnsRememberSort
             // 
@@ -189,11 +202,11 @@
             // cbExcludeExpiredGroups
             // 
             this.cbExcludeExpiredGroups.AutoSize = true;
-            this.cbExcludeExpiredGroups.Location = new System.Drawing.Point(27, 279);
+            this.cbExcludeExpiredGroups.Location = new System.Drawing.Point(27, 326);
             this.cbExcludeExpiredGroups.Margin = new System.Windows.Forms.Padding(5);
             this.cbExcludeExpiredGroups.Name = "cbExcludeExpiredGroups";
             this.cbExcludeExpiredGroups.Size = new System.Drawing.Size(350, 36);
-            this.cbExcludeExpiredGroups.TabIndex = 9;
+            this.cbExcludeExpiredGroups.TabIndex = 10;
             this.cbExcludeExpiredGroups.Text = "Exclude expired groups";
             this.cbExcludeExpiredGroups.UseVisualStyleBackColor = true;
             // 
@@ -254,7 +267,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Options";
             this.Padding = new System.Windows.Forms.Padding(27, 8, 27, 8);
-            this.Size = new System.Drawing.Size(987, 687);
+            this.Size = new System.Drawing.Size(987, 698);
             this.Load += new System.EventHandler(this.Options_Load);
             this.gHotkeys.ResumeLayout(false);
             this.gHotkeys.PerformLayout();
@@ -281,5 +294,6 @@
 		private System.Windows.Forms.Label lGATP;
 		private System.Windows.Forms.CheckBox cbPWEnter;
 		internal System.Windows.Forms.CheckBox cbColumnsRememberSort;
-	}
+        internal System.Windows.Forms.CheckBox cbSpecialColumnsRespectPWEnter;
+    }
 }

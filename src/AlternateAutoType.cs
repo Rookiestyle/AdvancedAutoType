@@ -548,8 +548,11 @@ namespace AlternateAutoType
 			string column = (sender as ListView).Columns[col].Text;
 			string sequence = string.Empty;
 			if (column == KeePass.Resources.KPRes.UserName) sequence = "{USERNAME}";
-			else if (column == KeePass.Resources.KPRes.Password) sequence = "{PASSWORD}";
-			else if (column == Config.PWColumnHeader) sequence = "{PASSWORD}";
+			else if (column == KeePass.Resources.KPRes.Password || column == Config.PWColumnHeader)
+			{
+				sequence = "{PASSWORD}";
+				if (Config.SpecialColumnsRespectPWEnter && Config.PWEnter) sequence += "{ENTER}";
+			}
 			else return;
 			AutoTypeCtx ctx = info.Item.Tag as AutoTypeCtx;
 			if (ctx == null) return;
@@ -591,6 +594,7 @@ namespace AlternateAutoType
 			options.cbColumnsRememberSort.Checked = Config.ColumnsRememberSorting;
 			options.cbDBColumn.Checked = Config.AddDBColumn;
 			options.cbSpecialColumns.Checked = Config.SpecialColumns;
+			options.cbSpecialColumnsRespectPWEnter.Checked = Config.SpecialColumnsRespectPWEnter;
 			options.cbKeepATOpen.Checked = Config.KeepATOpen;
 			options.cbExcludeExpiredGroups.Checked = Config.ExcludeExpiredGroups;
 			e.form.Shown += options.OptionsForm_Shown;
@@ -616,6 +620,7 @@ namespace AlternateAutoType
 			Config.ColumnsRememberSorting = options.cbColumnsRememberSort.Checked;
 			Config.AddDBColumn = options.cbDBColumn.Checked;
 			Config.SpecialColumns = options.cbSpecialColumns.Checked;
+			Config.SpecialColumnsRespectPWEnter = options.cbSpecialColumnsRespectPWEnter.Checked;
 			Config.KeepATOpen = options.cbKeepATOpen.Checked;
 			Config.ExcludeExpiredGroups = options.cbExcludeExpiredGroups.Checked;
 

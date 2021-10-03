@@ -28,6 +28,7 @@ namespace AlternateAutoType
 			cbDBColumn.Text = PluginTranslate.AddDBColumn;
 			cbSpecialColumns.Text = PluginTranslate.SpecialColumns;
 			cbKeepATOpen.Text = PluginTranslate.KeepATOpen;
+			cbSpecialColumnsRespectPWEnter.Text = KeePass.Resources.KPRes.Password + " = " + PluginTranslate.PasswordEnterHotKey;
 			cbExcludeExpiredGroups.Text = PluginTranslate.ExcludeExpiredGroups;
 			cbColumnsRememberSort.Text = PluginTranslate.ColumnsSortRemember;
 
@@ -74,11 +75,13 @@ namespace AlternateAutoType
 		private void cbSpecialColumns_CheckedChanged(object sender, System.EventArgs e)
 		{
 			cbKeepATOpen.Enabled = cbSpecialColumns.Checked;
+			cbSpecialColumnsRespectPWEnter.Enabled = cbSpecialColumns.Checked;
 		}
 
 		private void Options_Load(object sender, System.EventArgs e)
 		{
 			gHotkeys.Enabled = !KeePassLib.Native.NativeLib.IsUnix();
+			cbSpecialColumns_CheckedChanged(null, null);
 		}
 
 		internal void OptionsForm_Shown(object sender, EventArgs e)
