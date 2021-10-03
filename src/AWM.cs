@@ -112,17 +112,25 @@ namespace AlternateAutoType
 			catch { }
 		}
 
+		private static string _sAddText = string.Empty;
+		private static string GetTextForAdd()
+        {
+			if (string.IsNullOrEmpty(_sAddText))
+			{
+				_sAddText = "Add";
+				var f = KeePass.Program.Translation.Forms.FirstOrDefault(x => x.FullName == "KeePass.Forms.PwEntryForm");
+				if (f != null)
+				{
+					var c = f.Controls.FirstOrDefault(x => x.Name == "m_btnAutoTypeAdd");
+					if (c != null) _sAddText = c.Text;
+				}
+			}
+			return _sAddText;
+		}
+
 		private void AddMenu(ref ToolStripMenuItem tsmiContainer, ref ToolStripMenuItem tsmiLastWindow, ref ToolStripComboBox tscbWindows)
 		{
-			tsmiContainer = new ToolStripMenuItem(KPRes.AutoType + ": ", m_imgDefaultIcon);
-			string s = "Add";
-			var f = KeePass.Program.Translation.Forms.FirstOrDefault(x => x.FullName == "KeePass.Forms.PwEntryForm");
-			if (f != null)
-			{
-				var c = f.Controls.FirstOrDefault(x => x.Name == "m_btnAutoTypeAdd");
-				if (c != null) s = c.Text;
-			}
-			tsmiContainer.Text += s;
+			tsmiContainer = new ToolStripMenuItem(KPRes.AutoType + ": " + GetTextForAdd(), m_imgDefaultIcon);
 			tsmiContainer.DropDown = new ToolStripDropDown();
 			tsmiContainer.DropDown.LayoutStyle = ToolStripLayoutStyle.Table;
 			var settings = tsmiContainer.DropDown.LayoutSettings as TableLayoutSettings;
@@ -151,11 +159,10 @@ namespace AlternateAutoType
 
 		private void OnKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				var t = (sender as ToolStripComboBox).GetCurrentParent() as ToolStripDropDown;
-				t.Items[2].PerformClick();
-			}
+			if (e.KeyCode != Keys.Enter) return;
+			
+			var t = (sender as ToolStripComboBox).GetCurrentParent() as ToolStripDropDown;
+			t.Items[2].PerformClick();
 		}
 
 		private void OnAddPreviousWindow(object sender, EventArgs e)
@@ -226,9 +233,7 @@ namespace AlternateAutoType
 			else
 			{
 				string text = PluginTranslate.AWMCheckDuplicateInfo+"\n\n"+string.Format(PluginTranslate.AWMCheckDuplicateDetails,
-				DialogResult.Yes.ToString(),
-				DialogResult.No.ToString(),
-				DialogResult.Cancel.ToString());
+				KPRes.Yes, KPRes.No, KPRes.Cancel);
 				DialogResult r = MessageBox.Show(text, PluginTranslate.PluginName + ": " + m_tsmiCtxContainer.Text.Replace("&", string.Empty),
 					MessageBoxButtons.YesNoCancel);
 				if (r == DialogResult.Yes) return AWMDuplicateHandling.Edit;
