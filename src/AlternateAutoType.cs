@@ -388,9 +388,10 @@ namespace AlternateAutoType
 			tbSearch.Dock = lvShownEntries.Dock = DockStyle.None;
 			lvShownEntries.Top += tbSearch.Height + iGap -1;
 			lvShownEntries.Height = iHeight - tbSearch.Height - iGap;
-        }
+			lvShownEntries.Width = lvShownEntries.Parent.ClientSize.Width - lvShownEntries.Parent.Padding.Left - lvShownEntries.Parent.Padding.Right;
+		}
 
-        private void OnFilterSearchResults(object sender, EventArgs e)
+		private void OnFilterSearchResults(object sender, EventArgs e)
         {
 			TextBox tbSearch = sender as TextBox;
 			if (tbSearch == null) return;
