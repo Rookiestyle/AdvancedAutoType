@@ -16,14 +16,14 @@ namespace AlternateAutoType
 			InitializeComponent();
 
 			Text = PluginTranslate.Options;
-			gHotkeys.Text = PluginTranslate.Hotkeys;
+			tpAlternateAutotypeHotkeys.Text = PluginTranslate.Hotkeys;
 			lGAT.Text = PluginTranslate.GlobalAutotypeHotKey;
 			lAAT.Text = PluginTranslate.AATHotKey;
 			cbPWEnter.Text = PluginTranslate.PasswordEnterHotKey;
 			cbPWHotkey.Items.Clear();
 			cbPWHotkey.Items.Add(PluginTranslate.PasswordOnlyHotKey);
 			cbPWHotkey.Items.Add(PluginTranslate.PasswordEnterHotKey);
-			gIntegration.Text = PluginTranslate.Integration;
+			tpAlternateAutotypeIntegration.Text = PluginTranslate.Integration;
 			cbColumnsSortable.Text = PluginTranslate.ColumnsSortable;
 			cbDBColumn.Text = PluginTranslate.AddDBColumn;
 			cbSpecialColumns.Text = PluginTranslate.SpecialColumns;
@@ -31,6 +31,7 @@ namespace AlternateAutoType
 			cbSpecialColumnsRespectPWEnter.Text = KeePass.Resources.KPRes.Password + " = " + PluginTranslate.PasswordEnterHotKey;
 			cbExcludeExpiredGroups.Text = PluginTranslate.ExcludeExpiredGroups;
 			cbColumnsRememberSort.Text = PluginTranslate.ColumnsSortRemember;
+			cbSearchAsYouType.Text = PluginTranslate.SearchAsYouType;
 
 			SetHotKey(tbGAT, (Keys)KeePass.Program.Config.Integration.HotKeyGlobalAutoType);
 
@@ -80,7 +81,8 @@ namespace AlternateAutoType
 
 		private void Options_Load(object sender, System.EventArgs e)
 		{
-			gHotkeys.Enabled = !KeePassLib.Native.NativeLib.IsUnix();
+			tpAlternateAutotypeHotkeys.Enabled = !KeePassLib.Native.NativeLib.IsUnix();
+			if (!tpAlternateAutotypeHotkeys.Enabled) tcAlternateAutoType.SelectedTab = tpAlternateAutotypeIntegration;
 			cbSpecialColumns_CheckedChanged(null, null);
 		}
 

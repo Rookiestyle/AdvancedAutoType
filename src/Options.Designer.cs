@@ -30,7 +30,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.gHotkeys = new System.Windows.Forms.GroupBox();
             this.cbPWEnter = new System.Windows.Forms.CheckBox();
             this.lGATP = new System.Windows.Forms.Label();
             this.tbGAT = new KeePass.UI.HotKeyControlEx();
@@ -39,7 +38,6 @@
             this.lGAT = new System.Windows.Forms.Label();
             this.lAAT = new System.Windows.Forms.Label();
             this.tbAAT = new KeePass.UI.HotKeyControlEx();
-            this.gIntegration = new System.Windows.Forms.GroupBox();
             this.cbSpecialColumnsRespectPWEnter = new System.Windows.Forms.CheckBox();
             this.cbColumnsRememberSort = new System.Windows.Forms.CheckBox();
             this.cbExcludeExpiredGroups = new System.Windows.Forms.CheckBox();
@@ -47,35 +45,20 @@
             this.cbSpecialColumns = new System.Windows.Forms.CheckBox();
             this.cbDBColumn = new System.Windows.Forms.CheckBox();
             this.cbColumnsSortable = new System.Windows.Forms.CheckBox();
-            this.gHotkeys.SuspendLayout();
-            this.gIntegration.SuspendLayout();
+            this.tcAlternateAutoType = new System.Windows.Forms.TabControl();
+            this.tpAlternateAutotypeHotkeys = new System.Windows.Forms.TabPage();
+            this.tpAlternateAutotypeIntegration = new System.Windows.Forms.TabPage();
+            this.cbSearchAsYouType = new System.Windows.Forms.CheckBox();
+            this.tcAlternateAutoType.SuspendLayout();
+            this.tpAlternateAutotypeHotkeys.SuspendLayout();
+            this.tpAlternateAutotypeIntegration.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // gHotkeys
-            // 
-            this.gHotkeys.Controls.Add(this.cbPWEnter);
-            this.gHotkeys.Controls.Add(this.lGATP);
-            this.gHotkeys.Controls.Add(this.tbGAT);
-            this.gHotkeys.Controls.Add(this.cbPWHotkey);
-            this.gHotkeys.Controls.Add(this.tbPWOnly);
-            this.gHotkeys.Controls.Add(this.lGAT);
-            this.gHotkeys.Controls.Add(this.lAAT);
-            this.gHotkeys.Controls.Add(this.tbAAT);
-            this.gHotkeys.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gHotkeys.Location = new System.Drawing.Point(27, 8);
-            this.gHotkeys.Margin = new System.Windows.Forms.Padding(5);
-            this.gHotkeys.Name = "gHotkeys";
-            this.gHotkeys.Padding = new System.Windows.Forms.Padding(32, 28, 32, 28);
-            this.gHotkeys.Size = new System.Drawing.Size(933, 279);
-            this.gHotkeys.TabIndex = 6;
-            this.gHotkeys.TabStop = false;
-            this.gHotkeys.Text = "Hotkeys";
             // 
             // cbPWEnter
             // 
             this.cbPWEnter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbPWEnter.AutoSize = true;
-            this.cbPWEnter.Location = new System.Drawing.Point(473, 158);
+            this.cbPWEnter.Location = new System.Drawing.Point(519, 158);
             this.cbPWEnter.Margin = new System.Windows.Forms.Padding(5);
             this.cbPWEnter.Name = "cbPWEnter";
             this.cbPWEnter.Size = new System.Drawing.Size(182, 36);
@@ -97,7 +80,7 @@
             // tbGAT
             // 
             this.tbGAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbGAT.Location = new System.Drawing.Point(462, 43);
+            this.tbGAT.Location = new System.Drawing.Point(508, 43);
             this.tbGAT.Margin = new System.Windows.Forms.Padding(5);
             this.tbGAT.Name = "tbGAT";
             this.tbGAT.Size = new System.Drawing.Size(438, 38);
@@ -121,7 +104,7 @@
             // tbPWOnly
             // 
             this.tbPWOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPWOnly.Location = new System.Drawing.Point(462, 108);
+            this.tbPWOnly.Location = new System.Drawing.Point(508, 108);
             this.tbPWOnly.Margin = new System.Windows.Forms.Padding(5);
             this.tbPWOnly.Name = "tbPWOnly";
             this.tbPWOnly.Size = new System.Drawing.Size(438, 38);
@@ -151,36 +134,16 @@
             // tbAAT
             // 
             this.tbAAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbAAT.Location = new System.Drawing.Point(462, 217);
+            this.tbAAT.Location = new System.Drawing.Point(508, 217);
             this.tbAAT.Margin = new System.Windows.Forms.Padding(5);
             this.tbAAT.Name = "tbAAT";
             this.tbAAT.Size = new System.Drawing.Size(438, 38);
             this.tbAAT.TabIndex = 5;
             // 
-            // gIntegration
-            // 
-            this.gIntegration.AutoSize = true;
-            this.gIntegration.Controls.Add(this.cbSpecialColumnsRespectPWEnter);
-            this.gIntegration.Controls.Add(this.cbColumnsRememberSort);
-            this.gIntegration.Controls.Add(this.cbExcludeExpiredGroups);
-            this.gIntegration.Controls.Add(this.cbKeepATOpen);
-            this.gIntegration.Controls.Add(this.cbSpecialColumns);
-            this.gIntegration.Controls.Add(this.cbDBColumn);
-            this.gIntegration.Controls.Add(this.cbColumnsSortable);
-            this.gIntegration.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gIntegration.Location = new System.Drawing.Point(27, 287);
-            this.gIntegration.Margin = new System.Windows.Forms.Padding(5);
-            this.gIntegration.Name = "gIntegration";
-            this.gIntegration.Padding = new System.Windows.Forms.Padding(5);
-            this.gIntegration.Size = new System.Drawing.Size(933, 403);
-            this.gIntegration.TabIndex = 7;
-            this.gIntegration.TabStop = false;
-            this.gIntegration.Text = "Integration";
-            // 
             // cbSpecialColumnsRespectPWEnter
             // 
             this.cbSpecialColumnsRespectPWEnter.AutoSize = true;
-            this.cbSpecialColumnsRespectPWEnter.Location = new System.Drawing.Point(62, 279);
+            this.cbSpecialColumnsRespectPWEnter.Location = new System.Drawing.Point(57, 366);
             this.cbSpecialColumnsRespectPWEnter.Margin = new System.Windows.Forms.Padding(5);
             this.cbSpecialColumnsRespectPWEnter.Name = "cbSpecialColumnsRespectPWEnter";
             this.cbSpecialColumnsRespectPWEnter.Size = new System.Drawing.Size(507, 36);
@@ -191,7 +154,7 @@
             // cbColumnsRememberSort
             // 
             this.cbColumnsRememberSort.AutoSize = true;
-            this.cbColumnsRememberSort.Location = new System.Drawing.Point(62, 93);
+            this.cbColumnsRememberSort.Location = new System.Drawing.Point(57, 138);
             this.cbColumnsRememberSort.Margin = new System.Windows.Forms.Padding(5);
             this.cbColumnsRememberSort.Name = "cbColumnsRememberSort";
             this.cbColumnsRememberSort.Size = new System.Drawing.Size(352, 36);
@@ -202,7 +165,7 @@
             // cbExcludeExpiredGroups
             // 
             this.cbExcludeExpiredGroups.AutoSize = true;
-            this.cbExcludeExpiredGroups.Location = new System.Drawing.Point(27, 326);
+            this.cbExcludeExpiredGroups.Location = new System.Drawing.Point(22, 452);
             this.cbExcludeExpiredGroups.Margin = new System.Windows.Forms.Padding(5);
             this.cbExcludeExpiredGroups.Name = "cbExcludeExpiredGroups";
             this.cbExcludeExpiredGroups.Size = new System.Drawing.Size(350, 36);
@@ -213,7 +176,7 @@
             // cbKeepATOpen
             // 
             this.cbKeepATOpen.AutoSize = true;
-            this.cbKeepATOpen.Location = new System.Drawing.Point(62, 232);
+            this.cbKeepATOpen.Location = new System.Drawing.Point(57, 320);
             this.cbKeepATOpen.Margin = new System.Windows.Forms.Padding(5);
             this.cbKeepATOpen.Name = "cbKeepATOpen";
             this.cbKeepATOpen.Size = new System.Drawing.Size(293, 36);
@@ -225,7 +188,7 @@
             // cbSpecialColumns
             // 
             this.cbSpecialColumns.AutoSize = true;
-            this.cbSpecialColumns.Location = new System.Drawing.Point(27, 186);
+            this.cbSpecialColumns.Location = new System.Drawing.Point(22, 274);
             this.cbSpecialColumns.Margin = new System.Windows.Forms.Padding(5);
             this.cbSpecialColumns.Name = "cbSpecialColumns";
             this.cbSpecialColumns.Size = new System.Drawing.Size(595, 36);
@@ -237,7 +200,7 @@
             // cbDBColumn
             // 
             this.cbDBColumn.AutoSize = true;
-            this.cbDBColumn.Location = new System.Drawing.Point(27, 139);
+            this.cbDBColumn.Location = new System.Drawing.Point(22, 206);
             this.cbDBColumn.Margin = new System.Windows.Forms.Padding(5);
             this.cbDBColumn.Name = "cbDBColumn";
             this.cbDBColumn.Size = new System.Drawing.Size(191, 36);
@@ -248,7 +211,7 @@
             // cbColumnsSortable
             // 
             this.cbColumnsSortable.AutoSize = true;
-            this.cbColumnsSortable.Location = new System.Drawing.Point(27, 46);
+            this.cbColumnsSortable.Location = new System.Drawing.Point(22, 92);
             this.cbColumnsSortable.Margin = new System.Windows.Forms.Padding(5);
             this.cbColumnsSortable.Name = "cbColumnsSortable";
             this.cbColumnsSortable.Size = new System.Drawing.Size(274, 36);
@@ -256,35 +219,89 @@
             this.cbColumnsSortable.Text = "Columns sortable";
             this.cbColumnsSortable.UseVisualStyleBackColor = true;
             // 
+            // tcAlternateAutoType
+            // 
+            this.tcAlternateAutoType.Controls.Add(this.tpAlternateAutotypeHotkeys);
+            this.tcAlternateAutoType.Controls.Add(this.tpAlternateAutotypeIntegration);
+            this.tcAlternateAutoType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tcAlternateAutoType.Location = new System.Drawing.Point(27, 8);
+            this.tcAlternateAutoType.Name = "tcAlternateAutoType";
+            this.tcAlternateAutoType.SelectedIndex = 0;
+            this.tcAlternateAutoType.Size = new System.Drawing.Size(1005, 599);
+            this.tcAlternateAutoType.TabIndex = 8;
+            // 
+            // tpAlternateAutotypeHotkeys
+            // 
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.cbPWEnter);
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.lGATP);
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.tbGAT);
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.cbPWHotkey);
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.tbPWOnly);
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.lGAT);
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.lAAT);
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.tbAAT);
+            this.tpAlternateAutotypeHotkeys.Location = new System.Drawing.Point(10, 48);
+            this.tpAlternateAutotypeHotkeys.Name = "tpAlternateAutotypeHotkeys";
+            this.tpAlternateAutotypeHotkeys.Padding = new System.Windows.Forms.Padding(3);
+            this.tpAlternateAutotypeHotkeys.Size = new System.Drawing.Size(985, 541);
+            this.tpAlternateAutotypeHotkeys.TabIndex = 0;
+            this.tpAlternateAutotypeHotkeys.Text = "tabPage1";
+            this.tpAlternateAutotypeHotkeys.UseVisualStyleBackColor = true;
+            // 
+            // tpAlternateAutotypeIntegration
+            // 
+            this.tpAlternateAutotypeIntegration.Controls.Add(this.cbSearchAsYouType);
+            this.tpAlternateAutotypeIntegration.Controls.Add(this.cbSpecialColumnsRespectPWEnter);
+            this.tpAlternateAutotypeIntegration.Controls.Add(this.cbColumnsRememberSort);
+            this.tpAlternateAutotypeIntegration.Controls.Add(this.cbExcludeExpiredGroups);
+            this.tpAlternateAutotypeIntegration.Controls.Add(this.cbKeepATOpen);
+            this.tpAlternateAutotypeIntegration.Controls.Add(this.cbSpecialColumns);
+            this.tpAlternateAutotypeIntegration.Controls.Add(this.cbDBColumn);
+            this.tpAlternateAutotypeIntegration.Controls.Add(this.cbColumnsSortable);
+            this.tpAlternateAutotypeIntegration.Location = new System.Drawing.Point(10, 48);
+            this.tpAlternateAutotypeIntegration.Name = "tpAlternateAutotypeIntegration";
+            this.tpAlternateAutotypeIntegration.Padding = new System.Windows.Forms.Padding(3);
+            this.tpAlternateAutotypeIntegration.Size = new System.Drawing.Size(985, 541);
+            this.tpAlternateAutotypeIntegration.TabIndex = 1;
+            this.tpAlternateAutotypeIntegration.Text = "tabPage2";
+            this.tpAlternateAutotypeIntegration.UseVisualStyleBackColor = true;
+            // 
+            // cbSearchAsYouType
+            // 
+            this.cbSearchAsYouType.AutoSize = true;
+            this.cbSearchAsYouType.Location = new System.Drawing.Point(22, 24);
+            this.cbSearchAsYouType.Margin = new System.Windows.Forms.Padding(5);
+            this.cbSearchAsYouType.Name = "cbSearchAsYouType";
+            this.cbSearchAsYouType.Size = new System.Drawing.Size(294, 36);
+            this.cbSearchAsYouType.TabIndex = 96;
+            this.cbSearchAsYouType.Text = "Search as you type";
+            this.cbSearchAsYouType.UseVisualStyleBackColor = true;
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.gIntegration);
-            this.Controls.Add(this.gHotkeys);
+            this.Controls.Add(this.tcAlternateAutoType);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Options";
             this.Padding = new System.Windows.Forms.Padding(27, 8, 27, 8);
-            this.Size = new System.Drawing.Size(987, 698);
+            this.Size = new System.Drawing.Size(1059, 698);
             this.Load += new System.EventHandler(this.Options_Load);
-            this.gHotkeys.ResumeLayout(false);
-            this.gHotkeys.PerformLayout();
-            this.gIntegration.ResumeLayout(false);
-            this.gIntegration.PerformLayout();
+            this.tcAlternateAutoType.ResumeLayout(false);
+            this.tpAlternateAutotypeHotkeys.ResumeLayout(false);
+            this.tpAlternateAutotypeHotkeys.PerformLayout();
+            this.tpAlternateAutotypeIntegration.ResumeLayout(false);
+            this.tpAlternateAutotypeIntegration.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
 		}
-
-		private System.Windows.Forms.GroupBox gHotkeys;
 		internal System.Windows.Forms.ComboBox cbPWHotkey;
 		private KeePass.UI.HotKeyControlEx tbPWOnly;
 		private System.Windows.Forms.Label lGAT;
 		private System.Windows.Forms.Label lAAT;
 		private KeePass.UI.HotKeyControlEx tbAAT;
-		private System.Windows.Forms.GroupBox gIntegration;
 		private KeePass.UI.HotKeyControlEx tbGAT;
 		internal System.Windows.Forms.CheckBox cbDBColumn;
 		internal System.Windows.Forms.CheckBox cbSpecialColumns;
@@ -295,5 +312,9 @@
 		private System.Windows.Forms.CheckBox cbPWEnter;
 		internal System.Windows.Forms.CheckBox cbColumnsRememberSort;
         internal System.Windows.Forms.CheckBox cbSpecialColumnsRespectPWEnter;
+        private System.Windows.Forms.TabControl tcAlternateAutoType;
+        private System.Windows.Forms.TabPage tpAlternateAutotypeHotkeys;
+        private System.Windows.Forms.TabPage tpAlternateAutotypeIntegration;
+        internal System.Windows.Forms.CheckBox cbSearchAsYouType;
     }
 }

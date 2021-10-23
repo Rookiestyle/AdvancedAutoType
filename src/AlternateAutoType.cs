@@ -186,10 +186,13 @@ namespace AlternateAutoType
 		private void OnWindowAdded(object sender, GwmWindowEventArgs e)
 		{
 			if (!(e.Form is AutoTypeCtxForm)) return;
-			if (m_host.MainWindow.DocumentManager.GetOpenDatabases().Count < 1) return;
+			int iOpenedDatabases = m_host.MainWindow.DocumentManager.GetOpenDatabases().Count;
+			if (!Config.SearchAsYouType && iOpenedDatabases < 1) return;
 			e.Form.Shown += OnAutoTypeFormShown;
 
+			if (iOpenedDatabases < 1) return;
 			PluginDebug.AddInfo("Auto-Type entry selection window added", 0);
+
 
 			List<AutoTypeCtx> lCtx = (List<AutoTypeCtx>)Tools.GetField("m_lCtxs", e.Form);
 			if (lCtx == null) return;
@@ -253,8 +256,17 @@ namespace AlternateAutoType
 
 		private void OnAutoTypeFormShown(object sender, EventArgs e)
 		{
-			Form f = sender as AutoTypeCtxForm;
+			if (m_host.MainWindow.DocumentManager.GetOpenDatabases().Count >= 1) InitializeAutoTypeListView(sender, e);
+
+			if (Config.SearchAsYouType) AddSearchfield(sender as AutoTypeCtxForm);
+		}
+
+		private void InitializeAutoTypeListView(object sender, EventArgs e)
+		{
+			AutoTypeCtxForm f = sender as AutoTypeCtxForm;
 			if (f == null) return;
+			//AddSearchfield(f);
+			if (m_host.MainWindow.DocumentManager.GetOpenDatabases().Count < 1) return;
 			ListView lv = Tools.GetControl("m_lvItems", f) as ListView;
 			PluginDebug.AddInfo("Auto-Type entry selection window shown", 0);
 			if ((lv != null) && (lv.Items.Count == 0) && !KeePass.Program.Config.Integration.AutoTypeAlwaysShowSelDialog)
@@ -343,7 +355,62 @@ namespace AlternateAutoType
 			catch (Exception) { }
 		}
 
-		private void AutoTypeForm_ShowGroups_CheckedChanged(object sender, EventArgs e)
+		private class _SearchAsYouTypeData
+        {
+			internal ListView ShownEntries;
+			internal List<ListViewItem> AllEntries;
+        }
+        private void AddSearchfield(AutoTypeCtxForm f)
+        {
+			var lvShownEntries = Tools.GetControl("m_lvItems", f) as ListView;
+			if (lvShownEntries == null)
+			{
+				PluginDebug.AddError("Could not locate m_lvItems, search-as-you-type field not added");
+				return;
+			}
+			var c = lvShownEntries.Parent;
+			Label lSearch = new Label();
+			TextBox tbSearch = new TextBox();
+			c.Controls.Add(lSearch);
+			c.Controls.Add(tbSearch);
+			lSearch.Text = KeePass.Resources.KPRes.FindEntries;
+			lSearch.AutoSize = true;
+			tbSearch.Left = lvShownEntries.Left + lSearch.Width + DpiUtil.ScaleIntX(10);
+			lSearch.Left = lvShownEntries.Left;
+			tbSearch.Top = lvShownEntries.Top;
+			lSearch.Top = lvShownEntries.Top + tbSearch.Height / 2 - lSearch.Height / 2;
+			tbSearch.Width = lvShownEntries.Width / 2;
+			List<ListViewItem> lvAllEntries = new List<ListViewItem>(lvShownEntries.Items.Cast< ListViewItem>());
+			tbSearch.Tag = new _SearchAsYouTypeData() { AllEntries = lvAllEntries, ShownEntries = lvShownEntries };
+			tbSearch.TextChanged += OnFilterSearchResults;
+			int iGap = DpiUtil.ScaleIntY(10);
+			int iHeight = lvShownEntries.Height;
+			tbSearch.Dock = lvShownEntries.Dock = DockStyle.None;
+			lvShownEntries.Top += tbSearch.Height + iGap -1;
+			lvShownEntries.Height = iHeight - tbSearch.Height - iGap;
+        }
+
+        private void OnFilterSearchResults(object sender, EventArgs e)
+        {
+			TextBox tbSearch = sender as TextBox;
+			if (tbSearch == null) return;
+			_SearchAsYouTypeData st = tbSearch.Tag as _SearchAsYouTypeData;
+			if (st == null) return;
+			string s = tbSearch.Text.ToLowerInvariant();
+			st.ShownEntries.BeginUpdate();
+			st.ShownEntries.Items.Clear();
+			st.ShownEntries.Items.AddRange(st.AllEntries.Where(x => 
+				x.Text.ToLowerInvariant().Contains(s) // Entry title
+				||
+				x.SubItems[1].Text.ToLowerInvariant().Contains(s) // User name
+				).ToArray());
+			st.ShownEntries.EndUpdate();
+			if (!st.ShownEntries.ShowGroups) return;
+			int column = st.ShownEntries.Columns.IndexOf(m_SortColumn);
+			AdjustGroups(st.ShownEntries, column);
+        }
+
+        private void AutoTypeForm_ShowGroups_CheckedChanged(object sender, EventArgs e)
 		{
 			Form f = (sender as Control).FindForm();
 			ListView lv = Tools.GetControl("m_lvItems", f) as ListView;
@@ -597,6 +664,7 @@ namespace AlternateAutoType
 			options.cbSpecialColumnsRespectPWEnter.Checked = Config.SpecialColumnsRespectPWEnter;
 			options.cbKeepATOpen.Checked = Config.KeepATOpen;
 			options.cbExcludeExpiredGroups.Checked = Config.ExcludeExpiredGroups;
+			options.cbSearchAsYouType.Checked = Config.SearchAsYouType;
 			e.form.Shown += options.OptionsForm_Shown;
 			Tools.AddPluginToOptionsForm(this, options);
 		}
@@ -623,6 +691,7 @@ namespace AlternateAutoType
 			Config.SpecialColumnsRespectPWEnter = options.cbSpecialColumnsRespectPWEnter.Checked;
 			Config.KeepATOpen = options.cbKeepATOpen.Checked;
 			Config.ExcludeExpiredGroups = options.cbExcludeExpiredGroups.Checked;
+			Config.SearchAsYouType = options.cbSearchAsYouType.Checked;
 
 			if ((Config.AATHotkey != Keys.None) || (Config.PWOnlyHotkey != Keys.None))
 				HotkeysActivate();
