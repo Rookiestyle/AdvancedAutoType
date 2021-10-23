@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Translation>
+  <!-- 
+    Increment the TranslationVersion every time the translation file is updated
+	Also update the version.info file
+  -->
   <TranslationVersion>0</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
@@ -74,5 +78,9 @@
     <value>If you want to edit the existing Auto-Type sequence, click '{0}'.
 If you want to add another Auto-Type sequence, click '{1}'.
 If you want to skip these entries, please click '{2}'.</value>
+  </item>
+  <item>
+    <key>SearchAsYouType</key>
+    <value>Allow filtering of entries</value>
   </item>
 </Translation>

@@ -18,14 +18,24 @@ This KeePass plugin enhances KeePass' Auto-Type feature.
 
 # Configuration
 Alternate Auto-Type integrates into KeePass' options form.\
-<img src="images/AlternateAutoType%20-%20Options.png" alt="Options" />
+<img src="images/AlternateAutoType%20-%20Options.png" alt="Options 1" />  
+<img src="images/AlternateAutoType%20-%20Options%202.png" alt="Options 2" />
 
-In the upper area you can configure the hotkeys Alternate Auto-Type will react on.  
-In the lower area you can (de)activate the enhancements to the Auto-Type entry selection.
+In the first tab  you can configure the hotkeys Alternate Auto-Type will react on.  
+In the second tab you can (de)activate the enhancements to the Auto-Type entry selection.
 # Usage
+## Auto-Type hotkey configuration  
+This tab basically mimics KeePass' integration tab with regards to hotkeys.  
+You can define hotkeys for *Global Auto-Type* and *Global Auto-Type password only* in both tabs.
+
+In addition, you can define whether *Global Auto-Type password only* will send an [Enter] key after the password was auto-typed.  
+You can also define the hotkey for the Alternate Auto-Type specific sequence.
+
+This is only possible on Windows.
 ## Auto-Type entry selection enhancements
 While the Auto-Type entry selection is a great way to pick one of the matching candidates, it still lacks some features that this plugin adds.
 
+- Search as you type allows filtering entries in the result list - can be helpful in case many entries are found
 - Sortable columns
 - Show database name if entries from more than one database are shown
 - Exclude entries in expired groups

@@ -50,9 +50,10 @@ namespace PluginTranslation
 		public static readonly string AATFormShowGroups = @"Group by sort column";
 		public static readonly string ColumnsSortRemember = @"Preserve sort settings";
 		public static readonly string AWMCheckDuplicateInfo = @"This window title is already defined as Auto-Type sequence.";
-		public static	readonly string AWMCheckDuplicateDetails = @"If you want to edit the existing Auto-Type sequence, click '{0}'.
+		public static readonly string AWMCheckDuplicateDetails = @"If you want to edit the existing Auto-Type sequence, click '{0}'.
 If you want to add another Auto-Type sequence, click '{1}'.
 If you want to skip these entries, please click '{2}'.";
+		public static readonly string SearchAsYouType = @"Allow filtering of entries";
 		#endregion
 
 		#region NO changes in this area

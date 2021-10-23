@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Translation>
-  <TranslationVersion>5</TranslationVersion>
+  <!-- 
+    Increment the TranslationVersion every time the translation file is updated
+	Also update the version.info file
+  -->
+  <TranslationVersion>6</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} konnte nicht als Hotkey für Alternate Auto-Type registriert werden</value>
@@ -74,5 +78,9 @@
     <value>Klicke '{0}', um den vorhandenen Eintrag zu bearbeiten.
 Klicke '{1}', um einen weiteren Eintrag hinzuzufügen.
 Klicke '{2}', um nichts zu tun.</value>
+  </item>
+  <item>
+    <key>SearchAsYouType</key>
+    <value>Filtermöglichkeit für gefundene Einträge</value>
   </item>
 </Translation>
