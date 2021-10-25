@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Translation>
+  <!-- 
+    Increment the TranslationVersion every time the translation file is updated
+	Also update the version.info file
+  -->
+  <TranslationVersion>1</TranslationVersion>
+  <item>
+    <key>ErrorHotKeyAAT</key>
+    <value>{0} 不能设为 alternate auto-type（该插件）的快捷键</value>
+  </item>
+  <item>
+    <key>ErrorHotKeyPWOnly</key>
+    <value>{0} 不能设为仅输入的快捷键</value>
+  </item>
+  <item>
+    <key>Options</key>
+    <value>Alternate Auto-Type（候选自动输入）选项</value>
+  </item>
+  <item>
+    <key>GlobalAutotypeHotKey</key>
+    <value>全局自动输入快捷键y:</value>
+  </item>
+  <item>
+    <key>PasswordOnlyHotKey</key>
+    <value>仅输入密码</value>
+  </item>
+  <item>
+    <key>AATHotKey</key>
+    <value>Alternate Auto-Type 快捷键:</value>
+  </item>
+  <item>
+    <key>PasswordEnterHotKey</key>
+    <value>Password + Enter</value>
+  </item>
+  <item>
+    <key>Hotkeys</key>
+    <value>快捷键</value>
+  </item>
+  <item>
+    <key>Integration</key>
+    <value>自动输入条目选择器增强</value>
+  </item>
+  <item>
+    <key>ColumnsSortable</key>
+    <value>点击列名来排列条目</value>
+  </item>
+  <item>
+    <key>AddDBColumn</key>
+    <value>增加数据库列如果包含多个数据库</value>
+  </item>
+  <item>
+    <key>SpecialColumns</key>
+    <value>当点击 username / password 项时只输入该项</value>
+  </item>
+  <item>
+    <key>KeepATOpen</key>
+    <value>不要关闭自动输入条目选择器窗口</value>
+  </item>
+  <item>
+    <key>ExcludeExpiredGroups</key>
+    <value>排除过期组中的条目</value>
+  </item>
+  <item>
+    <key>AATFormShowGroups</key>
+    <value>按组名分类</value>
+  </item>
+  <item>
+    <key>ColumnsSortRemember</key>
+    <value>保存排序设置</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateInfo</key>
+    <value>这个窗口的标题已经被定义为自动类型的序列。</value>
+  </item>
+  <item>
+    <key>AWMCheckDuplicateDetails</key>
+    <value>如果你想编辑现有的自动输入条目，点击 '{0}'.
+如果你想添加另一个自动输入条目，点击  '{1}'.
+如果你想跳过这个条目，点击 '{2}'.</value>
+  </item>
+  <item>
+    <key>SearchAsYouType</key>
+    <value>允许过滤条目</value>
+  </item>
+</Translation>
