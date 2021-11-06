@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Translation>
-  <TranslationVersion>1</TranslationVersion>
+  <!-- 
+    Increment the TranslationVersion every time the translation file is updated
+	Also update the version.info file
+  -->
+  <TranslationVersion>0</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
-    <value>{0} não pôde ser registrado como tecla de atalho de Preenchimento Automático alternativa</value>
+    <value>{0} não pode ser registrado como atalho alternativo para auto-digitação</value>
   </item>
   <item>
     <key>ErrorHotKeyPWOnly</key>
-    <value>{0} não pôde ser registrado como tecla de atalho somente senha</value>
+    <value>{0} não pode ser registrado como atalho para senha somente</value>
   </item>
   <item>
     <key>Options</key>
-    <value>Configuração de Preenchimento Automático Alternativo</value>
+    <value>Configuração da Auto-Digitação Alternativa</value>
   </item>
   <item>
     <key>GlobalAutotypeHotKey</key>
-    <value>Atalho de Preenchimento Automático global:</value>
+    <value>Atalho Global da Auto-Digitação:</value>
   </item>
   <item>
     <key>PasswordOnlyHotKey</key>
-    <value>Somente senha</value>
+    <value>Senha Somente</value>
   </item>
   <item>
     <key>AATHotKey</key>
-    <value>Tecla de Preenchimento Automática Alternativa:</value>
+    <value>Atalho para Auto-Digitação Alternativa:</value>
   </item>
   <item>
     <key>PasswordEnterHotKey</key>
@@ -35,31 +39,31 @@
   </item>
   <item>
     <key>Integration</key>
-    <value>Aprimoramentos do formulário de seleção de entrada de Preenchimento Automático</value>
+    <value>Seleção de Entrada de Auto-Digitação de formulário aperfeiçoados</value>
   </item>
   <item>
     <key>ColumnsSortable</key>
-    <value>Clique nos cabeçalhos das colunas para classificar as entradas</value>
+    <value>Clique no cabeçalhos da coluna para classificar as entradas</value>
   </item>
   <item>
     <key>AddDBColumn</key>
-    <value>Adicionar coluna DB se entradas de pelo menos 2 bancos de dados forem mostradas</value>
+    <value>Adicionar coluna BD se as entradas de ao menos dois banco de dados forem exibidas</value>
   </item>
   <item>
     <key>SpecialColumns</key>
-    <value>Preenchimento Automático SOMENTE nome de usuário / senha ao clicar em nome de usuário / senha</value>
+    <value>Auto-Digitação SOMENTE nome de usuário / senha quando clicando em nome de usuário / senha</value>
   </item>
   <item>
     <key>KeepATOpen</key>
-    <value>Não fechar formulário de Preenchimento Automático</value>
+    <value>Não feche formulário de Seleção de Entrada para Auto-Digitação</value>
   </item>
   <item>
     <key>ExcludeExpiredGroups</key>
-    <value>Exclua entradas em grupos expirados</value>
+    <value>Excluir entradas em grupos de expiradas</value>
   </item>
   <item>
     <key>AATFormShowGroups</key>
-    <value>Agrupar por coluna de classificação</value>
+    <value>Grupo por coluna de classificação</value>
   </item>
   <item>
     <key>ColumnsSortRemember</key>
@@ -67,12 +71,16 @@
   </item>
   <item>
     <key>AWMCheckDuplicateInfo</key>
-    <value>Este título de janela já está definido como sequência de Tipo Automático.</value>
+    <value>Este título da janela já está definido como seqüência de Auto-Digitação.</value>
   </item>
   <item>
     <key>AWMCheckDuplicateDetails</key>
-    <value>Se você deseja editar a sequência de Preenchimento Automático existente, clique em '{0}'.
-Se desejar adicionar outra sequência de Preenchimento Automático, clique em '{1}'.
+    <value>Se você quer editar uma sequencia de Auto-Digitação existente, clique '{0}'.
+Se você quiser adicionar outra sequência do Auto-Digitação, clique em '{1}'.
 Se você quiser pular essas entradas, clique em '{2}'.</value>
+  </item>
+  <item>
+    <key>SearchAsYouType</key>
+    <value>Permitir a filtragem de entradas</value>
   </item>
 </Translation>
