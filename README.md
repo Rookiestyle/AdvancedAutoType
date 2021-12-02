@@ -14,7 +14,8 @@ This KeePass plugin enhances KeePass' Auto-Type feature.
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Translations](#translations)
-- [Download and Requirements](#download-and-requirements)
+- [Download & updates](#download--updates)
+- [Requirements](#requirements)
 
 # Configuration
 Alternate Auto-Type integrates into KeePass' options form.\
@@ -82,13 +83,15 @@ Example: `AlternateAutoType.de.language.xml`
 The language identifier in the filename must match the language identifier inside the KeePass language that you can select using *View -> Change language...*\
 This identifier is shown there as well, if you have [EarlyUpdateCheck](https://github.com/rookiestyle/earlyupdatecheck) installed
 
-# Download and Requirements
-## Download
+# Download & updates
 Please follow these links to download the plugin file itself.
 - [Download newest release](https://github.com/rookiestyle/alternateautotype/releases/latest/download/AlternateAutoType.plgx)
 - [Download history](https://github.com/rookiestyle/alternateautotype/releases)
 
 If you're interested in any of the available translations in addition, please download them from the [Translations](Translations) folder.
-## Requirements
+
+In addition to the manual way of downloading the plugin, you can use [EarlyUpdateCheck](https://github.com/rookiestyle/earlyupdatecheck/) to update both the plugin and its translations automatically.  
+See the [one click plugin update wiki](https://github.com/Rookiestyle/EarlyUpdateCheck/wiki/One-click-plugin-update) for more details.
+# Requirements
 * KeePass: 2.42
 * .NET framework: 3.5
