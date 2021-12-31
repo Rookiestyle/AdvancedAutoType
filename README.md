@@ -8,6 +8,7 @@ This KeePass plugin enhances KeePass' Auto-Type feature.
 
 - Various enhancements to the Auto-Type entry selection
 - Hotkey to Auto-Type password only - if configured followed by [Enter]
+- Hotkey to Auto-Type username only - if configured followed by [Enter]
 - Hotkey to AutoType an alternative sequence
 
 # Table of Contents
