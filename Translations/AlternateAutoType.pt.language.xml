@@ -4,7 +4,7 @@
     Increment the TranslationVersion every time the translation file is updated
 	Also update the version.info file
   -->
-  <TranslationVersion>2</TranslationVersion>
+  <TranslationVersion>3</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} não pode ser registrado como atalho alternativo para auto-digitação</value>
@@ -12,6 +12,10 @@
   <item>
     <key>ErrorHotKeyPWOnly</key>
     <value>{0} não pode ser registrado como atalho para senha somente</value>
+  </item>
+  <item>
+    <key>ErrorHotKeyUsernameOnly</key>
+    <value>{0} não pôde ser registrado como atalho só para o nome de usuário</value>
   </item>
   <item>
     <key>Options</key>
@@ -32,6 +36,10 @@
   <item>
     <key>PasswordEnterHotKey</key>
     <value>Senha + Enter</value>
+  </item>
+  <item>
+    <key>UsernameEnterHotKey</key>
+    <value>Nome de Usuário + Enter</value>
   </item>
   <item>
     <key>Hotkeys</key>
