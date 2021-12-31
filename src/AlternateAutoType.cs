@@ -40,6 +40,11 @@ namespace AlternateAutoType
 		{
 			get { return (m_bKPAutoTypePasswordHotkey || (m_sequence != 0) && (m_sequence == Config.PWOnlyHotkeyID)); }
 		}
+
+		private bool UsernameOnlyHotkeyPressed
+		{
+			get { return (m_sequence != 0) && (m_sequence == Config.UsernameOnlyHotkeyID); }
+		}
 		#endregion
 
 		public override bool Initialize(IPluginHost host)
@@ -112,13 +117,16 @@ namespace AlternateAutoType
 		{
 			/*
 			 * Option 1: Hotkey for password only is used => return {PASSWORD}
-			 * Option 2: No placeholder => nothing to do
-			 * Option 3: Placeholder and hotkey for AAT is used => return sequence part AFTER placeholder
-			 * Option 4: Placeholder and hotkey for AAT is not used => return sequence part BEFORE placeholder
+			 * Option 2: Hotkey for username only is used => return {USERNAME}
+			 * Option 3: No placeholder => nothing to do
+			 * Option 4: Placeholder and hotkey for AAT is used => return sequence part AFTER placeholder
+			 * Option 5: Placeholder and hotkey for AAT is not used => return sequence part BEFORE placeholder
 			 */
 			bool bPWOnly = PWOnlyHotkeyPressed;
 			if (bResetPWOnly) CheckKPAutoTypePasswordHotkey(false);
-			if (bPWOnly && Config.PWEnter) return sequence + "{ENTER}";
+			if (bPWOnly) return "{PASSWORD}" + (Config.PWEnter ? "{ENTER}" : string.Empty);
+			if (UsernameOnlyHotkeyPressed) return "{USERNAME}" + (Config.UsernameOnlyEnter ? "{ENTER}" : string.Empty);
+
 			int pos = sequence.IndexOf(Config.Placeholder);
 			if (pos < 0) return sequence;
 			if (AATHotkeyPressed)
@@ -149,6 +157,7 @@ namespace AlternateAutoType
 			lMsg.Add("Hotkey id: " + m_sequence.ToString());
 			lMsg.Add("PW only hotkey: " + Config.PWOnlyHotkeyID.ToString() + " - " + (Config.PWOnlyHotkeyID == e.ID).ToString());
 			lMsg.Add("AAT only hotkey: " + Config.AATHotkeyID + " - " + (Config.AATHotkeyID == e.ID).ToString());
+			lMsg.Add("Username only hotkey: " + Config.UsernameOnlyHotkeyID+ " - " + (Config.UsernameOnlyHotkeyID == e.ID).ToString()); 
 			PluginDebug.AddInfo("Alternate Auto-Type hotkey detected", 0, lMsg.ToArray());
 			m_host.MainWindow.ExecuteGlobalAutoType();
 			m_sequence = 0;
@@ -170,6 +179,12 @@ namespace AlternateAutoType
 				if (Config.PWOnlyHotkeyID == 0)
 					Tools.ShowError(string.Format(PluginTranslate.ErrorHotKeyPWOnly, Config.PWOnlyHotkey.ToString()));
 			}
+			if (Config.UsernameOnlyHotkey != Keys.None)
+			{
+				Config.UsernameOnlyHotkeyID = PTHotKeyManager.RegisterHotKey(Config.UsernameOnlyHotkey);
+				if (Config.UsernameOnlyHotkeyID == 0)
+					Tools.ShowError(string.Format(PluginTranslate.ErrorHotKeyUsernameOnly, Config.UsernameOnlyHotkey.ToString()));
+			}
 		}
 
 		private void HotkeysDeactivate()
@@ -179,6 +194,8 @@ namespace AlternateAutoType
 				PTHotKeyManager.UnregisterHotKey(Config.AATHotkeyID);
 			if ((Config.PWOnlyHotkey != Keys.None) && !Config.KPAutoTypePWPossible)
 				PTHotKeyManager.UnregisterHotKey(Config.PWOnlyHotkeyID);
+			if (Config.UsernameOnlyHotkey != Keys.None)
+				PTHotKeyManager.UnregisterHotKey(Config.UsernameOnlyHotkeyID);
 		}
 		#endregion
 
@@ -657,6 +674,8 @@ namespace AlternateAutoType
 			Options options = new Options();
 			options.AATHotkey = Config.AATHotkey;
 			options.PWOnlyHotkey = Config.PWOnlyHotkey;
+			options.UsernameOnlyHotkey = Config.UsernameOnlyHotkey;
+			options.UsernameOnlyEnter = Config.UsernameOnlyEnter;
 			options.cbPWHotkey.SelectedIndex = Config.PWEnter ? 1 : 0;
 			options.cbColumnsSortable.Checked = Config.ColumnsSortable;
 			options.cbColumnsRememberSort.Checked = Config.ColumnsRememberSorting;
@@ -685,6 +704,8 @@ namespace AlternateAutoType
 			HotkeysDeactivate();
 			Config.AATHotkey = options.AATHotkey;
 			Config.PWOnlyHotkey = options.PWOnlyHotkey;
+			Config.UsernameOnlyHotkey = options.UsernameOnlyHotkey;
+			Config.UsernameOnlyEnter = options.UsernameOnlyEnter;
 			Config.ColumnsSortable = options.cbColumnsSortable.Checked;
 			Config.ColumnsRememberSorting = options.cbColumnsRememberSort.Checked;
 			Config.AddDBColumn = options.cbDBColumn.Checked;
@@ -694,7 +715,7 @@ namespace AlternateAutoType
 			Config.ExcludeExpiredGroups = options.cbExcludeExpiredGroups.Checked;
 			Config.SearchAsYouType = options.cbSearchAsYouType.Checked;
 
-			if ((Config.AATHotkey != Keys.None) || (Config.PWOnlyHotkey != Keys.None))
+			if ((Config.AATHotkey != Keys.None) || (Config.PWOnlyHotkey != Keys.None) || (Config.UsernameOnlyHotkey != Keys.None))
 				HotkeysActivate();
 		}
 		#endregion

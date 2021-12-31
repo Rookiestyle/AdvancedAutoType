@@ -47,6 +47,9 @@
             this.cbColumnsSortable = new System.Windows.Forms.CheckBox();
             this.tcAlternateAutoType = new System.Windows.Forms.TabControl();
             this.tpAlternateAutotypeHotkeys = new System.Windows.Forms.TabPage();
+            this.cbUsernameEnter = new System.Windows.Forms.CheckBox();
+            this.lGATU = new System.Windows.Forms.Label();
+            this.tbUsernameOnly = new KeePass.UI.HotKeyControlEx();
             this.tpAlternateAutotypeIntegration = new System.Windows.Forms.TabPage();
             this.cbSearchAsYouType = new System.Windows.Forms.CheckBox();
             this.tcAlternateAutoType.SuspendLayout();
@@ -124,7 +127,7 @@
             // lAAT
             // 
             this.lAAT.AutoSize = true;
-            this.lAAT.Location = new System.Drawing.Point(27, 217);
+            this.lAAT.Location = new System.Drawing.Point(33, 335);
             this.lAAT.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lAAT.Name = "lAAT";
             this.lAAT.Size = new System.Drawing.Size(362, 32);
@@ -134,11 +137,11 @@
             // tbAAT
             // 
             this.tbAAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbAAT.Location = new System.Drawing.Point(508, 217);
+            this.tbAAT.Location = new System.Drawing.Point(508, 332);
             this.tbAAT.Margin = new System.Windows.Forms.Padding(5);
             this.tbAAT.Name = "tbAAT";
             this.tbAAT.Size = new System.Drawing.Size(438, 38);
-            this.tbAAT.TabIndex = 5;
+            this.tbAAT.TabIndex = 7;
             // 
             // cbSpecialColumnsRespectPWEnter
             // 
@@ -232,6 +235,9 @@
             // 
             // tpAlternateAutotypeHotkeys
             // 
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.cbUsernameEnter);
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.lGATU);
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.tbUsernameOnly);
             this.tpAlternateAutotypeHotkeys.Controls.Add(this.cbPWEnter);
             this.tpAlternateAutotypeHotkeys.Controls.Add(this.lGATP);
             this.tpAlternateAutotypeHotkeys.Controls.Add(this.tbGAT);
@@ -247,6 +253,37 @@
             this.tpAlternateAutotypeHotkeys.TabIndex = 0;
             this.tpAlternateAutotypeHotkeys.Text = "tabPage1";
             this.tpAlternateAutotypeHotkeys.UseVisualStyleBackColor = true;
+            // 
+            // cbUsernameEnter
+            // 
+            this.cbUsernameEnter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbUsernameEnter.AutoSize = true;
+            this.cbUsernameEnter.Location = new System.Drawing.Point(519, 267);
+            this.cbUsernameEnter.Margin = new System.Windows.Forms.Padding(5);
+            this.cbUsernameEnter.Name = "cbUsernameEnter";
+            this.cbUsernameEnter.Size = new System.Drawing.Size(182, 36);
+            this.cbUsernameEnter.TabIndex = 6;
+            this.cbUsernameEnter.Text = "PW+Enter";
+            this.cbUsernameEnter.UseVisualStyleBackColor = true;
+            // 
+            // lGATU
+            // 
+            this.lGATU.AutoSize = true;
+            this.lGATU.Location = new System.Drawing.Point(33, 217);
+            this.lGATU.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lGATU.Name = "lGATU";
+            this.lGATU.Size = new System.Drawing.Size(273, 32);
+            this.lGATU.TabIndex = 16;
+            this.lGATU.Text = "Autotype Username:";
+            // 
+            // tbUsernameOnly
+            // 
+            this.tbUsernameOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUsernameOnly.Location = new System.Drawing.Point(508, 221);
+            this.tbUsernameOnly.Margin = new System.Windows.Forms.Padding(5);
+            this.tbUsernameOnly.Name = "tbUsernameOnly";
+            this.tbUsernameOnly.Size = new System.Drawing.Size(438, 38);
+            this.tbUsernameOnly.TabIndex = 5;
             // 
             // tpAlternateAutotypeIntegration
             // 
@@ -316,5 +353,8 @@
         private System.Windows.Forms.TabPage tpAlternateAutotypeHotkeys;
         private System.Windows.Forms.TabPage tpAlternateAutotypeIntegration;
         internal System.Windows.Forms.CheckBox cbSearchAsYouType;
+        private System.Windows.Forms.CheckBox cbUsernameEnter;
+        private System.Windows.Forms.Label lGATU;
+        private KeePass.UI.HotKeyControlEx tbUsernameOnly;
     }
 }

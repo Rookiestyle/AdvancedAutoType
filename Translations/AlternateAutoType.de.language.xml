@@ -4,7 +4,7 @@
     Increment the TranslationVersion every time the translation file is updated
 	Also update the version.info file
   -->
-  <TranslationVersion>6</TranslationVersion>
+  <TranslationVersion>7</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} konnte nicht als Hotkey für Alternate Auto-Type registriert werden</value>
@@ -12,6 +12,10 @@
   <item>
     <key>ErrorHotKeyPWOnly</key>
     <value>{0} konnte nicht als Hotkey zur Passworteingabe registriert werden</value>
+  </item>
+  <item>
+    <key>ErrorHotKeyUsernameOnly</key>
+    <value>{0} konnte nicht als Hotkey zur Benutzereingabe registriert werden</value>
   </item>
   <item>
     <key>Options</key>
@@ -32,6 +36,10 @@
   <item>
     <key>PasswordEnterHotKey</key>
     <value>Passwort + Enter</value>
+  </item>
+  <item>
+    <key>UsernameEnterHotKey</key>
+    <value>Benutzername + Enter</value>
   </item>
   <item>
     <key>Hotkeys</key>

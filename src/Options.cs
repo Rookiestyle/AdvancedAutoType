@@ -20,6 +20,7 @@ namespace AlternateAutoType
 			lGAT.Text = PluginTranslate.GlobalAutotypeHotKey;
 			lAAT.Text = PluginTranslate.AATHotKey;
 			cbPWEnter.Text = PluginTranslate.PasswordEnterHotKey;
+			cbUsernameEnter.Text = PluginTranslate.UsernameEnterHotKey; 
 			cbPWHotkey.Items.Clear();
 			cbPWHotkey.Items.Add(PluginTranslate.PasswordOnlyHotKey);
 			cbPWHotkey.Items.Add(PluginTranslate.PasswordEnterHotKey);
@@ -63,6 +64,18 @@ namespace AlternateAutoType
 			set { SetHotKey(tbPWOnly, value); }
 		}
 
+		public Keys UsernameOnlyHotkey
+		{
+			get { return GetHotKey(tbUsernameOnly); }
+			set { SetHotKey(tbUsernameOnly, value); }
+		}
+
+		public bool UsernameOnlyEnter
+		{
+			get { return cbUsernameEnter.Checked; }
+			set { cbUsernameEnter.Checked = value; }
+		}
+
 		private void SetHotKey(HotKeyControlEx hkBox, Keys hk)
 		{
 			hkBox.HotKey = hk;
@@ -103,12 +116,15 @@ namespace AlternateAutoType
 			cbPWHotkey.Visible = cbPWHotkey.TabStop = !Config.KPAutoTypePWPossible;
 			cbPWEnter.Checked = Config.PWEnter;
 			cbPWEnter.Left = tbPWOnly.Left;
+			cbUsernameEnter.Left = cbPWEnter.Left; 
 			if (!Config.KPAutoTypePWPossible) return;
 			Control c = Tools.GetControl("m_lblAutotype", sender as Form);
 			if (c != null) lGAT.Text = c.Text;
 			c = Tools.GetControl("m_lblAutotypePassword", sender as Form);
 			if (c != null) lGATP.Text = c.Text;
-			TabPage tpPluginOptions = Parent.Parent.Parent as TabPage; //TabPage AlternateAutoType - TabControl - TabPage Plugin Options
+			else lGATP.Text = KeePass.Resources.KPRes.Password + ":";
+			lGATU.Text = KeePass.Resources.KPRes.UserName + ":";
+            TabPage tpPluginOptions = Parent.Parent.Parent as TabPage; //TabPage AlternateAutoType - TabControl - TabPage Plugin Options
 			if (tpPluginOptions != null) tpPluginOptions.Enter += PluginOptionsEnter;
 		}
 

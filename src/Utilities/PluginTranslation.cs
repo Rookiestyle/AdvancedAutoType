@@ -35,11 +35,13 @@ namespace PluginTranslation
 		public const string PluginName = "Alternate Auto-Type";
 		public static readonly string ErrorHotKeyAAT = @"{0} could not be registered as alternate auto-type hotkey";
 		public static readonly string ErrorHotKeyPWOnly = @"{0} could not be registered as password only hotkey";
+		public static readonly string ErrorHotKeyUsernameOnly = @"{0} could not be registered as username only hotkey"; 
 		public static readonly string Options = @"Alternate Auto-Type configuration";
 		public static readonly string GlobalAutotypeHotKey = @"Global Auto-Type Hotkey:";
 		public static readonly string PasswordOnlyHotKey = @"Password Only";
 		public static readonly string AATHotKey = @"Alternate Auto-Type Hotkey:";
 		public static readonly string PasswordEnterHotKey = @"Password + Enter";
+		public static readonly string UsernameEnterHotKey = @"Username + Enter";
 		public static readonly string Hotkeys = @"Hotkeys";
 		public static readonly string Integration = @"Auto-Type Entry Selection form enhancements";
 		public static readonly string ColumnsSortable = @"Click column headers to sort entries";

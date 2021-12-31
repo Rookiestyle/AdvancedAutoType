@@ -14,6 +14,10 @@
     <value>{0} could not be registered as password only hotkey</value>
   </item>
   <item>
+    <key>ErrorHotKeyUsernameOnly</key>
+    <value>{0} could not be registered as username only hotkey</value>
+  </item>
+  <item>
     <key>Options</key>
     <value>Alternate Auto-Type configuration</value>
   </item>
@@ -32,6 +36,10 @@
   <item>
     <key>PasswordEnterHotKey</key>
     <value>Password + Enter</value>
+  </item>
+  <item>
+    <key>UsernameEnterHotKey</key>
+    <value>Username + Enter</value>
   </item>
   <item>
     <key>Hotkeys</key>

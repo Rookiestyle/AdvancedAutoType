@@ -118,18 +118,33 @@ namespace AlternateAutoType
 			get { return Program.Config.CustomConfig.GetBool(m_PWEnterConfig, false); }
 			set { Program.Config.CustomConfig.SetBool(m_PWEnterConfig, value); }
 		}
+
+		public static Keys UsernameOnlyHotkey
+		{
+			get { return ReadKey(m_UserOnlyHotkeyConfig, PluginTranslate.ErrorHotKeyUsernameOnly); }
+			set { SetKey(m_UserOnlyHotkeyConfig, value); }
+		}
+		public static int UsernameOnlyHotkeyID = 0;
+		public static bool UsernameOnlyEnter
+		{
+			get { return Program.Config.CustomConfig.GetBool(m_UserOnlyEnterConfig, false); }
+			set { Program.Config.CustomConfig.SetBool(m_UserOnlyEnterConfig, value); }
+		}
+
 		public static Keys AATHotkey
 		{
 			get { return ReadKey(m_AATHotkeyConfig, PluginTranslate.ErrorHotKeyAAT); }
 			set { SetKey(m_AATHotkeyConfig, value); }
 		}
 		public static int AATHotkeyID = 0;
+
 		public static Keys PWOnlyHotkey
 		{
 			get { return ReadKey(m_PWOnlyHotkeyConfig, PluginTranslate.ErrorHotKeyPWOnly); }
 			set { SetKey(m_PWOnlyHotkeyConfig, value); }
 		}
 		public static int PWOnlyHotkeyID = 0;
+
 		public static bool ExcludeExpiredGroups
 		{
 			get { return Program.Config.CustomConfig.GetBool(m_ExcludeExpiredGroups, true); }
@@ -139,6 +154,8 @@ namespace AlternateAutoType
 		private static string m_AATHotkeyConfig = "AlternateAutoType.AATHotkey";
 		private static string m_PWOnlyHotkeyConfig = "AlternateAutoType.PWOnlyHotkey";
 		private static string m_PWEnterConfig = "AlternateAutoType.PWEnter";
+		private static string m_UserOnlyHotkeyConfig = "AlternateAutoType.UserOnlyHotkey";
+		private static string m_UserOnlyEnterConfig = "AlternateAutoType.UserOnlyEnter";
 		private static string m_SearchAsYouType = "AlternateAutoType.SearchAsYouType";
 		private static string m_AddDBColumnConfig = "AlternateAutoType.AddDBColumn";
 		private static string m_ColumnsSortableConfig = "AlternateAutoType.ColumnsSortable";
