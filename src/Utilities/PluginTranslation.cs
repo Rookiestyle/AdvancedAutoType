@@ -33,29 +33,98 @@ namespace PluginTranslation
 		private static string LanguageIso6391 = string.Empty;
 		#region Definitions of translated texts go here
 		public const string PluginName = "Alternate Auto-Type";
+		/// <summary>
+		/// {0} could not be registered as alternate auto-type hotkey
+		/// </summary>
 		public static readonly string ErrorHotKeyAAT = @"{0} could not be registered as alternate auto-type hotkey";
+		/// <summary>
+		/// {0} could not be registered as password only hotkey
+		/// </summary>
 		public static readonly string ErrorHotKeyPWOnly = @"{0} could not be registered as password only hotkey";
-		public static readonly string ErrorHotKeyUsernameOnly = @"{0} could not be registered as username only hotkey"; 
+		/// <summary>
+		/// {0} could not be registered as username only hotkey
+		/// </summary>
+		public static readonly string ErrorHotKeyUsernameOnly = @"{0} could not be registered as username only hotkey";
+		/// <summary>
+		/// Alternate Auto-Type configuration
+		/// </summary>
 		public static readonly string Options = @"Alternate Auto-Type configuration";
+		/// <summary>
+		/// Global Auto-Type Hotkey:
+		/// </summary>
 		public static readonly string GlobalAutotypeHotKey = @"Global Auto-Type Hotkey:";
+		/// <summary>
+		/// Password Only
+		/// </summary>
 		public static readonly string PasswordOnlyHotKey = @"Password Only";
+		/// <summary>
+		/// Alternate Auto-Type Hotkey:
+		/// </summary>
 		public static readonly string AATHotKey = @"Alternate Auto-Type Hotkey:";
+		/// <summary>
+		/// Password + Enter
+		/// </summary>
 		public static readonly string PasswordEnterHotKey = @"Password + Enter";
-		public static readonly string UsernameEnterHotKey = @"Username + Enter";
+		/// <summary>
+		/// User name + Enter
+		/// </summary>
+		public static readonly string UsernameEnterHotKey = @"User name + Enter";
+		/// <summary>
+		/// Hotkeys
+		/// </summary>
 		public static readonly string Hotkeys = @"Hotkeys";
+		/// <summary>
+		/// Auto-Type Entry Selection form enhancements
+		/// </summary>
 		public static readonly string Integration = @"Auto-Type Entry Selection form enhancements";
+		/// <summary>
+		/// Click column headers to sort entries
+		/// </summary>
 		public static readonly string ColumnsSortable = @"Click column headers to sort entries";
+		/// <summary>
+		/// Add DB column if entries from at least 2 databases are shown
+		/// </summary>
 		public static readonly string AddDBColumn = @"Add DB column if entries from at least 2 databases are shown";
+		/// <summary>
+		/// Auto-Type ONLY username / password when clicking username / password
+		/// </summary>
 		public static readonly string SpecialColumns = @"Auto-Type ONLY username / password when clicking username / password";
+		/// <summary>
+		/// Don't close Auto-Type Entry Selection form
+		/// </summary>
 		public static readonly string KeepATOpen = @"Don't close Auto-Type Entry Selection form";
+		/// <summary>
+		/// Exclude entries in expired groups
+		/// </summary>
 		public static readonly string ExcludeExpiredGroups = @"Exclude entries in expired groups";
+		/// <summary>
+		/// Group by sort column
+		/// </summary>
 		public static readonly string AATFormShowGroups = @"Group by sort column";
+		/// <summary>
+		/// Preserve sort settings
+		/// </summary>
 		public static readonly string ColumnsSortRemember = @"Preserve sort settings";
+		/// <summary>
+		/// This window title is already defined as Auto-Type sequence.
+		/// </summary>
 		public static readonly string AWMCheckDuplicateInfo = @"This window title is already defined as Auto-Type sequence.";
+		/// <summary>
+		/// If you want to edit the existing Auto-Type sequence, click '{0}'.
+		/// If you want to add another Auto-Type sequence, click '{1}'.
+		/// If you want to skip these entries, please click '{2}'.
+		/// </summary>
 		public static readonly string AWMCheckDuplicateDetails = @"If you want to edit the existing Auto-Type sequence, click '{0}'.
 If you want to add another Auto-Type sequence, click '{1}'.
 If you want to skip these entries, please click '{2}'.";
+		/// <summary>
+		/// Allow filtering of entries
+		/// </summary>
 		public static readonly string SearchAsYouType = @"Allow filtering of entries";
+		/// <summary>
+		/// Globales Auto-Type - user name only:
+		/// </summary>
+		public static readonly string AutoTypeUsernameOnly = @"Globales Auto-Type - user name only:";
 		#endregion
 
 		#region NO changes in this area

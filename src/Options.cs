@@ -5,6 +5,8 @@ using PluginTranslation;
 using PluginTools;
 using System;
 using System.Linq;
+using KeePass.Resources;
+using System.Text.RegularExpressions;
 
 namespace AlternateAutoType
 {
@@ -29,7 +31,8 @@ namespace AlternateAutoType
 			cbDBColumn.Text = PluginTranslate.AddDBColumn;
 			cbSpecialColumns.Text = PluginTranslate.SpecialColumns;
 			cbKeepATOpen.Text = PluginTranslate.KeepATOpen;
-			cbSpecialColumnsRespectPWEnter.Text = KeePass.Resources.KPRes.Password + " = " + PluginTranslate.PasswordEnterHotKey;
+			cbSpecialColumnsRespectPWEnter.Text = KPRes.Password + " = " + PluginTranslate.PasswordEnterHotKey;
+			cbSpecialColumnsRespectUsernameEnter.Text = KPRes.UserName + " = " + PluginTranslate.UsernameEnterHotKey;
 			cbExcludeExpiredGroups.Text = PluginTranslate.ExcludeExpiredGroups;
 			cbColumnsRememberSort.Text = PluginTranslate.ColumnsSortRemember;
 			cbSearchAsYouType.Text = PluginTranslate.SearchAsYouType;
@@ -90,6 +93,7 @@ namespace AlternateAutoType
 		{
 			cbKeepATOpen.Enabled = cbSpecialColumns.Checked;
 			cbSpecialColumnsRespectPWEnter.Enabled = cbSpecialColumns.Checked;
+			cbSpecialColumnsRespectUsernameEnter.Enabled = cbSpecialColumns.Checked;
 		}
 
 		private void Options_Load(object sender, System.EventArgs e)
@@ -104,7 +108,7 @@ namespace AlternateAutoType
 			//HotKey cannot be set in our controls if they are place inside the UserControl
 			//Reason: HotKeyManager.HandleHotKeyIntoSelf
 			//  This checks for OptionsForm.ActiveControl which will be the UserControl
-			//  but neds to be HotKeyControlEx
+			//  but needs to be HotKeyControlEx
 			//
 			//Move all controls from UserControl in TabPage to TabPage
 			//Make UserControl invisible (do NOT remove: OptionsForm_Closed won't work otherwise)
@@ -122,9 +126,9 @@ namespace AlternateAutoType
 			if (c != null) lGAT.Text = c.Text;
 			c = Tools.GetControl("m_lblAutotypePassword", sender as Form);
 			if (c != null) lGATP.Text = c.Text;
-			else lGATP.Text = KeePass.Resources.KPRes.Password + ":";
-			lGATU.Text = KeePass.Resources.KPRes.UserName + ":";
-            TabPage tpPluginOptions = Parent.Parent.Parent as TabPage; //TabPage AlternateAutoType - TabControl - TabPage Plugin Options
+			else lGATP.Text = KPRes.Password + ":";
+			lGATU.Text = PluginTranslate.AutoTypeUsernameOnly;
+			TabPage tpPluginOptions = Parent.Parent.Parent as TabPage; //TabPage AlternateAutoType - TabControl - TabPage Plugin Options
 			if (tpPluginOptions != null) tpPluginOptions.Enter += PluginOptionsEnter;
 		}
 

@@ -632,11 +632,15 @@ namespace AlternateAutoType
 			if ((col < 0) || ((sender as ListView).Columns.Count <= col)) return;
 			string column = (sender as ListView).Columns[col].Text;
 			string sequence = string.Empty;
-			if (column == KeePass.Resources.KPRes.UserName) sequence = "{USERNAME}";
+			if (column == KeePass.Resources.KPRes.UserName)
+			{
+				sequence = "{USERNAME}";
+				if (Config.SpecialColumnsRespectUsernameEnter) sequence += "{ENTER}";
+			}
 			else if (column == KeePass.Resources.KPRes.Password || column == Config.PWColumnHeader)
 			{
 				sequence = "{PASSWORD}";
-				if (Config.SpecialColumnsRespectPWEnter && Config.PWEnter) sequence += "{ENTER}";
+				if (Config.SpecialColumnsRespectPWEnter) sequence += "{ENTER}";
 			}
 			else return;
 			AutoTypeCtx ctx = info.Item.Tag as AutoTypeCtx;
@@ -682,6 +686,7 @@ namespace AlternateAutoType
 			options.cbDBColumn.Checked = Config.AddDBColumn;
 			options.cbSpecialColumns.Checked = Config.SpecialColumns;
 			options.cbSpecialColumnsRespectPWEnter.Checked = Config.SpecialColumnsRespectPWEnter;
+			options.cbSpecialColumnsRespectUsernameEnter.Checked = Config.SpecialColumnsRespectUsernameEnter; 
 			options.cbKeepATOpen.Checked = Config.KeepATOpen;
 			options.cbExcludeExpiredGroups.Checked = Config.ExcludeExpiredGroups;
 			options.cbSearchAsYouType.Checked = Config.SearchAsYouType;
@@ -711,6 +716,7 @@ namespace AlternateAutoType
 			Config.AddDBColumn = options.cbDBColumn.Checked;
 			Config.SpecialColumns = options.cbSpecialColumns.Checked;
 			Config.SpecialColumnsRespectPWEnter = options.cbSpecialColumnsRespectPWEnter.Checked;
+			Config.SpecialColumnsRespectUsernameEnter = options.cbSpecialColumnsRespectUsernameEnter.Checked;
 			Config.KeepATOpen = options.cbKeepATOpen.Checked;
 			Config.ExcludeExpiredGroups = options.cbExcludeExpiredGroups.Checked;
 			Config.SearchAsYouType = options.cbSearchAsYouType.Checked;

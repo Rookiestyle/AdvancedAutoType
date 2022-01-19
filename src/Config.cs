@@ -113,6 +113,20 @@ namespace AlternateAutoType
 			}
 		}
 
+		public static bool SpecialColumnsRespectUsernameEnter
+		{
+			get
+			{
+				if (KeePassLib.Native.NativeLib.IsUnix()) return false;
+				return Program.Config.CustomConfig.GetBool(m_SpecialColumnsRespectUsernameEnter, true);
+			}
+			set
+			{
+				if (KeePassLib.Native.NativeLib.IsUnix()) return;
+				Program.Config.CustomConfig.SetBool(m_SpecialColumnsRespectUsernameEnter, value);
+			}
+		}
+
 		public static bool PWEnter
 		{
 			get { return Program.Config.CustomConfig.GetBool(m_PWEnterConfig, false); }
@@ -166,6 +180,7 @@ namespace AlternateAutoType
 		private static string m_SpecialColumnsConfig = "AlternateAutoType.SpecialColumns";
 		private static string m_KeepATOpenConfig = "AlternateAutoType.KeepATOpen";
 		private static string m_SpecialColumnsRespectPWEnter = "AlternateAutoType.SpecialColumnsRespectPWEnter";
+		private static string m_SpecialColumnsRespectUsernameEnter = "AlternateAutoType.SpecialColumnsRespectUsernameEnter";
 		private static string m_ExcludeExpiredGroups = "AlternateAutoType.ExcludeExpiredGroups";
 
 		private static void SetKey(string param, Keys value)
