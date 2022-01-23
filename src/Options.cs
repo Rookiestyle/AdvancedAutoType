@@ -8,7 +8,7 @@ using System.Linq;
 using KeePass.Resources;
 using System.Text.RegularExpressions;
 
-namespace AlternateAutoType
+namespace AdvancedAutoType
 {
 	public partial class Options : UserControl
 	{
@@ -36,6 +36,7 @@ namespace AlternateAutoType
 			cbExcludeExpiredGroups.Text = PluginTranslate.ExcludeExpiredGroups;
 			cbColumnsRememberSort.Text = PluginTranslate.ColumnsSortRemember;
 			cbSearchAsYouType.Text = PluginTranslate.SearchAsYouType;
+			cbDontHidePasswordsWithAsterisk.Text = KPRes.UnhidePasswordsDesc.Replace(".", "");
 
 			SetHotKey(tbGAT, (Keys)KeePass.Program.Config.Integration.HotKeyGlobalAutoType);
 

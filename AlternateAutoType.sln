@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2048
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlternateAutoType", "src\AlternateAutoType.csproj", "{78C152F3-EAF8-4FFC-9BE3-F5DC0CD66E5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedAutoTypeExt", "src\AdvancedAutoTypeExt.csproj", "{78C152F3-EAF8-4FFC-9BE3-F5DC0CD66E5D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePass", "..\_KeePass_Source\KeePass\KeePass.csproj", "{10938016-DEE2-4A25-9A5A-8FD3444379CA}"
 EndProject

@@ -32,7 +32,7 @@ namespace PluginTranslation
 		public static event EventHandler<TranslationChangedEventArgs> TranslationChanged = null;
 		private static string LanguageIso6391 = string.Empty;
 		#region Definitions of translated texts go here
-		public const string PluginName = "Alternate Auto-Type";
+		public const string PluginName = "Advanced Auto-Type";
 		/// <summary>
 		/// {0} could not be registered as alternate auto-type hotkey
 		/// </summary>
@@ -48,7 +48,7 @@ namespace PluginTranslation
 		/// <summary>
 		/// Alternate Auto-Type configuration
 		/// </summary>
-		public static readonly string Options = @"Alternate Auto-Type configuration";
+		public static readonly string Options = @"Advanced Auto-Type configuration";
 		/// <summary>
 		/// Global Auto-Type Hotkey:
 		/// </summary>

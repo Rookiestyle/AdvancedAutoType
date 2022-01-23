@@ -15,8 +15,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>AlternateAutoType</RootNamespace>
-    <AssemblyName>AlternateAutoType</AssemblyName>
+    <RootNamespace>AdvancedAutoType</RootNamespace>
+    <AssemblyName>AdvancedAutoType</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <NoWin32Manifest>False</NoWin32Manifest>
@@ -73,7 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlternateAutoType.cs" />
+    <Compile Include="AdvancedAutoType.cs" />
     <Compile Include="AWM.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="HotkeyManager.cs" />

@@ -8,14 +8,13 @@ using KeePass;
 using PluginTools;
 using PluginTranslation;
 
-namespace AlternateAutoType
+namespace AdvancedAutoType
 {
 	public static class Config
 	{
 		public static readonly string SortIcon = "AlternateAutoTypeExtSortIcon";
 		public static readonly string DBColumn = "AlternateAutoTypeExtDBColumn";
 		public static readonly string PWColumn = "AlternateAutoTypeExtPWColumn";
-		public static readonly string PWColumnHeader = KeePass.Resources.KPRes.Password + " (AAT)";
 		public static string Placeholder = "{AAT}";
 
 		private static PropertyInfo m_piHotKeyGlobalAutoTypePassword = null;
@@ -42,6 +41,11 @@ namespace AlternateAutoType
 			}
 		}
 
+		public static bool HidePasswordInAutoTypeForm
+        {
+			get { return Program.Config.CustomConfig.GetBool(m_HidePasswordInAutoTypeForm, true); }
+			set { Program.Config.CustomConfig.SetBool(m_HidePasswordInAutoTypeForm, value); }
+		}
 		public static bool SearchAsYouType
 		{
 			get { return Program.Config.CustomConfig.GetBool(m_SearchAsYouType, true); }
@@ -182,6 +186,7 @@ namespace AlternateAutoType
 		private static string m_SpecialColumnsRespectPWEnter = "AlternateAutoType.SpecialColumnsRespectPWEnter";
 		private static string m_SpecialColumnsRespectUsernameEnter = "AlternateAutoType.SpecialColumnsRespectUsernameEnter";
 		private static string m_ExcludeExpiredGroups = "AlternateAutoType.ExcludeExpiredGroups";
+		private static string m_HidePasswordInAutoTypeForm = "AlternateAutoType.HidePasswordInAutoTypeForm";
 
 		private static void SetKey(string param, Keys value)
 		{

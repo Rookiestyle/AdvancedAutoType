@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Windows.Forms;
 
-namespace AlternateAutoType
+namespace AdvancedAutoType
 {
 	public class ListViewComparer : IComparer
 	{

@@ -12,9 +12,9 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace AlternateAutoType
+namespace AdvancedAutoType
 {
-	public sealed class AlternateAutoTypeExt : Plugin
+	public sealed class AdvancedAutoTypeExt : Plugin
 	{
 		#region class members
 		private IPluginHost m_host = null;
@@ -81,10 +81,22 @@ namespace AlternateAutoType
 			m_aww = new AutotypeWindowWatcher(SmallIcon);
 			m_aww.Enable();
 
+            m_host.MainWindow.FormLoadPost += MainWindow_FormLoadPost;
+
 			return true;
 		}
 
-		private void WndProcHandler(object sender, WndProcEventArgs e)
+        private void MainWindow_FormLoadPost(object sender, EventArgs e)
+        {
+			var p = Tools.GetPluginInstance("AlternateAutoType") as Plugin;
+			if (p == null) return;
+			p.Terminate();
+			Tools.ShowInfo(@"AlternateAutoType has been replaced by Advanced Auto-Type.
+
+Please ignore any error messages related to AlternateAutotype, close KeePass and remove AlternateAutoType.plgx");
+        }
+
+        private void WndProcHandler(object sender, WndProcEventArgs e)
 		{
 			e.SkipBase = false;
 			if (e.m.Msg != 0x0312) return; // 0x0312 = WM_HOTKEY
@@ -261,7 +273,7 @@ namespace AlternateAutoType
 			ListView lv = Tools.GetControl("m_lvItems", e.Form) as ListView;
 			lv.ColumnWidthChanged -= HandleColumns;
 			lv.Columns.RemoveByKey(Config.DBColumn);
-			lv.Columns.RemoveByKey(Config.PWColumn);
+			
 			UIUtil.ResizeColumns(lv, true);
 			string ColumnWidths = UIUtil.GetColumnWidths(lv);
 			if (ColumnWidths.Length > 0) KeePass.Program.Config.UI.AutoTypeCtxColumnWidths = ColumnWidths;
@@ -452,8 +464,8 @@ namespace AlternateAutoType
 				m_SortColumn.TextAlign = m_SortColumn.TextAlign; //required as otherwise the first image of the imagelist is shown
 			}
 
-			//Don't sort our own password column as it's asterisks only
-			if (sortColumn.Text == Config.PWColumnHeader) return;
+			//Don't sort password if password's are hidden - it's asterisks only
+			if (Config.HidePasswordInAutoTypeForm && sortColumn.Text == KeePass.Resources.KPRes.Password) return;
 
 			if (m_SortColumn == sortColumn)
 			{
@@ -527,6 +539,8 @@ namespace AlternateAutoType
 
 			lv.ColumnWidthChanged -= HandleColumns;
 
+			if (Config.HidePasswordInAutoTypeForm) HidePasswordInAutoTypeForm(lv);
+			
 			if (Config.SpecialColumns && !KeePassLib.Native.NativeLib.IsUnix()) ColorSpecialColumns(lv);
 
 			if (Config.AddDBColumn) HandleDBColumn(lv);
@@ -534,38 +548,36 @@ namespace AlternateAutoType
 			lv.ColumnWidthChanged += HandleColumns;
 		}
 
+        private void HidePasswordInAutoTypeForm(ListView lv)
+        {
+			if (lv.Items.Count < 1) return;
+			int colPassword = -1;
+			foreach (ColumnHeader col in lv.Columns)
+			{
+				if (col.Text == KeePass.Resources.KPRes.Password)
+				{
+					colPassword = col.Index;
+					break;
+				}
+			}
+			if (colPassword < 0) return;
+			for (int i = 0; i < lv.Items.Count; i++)
+				lv.Items[i].SubItems[colPassword].Text = KeePassLib.PwDefs.HiddenPassword;
+		}
+
 		private void ColorSpecialColumns(ListView lv)
 		{
 			if (lv.Items.Count < 1) return;
 			int colUsername = -1;
 			int colPassword = -1;
-			int colAATPassword = -1;
 			foreach (ColumnHeader col in lv.Columns)
 			{
 				if (col.Text == KeePass.Resources.KPRes.UserName)
 					colUsername = col.Index;
 				if (col.Text == KeePass.Resources.KPRes.Password)
 					colPassword = col.Index;
-				if (col.Text == Config.PWColumnHeader)
-					colAATPassword = col.Index;
 			}
-			if ((colPassword < 0) && (colAATPassword < 0))
-			{
-				ColumnHeader h = new ColumnHeader();
-				h.Text = Config.PWColumnHeader;
-				h.Name = Config.PWColumn;
-				if (colUsername >= 0)
-				{
-					colAATPassword = colUsername + 1;
-					if (colPassword >= colAATPassword) colPassword++;
-				}
-				else
-					colAATPassword = lv.Columns.Count;
-				lv.Columns.Insert(colAATPassword, h);
-				for (int i = 0; i < lv.Items.Count; i++)
-					lv.Items[i].SubItems.Insert(colAATPassword, new ListViewItem.ListViewSubItem(lv.Items[i], KeePassLib.PwDefs.HiddenPassword));
-				UIUtil.ResizeColumns(lv, true);
-			}
+			
 			Color b = lv.Items[0].BackColor;
 			Color f = lv.Items[0].ForeColor;
 			if (KeePass.Program.Config.MainWindow.EntryListAlternatingBgColors)	b = UIUtil.GetAlternateColorEx(b);
@@ -580,7 +592,6 @@ namespace AlternateAutoType
 				li.UseItemStyleForSubItems = false;
 				AdjustColors(li, colUsername, b, f);
 				AdjustColors(li, colPassword, b, f);
-				AdjustColors(li, colAATPassword, b, f);
 			}
 		}
 
@@ -637,7 +648,7 @@ namespace AlternateAutoType
 				sequence = "{USERNAME}";
 				if (Config.SpecialColumnsRespectUsernameEnter) sequence += "{ENTER}";
 			}
-			else if (column == KeePass.Resources.KPRes.Password || column == Config.PWColumnHeader)
+			else if (column == KeePass.Resources.KPRes.Password)
 			{
 				sequence = "{PASSWORD}";
 				if (Config.SpecialColumnsRespectPWEnter) sequence += "{ENTER}";
@@ -690,6 +701,7 @@ namespace AlternateAutoType
 			options.cbKeepATOpen.Checked = Config.KeepATOpen;
 			options.cbExcludeExpiredGroups.Checked = Config.ExcludeExpiredGroups;
 			options.cbSearchAsYouType.Checked = Config.SearchAsYouType;
+			options.cbDontHidePasswordsWithAsterisk.Checked = !Config.HidePasswordInAutoTypeForm;
 			e.form.Shown += options.OptionsForm_Shown;
 			Tools.AddPluginToOptionsForm(this, options);
 		}
@@ -720,6 +732,7 @@ namespace AlternateAutoType
 			Config.KeepATOpen = options.cbKeepATOpen.Checked;
 			Config.ExcludeExpiredGroups = options.cbExcludeExpiredGroups.Checked;
 			Config.SearchAsYouType = options.cbSearchAsYouType.Checked;
+			Config.HidePasswordInAutoTypeForm = !options.cbDontHidePasswordsWithAsterisk.Checked;
 
 			if ((Config.AATHotkey != Keys.None) || (Config.PWOnlyHotkey != Keys.None) || (Config.UsernameOnlyHotkey != Keys.None))
 				HotkeysActivate();
@@ -737,7 +750,7 @@ namespace AlternateAutoType
 
 		public override string UpdateUrl
 		{
-			get { return "https://raw.githubusercontent.com/rookiestyle/alternateautotype/master/version.info"; }
+			get { return @"https://raw.githubusercontent.com/rookiestyle/advancedautotype/master/version.info"; }
 		}
 
 		public override Image SmallIcon
