@@ -7,7 +7,7 @@
   <TranslationVersion>7</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
-    <value>{0} konnte nicht als Hotkey für Alternate Auto-Type registriert werden</value>
+    <value>{0} konnte nicht als Hotkey für alternatives Auto-Type registriert werden</value>
   </item>
   <item>
     <key>ErrorHotKeyPWOnly</key>
@@ -19,7 +19,7 @@
   </item>
   <item>
     <key>Options</key>
-    <value>Alternate Auto-Type Konfiguration</value>
+    <value>Advanced Auto-Type Konfiguration</value>
   </item>
   <item>
     <key>GlobalAutotypeHotKey</key>
@@ -31,7 +31,7 @@
   </item>
   <item>
     <key>AATHotKey</key>
-    <value>Alternate Auto-Type Hotkey:</value>
+    <value>Alternativer Auto-Type Hotkey:</value>
   </item>
   <item>
     <key>PasswordEnterHotKey</key>
