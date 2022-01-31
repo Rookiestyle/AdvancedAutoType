@@ -54,7 +54,7 @@ namespace AdvancedAutoType
 
 			PluginTranslate.Init(this, KeePass.Program.Translation.Properties.Iso6391Code);
 			Tools.DefaultCaption = PluginTranslate.PluginName;
-			Tools.PluginURL = "https://github.com/rookiestyle/alternateautotype/";
+			Tools.PluginURL = "https://github.com/rookiestyle/advancedautotype/";
 
 			SprEngine.FilterPlaceholderHints.Add(Config.Placeholder);
 			AutoType.FilterCompilePre += AutoType_FilterCompilePre;
