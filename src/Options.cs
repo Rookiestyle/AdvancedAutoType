@@ -37,6 +37,13 @@ namespace AdvancedAutoType
 			cbColumnsRememberSort.Text = PluginTranslate.ColumnsSortRemember;
 			cbSearchAsYouType.Text = PluginTranslate.SearchAsYouType;
 			cbDontHidePasswordsWithAsterisk.Text = KPRes.UnhidePasswordsDesc.Replace(".", "");
+			tpAWM.Text = PluginTranslate.AddAutoTypeTitle;
+			textBox1.Lines = string.Format(PluginTranslate.AddAutoTypeDesc, PluginTranslate.PluginName, Keys.Shift.ToString()).Split(new string[]
+				{ "\r\n","\r","\n"}, StringSplitOptions.None);
+			rbAWMExact.Text = PluginTranslate.AddAutoTypeMatchExact;
+			rbAWMStart.Text = PluginTranslate.AddAutoTypeMatchStart;
+			rbAWMEnd.Text = PluginTranslate.AddAutoTypeMatchEnd;
+			rbAWMBoth.Text = PluginTranslate.AddAutoTypeMatchBoth;
 
 			SetHotKey(tbGAT, (Keys)KeePass.Program.Config.Integration.HotKeyGlobalAutoType);
 

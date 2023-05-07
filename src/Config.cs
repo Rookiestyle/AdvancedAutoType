@@ -41,6 +41,21 @@ namespace AdvancedAutoType
 			}
 		}
 
+		internal static AutotypeWindowWatcher.AWMMatchMode AWMMatchMode
+		{
+			get 
+			{ 
+				var s = Program.Config.CustomConfig.GetString(m_AWMMatchMode, AutotypeWindowWatcher.AWMMatchMode.StartsWith.ToString()); 
+				try
+				{
+					var awm = (AutotypeWindowWatcher.AWMMatchMode)Enum.Parse(typeof(AutotypeWindowWatcher.AWMMatchMode), s);
+					return awm;
+				}
+				catch { }
+				return AutotypeWindowWatcher.AWMMatchMode.StartsWith;
+			}
+			set { Program.Config.CustomConfig.SetString(m_AWMMatchMode, value.ToString()); }
+		}
 		public static bool HidePasswordInAutoTypeForm
         {
 			get { return Program.Config.CustomConfig.GetBool(m_HidePasswordInAutoTypeForm, true); }
@@ -187,6 +202,7 @@ namespace AdvancedAutoType
 		private static string m_SpecialColumnsRespectUsernameEnter = "AlternateAutoType.SpecialColumnsRespectUsernameEnter";
 		private static string m_ExcludeExpiredGroups = "AlternateAutoType.ExcludeExpiredGroups";
 		private static string m_HidePasswordInAutoTypeForm = "AlternateAutoType.HidePasswordInAutoTypeForm";
+		private static string m_AWMMatchMode = "AlternateAutoType.AWMMatchMode";
 
 		private static void SetKey(string param, Keys value)
 		{

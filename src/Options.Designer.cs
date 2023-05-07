@@ -51,12 +51,19 @@
             this.lGATU = new System.Windows.Forms.Label();
             this.tbUsernameOnly = new KeePass.UI.HotKeyControlEx();
             this.tpAlternateAutotypeIntegration = new System.Windows.Forms.TabPage();
+            this.cbDontHidePasswordsWithAsterisk = new System.Windows.Forms.CheckBox();
             this.cbSpecialColumnsRespectUsernameEnter = new System.Windows.Forms.CheckBox();
             this.cbSearchAsYouType = new System.Windows.Forms.CheckBox();
-            this.cbDontHidePasswordsWithAsterisk = new System.Windows.Forms.CheckBox();
+            this.tpAWM = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.rbAWMExact = new System.Windows.Forms.RadioButton();
+            this.rbAWMStart = new System.Windows.Forms.RadioButton();
+            this.rbAWMEnd = new System.Windows.Forms.RadioButton();
+            this.rbAWMBoth = new System.Windows.Forms.RadioButton();
             this.tcAlternateAutoType.SuspendLayout();
             this.tpAlternateAutotypeHotkeys.SuspendLayout();
             this.tpAlternateAutotypeIntegration.SuspendLayout();
+            this.tpAWM.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbPWEnter
@@ -64,7 +71,7 @@
             this.cbPWEnter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbPWEnter.AutoSize = true;
             this.cbPWEnter.Location = new System.Drawing.Point(519, 157);
-            this.cbPWEnter.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbPWEnter.Margin = new System.Windows.Forms.Padding(5);
             this.cbPWEnter.Name = "cbPWEnter";
             this.cbPWEnter.Size = new System.Drawing.Size(182, 36);
             this.cbPWEnter.TabIndex = 40;
@@ -86,7 +93,7 @@
             // 
             this.tbGAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbGAT.Location = new System.Drawing.Point(507, 43);
-            this.tbGAT.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tbGAT.Margin = new System.Windows.Forms.Padding(5);
             this.tbGAT.Name = "tbGAT";
             this.tbGAT.Size = new System.Drawing.Size(439, 38);
             this.tbGAT.TabIndex = 10;
@@ -101,7 +108,7 @@
             "Password Only Hotkey",
             "Password+Enter Hotkey"});
             this.cbPWHotkey.Location = new System.Drawing.Point(27, 107);
-            this.cbPWHotkey.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbPWHotkey.Margin = new System.Windows.Forms.Padding(5);
             this.cbPWHotkey.Name = "cbPWHotkey";
             this.cbPWHotkey.Size = new System.Drawing.Size(369, 39);
             this.cbPWHotkey.TabIndex = 20;
@@ -110,7 +117,7 @@
             // 
             this.tbPWOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPWOnly.Location = new System.Drawing.Point(507, 107);
-            this.tbPWOnly.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tbPWOnly.Margin = new System.Windows.Forms.Padding(5);
             this.tbPWOnly.Name = "tbPWOnly";
             this.tbPWOnly.Size = new System.Drawing.Size(439, 38);
             this.tbPWOnly.TabIndex = 30;
@@ -140,7 +147,7 @@
             // 
             this.tbAAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbAAT.Location = new System.Drawing.Point(507, 331);
-            this.tbAAT.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tbAAT.Margin = new System.Windows.Forms.Padding(5);
             this.tbAAT.Name = "tbAAT";
             this.tbAAT.Size = new System.Drawing.Size(439, 38);
             this.tbAAT.TabIndex = 70;
@@ -149,7 +156,7 @@
             // 
             this.cbSpecialColumnsRespectPWEnter.AutoSize = true;
             this.cbSpecialColumnsRespectPWEnter.Location = new System.Drawing.Point(56, 351);
-            this.cbSpecialColumnsRespectPWEnter.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbSpecialColumnsRespectPWEnter.Margin = new System.Windows.Forms.Padding(5);
             this.cbSpecialColumnsRespectPWEnter.Name = "cbSpecialColumnsRespectPWEnter";
             this.cbSpecialColumnsRespectPWEnter.Size = new System.Drawing.Size(507, 36);
             this.cbSpecialColumnsRespectPWEnter.TabIndex = 70;
@@ -160,7 +167,7 @@
             // 
             this.cbColumnsRememberSort.AutoSize = true;
             this.cbColumnsRememberSort.Location = new System.Drawing.Point(56, 131);
-            this.cbColumnsRememberSort.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbColumnsRememberSort.Margin = new System.Windows.Forms.Padding(5);
             this.cbColumnsRememberSort.Name = "cbColumnsRememberSort";
             this.cbColumnsRememberSort.Size = new System.Drawing.Size(352, 36);
             this.cbColumnsRememberSort.TabIndex = 30;
@@ -171,7 +178,7 @@
             // 
             this.cbExcludeExpiredGroups.AutoSize = true;
             this.cbExcludeExpiredGroups.Location = new System.Drawing.Point(21, 453);
-            this.cbExcludeExpiredGroups.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbExcludeExpiredGroups.Margin = new System.Windows.Forms.Padding(5);
             this.cbExcludeExpiredGroups.Name = "cbExcludeExpiredGroups";
             this.cbExcludeExpiredGroups.Size = new System.Drawing.Size(350, 36);
             this.cbExcludeExpiredGroups.TabIndex = 90;
@@ -182,7 +189,7 @@
             // 
             this.cbKeepATOpen.AutoSize = true;
             this.cbKeepATOpen.Location = new System.Drawing.Point(56, 305);
-            this.cbKeepATOpen.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbKeepATOpen.Margin = new System.Windows.Forms.Padding(5);
             this.cbKeepATOpen.Name = "cbKeepATOpen";
             this.cbKeepATOpen.Size = new System.Drawing.Size(293, 36);
             this.cbKeepATOpen.TabIndex = 60;
@@ -194,7 +201,7 @@
             // 
             this.cbSpecialColumns.AutoSize = true;
             this.cbSpecialColumns.Location = new System.Drawing.Point(21, 260);
-            this.cbSpecialColumns.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbSpecialColumns.Margin = new System.Windows.Forms.Padding(5);
             this.cbSpecialColumns.Name = "cbSpecialColumns";
             this.cbSpecialColumns.Size = new System.Drawing.Size(595, 36);
             this.cbSpecialColumns.TabIndex = 50;
@@ -206,7 +213,7 @@
             // 
             this.cbDBColumn.AutoSize = true;
             this.cbDBColumn.Location = new System.Drawing.Point(21, 191);
-            this.cbDBColumn.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbDBColumn.Margin = new System.Windows.Forms.Padding(5);
             this.cbDBColumn.Name = "cbDBColumn";
             this.cbDBColumn.Size = new System.Drawing.Size(191, 36);
             this.cbDBColumn.TabIndex = 40;
@@ -217,7 +224,7 @@
             // 
             this.cbColumnsSortable.AutoSize = true;
             this.cbColumnsSortable.Location = new System.Drawing.Point(21, 86);
-            this.cbColumnsSortable.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbColumnsSortable.Margin = new System.Windows.Forms.Padding(5);
             this.cbColumnsSortable.Name = "cbColumnsSortable";
             this.cbColumnsSortable.Size = new System.Drawing.Size(274, 36);
             this.cbColumnsSortable.TabIndex = 20;
@@ -228,6 +235,7 @@
             // 
             this.tcAlternateAutoType.Controls.Add(this.tpAlternateAutotypeHotkeys);
             this.tcAlternateAutoType.Controls.Add(this.tpAlternateAutotypeIntegration);
+            this.tcAlternateAutoType.Controls.Add(this.tpAWM);
             this.tcAlternateAutoType.Dock = System.Windows.Forms.DockStyle.Top;
             this.tcAlternateAutoType.Location = new System.Drawing.Point(27, 7);
             this.tcAlternateAutoType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -253,7 +261,7 @@
             this.tpAlternateAutotypeHotkeys.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpAlternateAutotypeHotkeys.Name = "tpAlternateAutotypeHotkeys";
             this.tpAlternateAutotypeHotkeys.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpAlternateAutotypeHotkeys.Size = new System.Drawing.Size(985, 541);
+            this.tpAlternateAutotypeHotkeys.Size = new System.Drawing.Size(985, 648);
             this.tpAlternateAutotypeHotkeys.TabIndex = 0;
             this.tpAlternateAutotypeHotkeys.Text = "tabPage1";
             this.tpAlternateAutotypeHotkeys.UseVisualStyleBackColor = true;
@@ -263,7 +271,7 @@
             this.cbUsernameEnter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbUsernameEnter.AutoSize = true;
             this.cbUsernameEnter.Location = new System.Drawing.Point(519, 272);
-            this.cbUsernameEnter.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbUsernameEnter.Margin = new System.Windows.Forms.Padding(5);
             this.cbUsernameEnter.Name = "cbUsernameEnter";
             this.cbUsernameEnter.Size = new System.Drawing.Size(182, 36);
             this.cbUsernameEnter.TabIndex = 60;
@@ -284,7 +292,7 @@
             // 
             this.tbUsernameOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbUsernameOnly.Location = new System.Drawing.Point(507, 222);
-            this.tbUsernameOnly.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tbUsernameOnly.Margin = new System.Windows.Forms.Padding(5);
             this.tbUsernameOnly.Name = "tbUsernameOnly";
             this.tbUsernameOnly.Size = new System.Drawing.Size(439, 38);
             this.tbUsernameOnly.TabIndex = 50;
@@ -310,11 +318,22 @@
             this.tpAlternateAutotypeIntegration.Text = "tabPage2";
             this.tpAlternateAutotypeIntegration.UseVisualStyleBackColor = true;
             // 
+            // cbDontHidePasswordsWithAsterisk
+            // 
+            this.cbDontHidePasswordsWithAsterisk.AutoSize = true;
+            this.cbDontHidePasswordsWithAsterisk.Location = new System.Drawing.Point(21, 509);
+            this.cbDontHidePasswordsWithAsterisk.Margin = new System.Windows.Forms.Padding(5);
+            this.cbDontHidePasswordsWithAsterisk.Name = "cbDontHidePasswordsWithAsterisk";
+            this.cbDontHidePasswordsWithAsterisk.Size = new System.Drawing.Size(417, 36);
+            this.cbDontHidePasswordsWithAsterisk.TabIndex = 91;
+            this.cbDontHidePasswordsWithAsterisk.Text = "Hide passwords with asterisk";
+            this.cbDontHidePasswordsWithAsterisk.UseVisualStyleBackColor = true;
+            // 
             // cbSpecialColumnsRespectUsernameEnter
             // 
             this.cbSpecialColumnsRespectUsernameEnter.AutoSize = true;
             this.cbSpecialColumnsRespectUsernameEnter.Location = new System.Drawing.Point(56, 396);
-            this.cbSpecialColumnsRespectUsernameEnter.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbSpecialColumnsRespectUsernameEnter.Margin = new System.Windows.Forms.Padding(5);
             this.cbSpecialColumnsRespectUsernameEnter.Name = "cbSpecialColumnsRespectUsernameEnter";
             this.cbSpecialColumnsRespectUsernameEnter.Size = new System.Drawing.Size(592, 36);
             this.cbSpecialColumnsRespectUsernameEnter.TabIndex = 80;
@@ -325,23 +344,83 @@
             // 
             this.cbSearchAsYouType.AutoSize = true;
             this.cbSearchAsYouType.Location = new System.Drawing.Point(21, 24);
-            this.cbSearchAsYouType.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbSearchAsYouType.Margin = new System.Windows.Forms.Padding(5);
             this.cbSearchAsYouType.Name = "cbSearchAsYouType";
             this.cbSearchAsYouType.Size = new System.Drawing.Size(294, 36);
             this.cbSearchAsYouType.TabIndex = 10;
             this.cbSearchAsYouType.Text = "Search as you type";
             this.cbSearchAsYouType.UseVisualStyleBackColor = true;
             // 
-            // cbHidePasswordsWithAsterisk
+            // tpAWM
             // 
-            this.cbDontHidePasswordsWithAsterisk.AutoSize = true;
-            this.cbDontHidePasswordsWithAsterisk.Location = new System.Drawing.Point(21, 509);
-            this.cbDontHidePasswordsWithAsterisk.Margin = new System.Windows.Forms.Padding(5);
-            this.cbDontHidePasswordsWithAsterisk.Name = "cbHidePasswordsWithAsterisk";
-            this.cbDontHidePasswordsWithAsterisk.Size = new System.Drawing.Size(417, 36);
-            this.cbDontHidePasswordsWithAsterisk.TabIndex = 91;
-            this.cbDontHidePasswordsWithAsterisk.Text = "Hide passwords with asterisk";
-            this.cbDontHidePasswordsWithAsterisk.UseVisualStyleBackColor = true;
+            this.tpAWM.Controls.Add(this.rbAWMBoth);
+            this.tpAWM.Controls.Add(this.rbAWMEnd);
+            this.tpAWM.Controls.Add(this.rbAWMStart);
+            this.tpAWM.Controls.Add(this.rbAWMExact);
+            this.tpAWM.Controls.Add(this.textBox1);
+            this.tpAWM.Location = new System.Drawing.Point(10, 48);
+            this.tpAWM.Name = "tpAWM";
+            this.tpAWM.Size = new System.Drawing.Size(985, 592);
+            this.tpAWM.TabIndex = 2;
+            this.tpAWM.Text = "tpAWM";
+            this.tpAWM.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(21, 24);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(940, 242);
+            this.textBox1.TabIndex = 94;
+            // 
+            // radioButton1
+            // 
+            this.rbAWMExact.AutoSize = true;
+            this.rbAWMExact.Location = new System.Drawing.Point(21, 290);
+            this.rbAWMExact.Name = "radioButton1";
+            this.rbAWMExact.Size = new System.Drawing.Size(216, 36);
+            this.rbAWMExact.TabIndex = 95;
+            this.rbAWMExact.TabStop = true;
+            this.rbAWMExact.Text = "rbAWMExact";
+            this.rbAWMExact.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.rbAWMStart.AutoSize = true;
+            this.rbAWMStart.Location = new System.Drawing.Point(21, 332);
+            this.rbAWMStart.Name = "radioButton2";
+            this.rbAWMStart.Size = new System.Drawing.Size(205, 36);
+            this.rbAWMStart.TabIndex = 96;
+            this.rbAWMStart.TabStop = true;
+            this.rbAWMStart.Text = "rbAWMStart";
+            this.rbAWMStart.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.rbAWMEnd.AutoSize = true;
+            this.rbAWMEnd.Location = new System.Drawing.Point(21, 374);
+            this.rbAWMEnd.Name = "radioButton3";
+            this.rbAWMEnd.Size = new System.Drawing.Size(196, 36);
+            this.rbAWMEnd.TabIndex = 97;
+            this.rbAWMEnd.TabStop = true;
+            this.rbAWMEnd.Text = "rbAWMEnd";
+            this.rbAWMEnd.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.rbAWMBoth.AutoSize = true;
+            this.rbAWMBoth.Location = new System.Drawing.Point(21, 416);
+            this.rbAWMBoth.Name = "radioButton4";
+            this.rbAWMBoth.Size = new System.Drawing.Size(204, 36);
+            this.rbAWMBoth.TabIndex = 98;
+            this.rbAWMBoth.TabStop = true;
+            this.rbAWMBoth.Text = "rbAWMBoth";
+            this.rbAWMBoth.UseVisualStyleBackColor = true;
             // 
             // Options
             // 
@@ -350,16 +429,18 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.tcAlternateAutoType);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Options";
             this.Padding = new System.Windows.Forms.Padding(27, 7, 27, 7);
-            this.Size = new System.Drawing.Size(1059, 699);
+            this.Size = new System.Drawing.Size(1059, 720);
             this.Load += new System.EventHandler(this.Options_Load);
             this.tcAlternateAutoType.ResumeLayout(false);
             this.tpAlternateAutotypeHotkeys.ResumeLayout(false);
             this.tpAlternateAutotypeHotkeys.PerformLayout();
             this.tpAlternateAutotypeIntegration.ResumeLayout(false);
             this.tpAlternateAutotypeIntegration.PerformLayout();
+            this.tpAWM.ResumeLayout(false);
+            this.tpAWM.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -387,5 +468,11 @@
         private KeePass.UI.HotKeyControlEx tbUsernameOnly;
         internal System.Windows.Forms.CheckBox cbSpecialColumnsRespectUsernameEnter;
         internal System.Windows.Forms.CheckBox cbDontHidePasswordsWithAsterisk;
+        private System.Windows.Forms.TabPage tpAWM;
+        private System.Windows.Forms.TextBox textBox1;
+        internal System.Windows.Forms.RadioButton rbAWMExact;
+        internal System.Windows.Forms.RadioButton rbAWMBoth;
+        internal System.Windows.Forms.RadioButton rbAWMEnd;
+        internal System.Windows.Forms.RadioButton rbAWMStart;
     }
 }

@@ -702,6 +702,10 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
 			options.cbExcludeExpiredGroups.Checked = Config.ExcludeExpiredGroups;
 			options.cbSearchAsYouType.Checked = Config.SearchAsYouType;
 			options.cbDontHidePasswordsWithAsterisk.Checked = !Config.HidePasswordInAutoTypeForm;
+			options.rbAWMExact.Checked = Config.AWMMatchMode == AutotypeWindowWatcher.AWMMatchMode.Exact;
+			options.rbAWMStart.Checked = Config.AWMMatchMode == AutotypeWindowWatcher.AWMMatchMode.StartsWith;
+			options.rbAWMEnd.Checked = Config.AWMMatchMode == AutotypeWindowWatcher.AWMMatchMode.EndsWith;
+			options.rbAWMBoth.Checked = Config.AWMMatchMode == AutotypeWindowWatcher.AWMMatchMode.Both;
 			e.form.Shown += options.OptionsForm_Shown;
 			Tools.AddPluginToOptionsForm(this, options);
 		}
@@ -733,6 +737,10 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
 			Config.ExcludeExpiredGroups = options.cbExcludeExpiredGroups.Checked;
 			Config.SearchAsYouType = options.cbSearchAsYouType.Checked;
 			Config.HidePasswordInAutoTypeForm = !options.cbDontHidePasswordsWithAsterisk.Checked;
+			if (options.rbAWMExact.Checked) Config.AWMMatchMode = AutotypeWindowWatcher.AWMMatchMode.Exact;
+			if (options.rbAWMStart.Checked) Config.AWMMatchMode = AutotypeWindowWatcher.AWMMatchMode.StartsWith;
+			if (options.rbAWMEnd.Checked) Config.AWMMatchMode = AutotypeWindowWatcher.AWMMatchMode.EndsWith;
+			if (options.rbAWMBoth.Checked) Config.AWMMatchMode = AutotypeWindowWatcher.AWMMatchMode.Both;
 
 			if ((Config.AATHotkey != Keys.None) || (Config.PWOnlyHotkey != Keys.None) || (Config.UsernameOnlyHotkey != Keys.None))
 				HotkeysActivate();
@@ -747,7 +755,6 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
 				return true;
 			return IsGroupExpired(pg.ParentGroup);
 		}
-
 		public override string UpdateUrl
 		{
 			get { return @"https://raw.githubusercontent.com/rookiestyle/advancedautotype/master/version.info"; }

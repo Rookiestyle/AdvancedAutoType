@@ -182,11 +182,13 @@ namespace AdvancedAutoType
 		{
 			if (string.IsNullOrEmpty(s)) return;
 			int i = 0;
+			if ((Config.AWMMatchMode == AWMMatchMode.EndsWith || Config.AWMMatchMode == AWMMatchMode.Both) && !s.EndsWith("*")) s += "*";
+			if ((Config.AWMMatchMode == AWMMatchMode.StartsWith || Config.AWMMatchMode == AWMMatchMode.Both) && !s.StartsWith("*")) s = "*" + s;
 			AWMDuplicateHandling dup = AWMDuplicateHandling.Undefined;
 			bool bShift = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
 			foreach (var pe in KeePass.Program.MainForm.GetSelectedEntries())
 			{
-				if (AddToAutotype(pe, s, ref dup)) i++;
+				if (AddToAutotypeInternal(pe, s, ref dup)) i++;
 			}
 			if (i > 0) Tools.RefreshEntriesList(true);
 			if ((dup == AWMDuplicateHandling.Edit || bShift) && m_miEditSelectedEntry != null)
@@ -197,8 +199,10 @@ namespace AdvancedAutoType
 			}
 		}
 
-		private bool AddToAutotype(PwEntry pe, string s, ref AWMDuplicateHandling dup)
+		private bool AddToAutotypeInternal(PwEntry pe, string s, ref AWMDuplicateHandling dup)
 		{
+			//if ((Config.AWMMatchMode == AWMMatchMode.EndsWith || Config.AWMMatchMode==AWMMatchMode.Both) && !s.EndsWith("*")) s += "*";
+			//if ((Config.AWMMatchMode == AWMMatchMode.StartsWith || Config.AWMMatchMode == AWMMatchMode.Both) && !s.StartsWith("*")) s = "*" + s;
 			if (pe.AutoType.Associations.FirstOrDefault(x => string.Compare(x.WindowName, s, true) == 0) != null)
 			{
 				if (dup == AWMDuplicateHandling.Undefined) dup = GetDuplicateHandling(s);
@@ -310,6 +314,14 @@ namespace AdvancedAutoType
 			Skip
 		}
 
+		internal enum AWMMatchMode
+		{
+			StartsWith,
+			EndsWith,
+			Both,
+			Exact
+		}
+		
 		private class EditAutoType
 		{
 			private static Form f = null;

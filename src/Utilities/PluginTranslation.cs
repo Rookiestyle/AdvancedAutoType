@@ -46,7 +46,7 @@ namespace PluginTranslation
 		/// </summary>
 		public static readonly string ErrorHotKeyUsernameOnly = @"{0} could not be registered as username only hotkey";
 		/// <summary>
-		/// Alternate Auto-Type configuration
+		/// Advanced Auto-Type configuration
 		/// </summary>
 		public static readonly string Options = @"Advanced Auto-Type configuration";
 		/// <summary>
@@ -124,7 +124,39 @@ If you want to skip these entries, please click '{2}'.";
 		/// <summary>
 		/// Globales Auto-Type - user name only:
 		/// </summary>
-		public static readonly string AutoTypeUsernameOnly = @"Globales Auto-Type - user name only:";
+		public static readonly string AutoTypeUsernameOnly = @"Global Auto-Type - user name only:";
+		/// <summary>
+		/// Add Auto-Type sequence
+		/// </summary>
+		public static readonly string AddAutoTypeTitle = @"Add Auto-Type sequence";
+		/// <summary>
+		/// {0} provides a shortcut to add Auto-Type sequences to entries in an  easy way.
+		/// Simply open the entry's context menu and pick the window that shall be added.
+		/// If you like to directly edit the new Auto-Type sequence, press [{1}] when adding it.
+		/// 
+		/// Below you can define how KeePass shall match the window title
+		/// </summary>
+		public static readonly string AddAutoTypeDesc = @"{0} provides a shortcut to add Auto-Type sequences to entries in an  easy way.
+Simply open the entry's context menu and pick the window that shall be added.
+If you like to directly edit the new Auto-Type sequence, press [{1}] when adding it.
+
+Below you can define how KeePass shall match the window title";
+		/// <summary>
+		/// Exact match (STRING)
+		/// </summary>
+		public static readonly string AddAutoTypeMatchExact = @"Exact match (WINDOWTITLE)";
+		/// <summary>
+		/// Match from start ((STRING*)
+		/// </summary>
+		public static readonly string AddAutoTypeMatchStart = @"Match from start (WINDOWTITLE*)";
+		/// <summary>
+		/// Match from end (*STRING)
+		/// </summary>
+		public static readonly string AddAutoTypeMatchEnd = @"Match from end (*WINDOWTITLE)";
+		/// <summary>
+		/// Match anywhere (*STRING*)
+		/// </summary>
+		public static readonly string AddAutoTypeMatchBoth = @"Match anywhere (*WINDOWTITLE*)";
 		#endregion
 
 		#region NO changes in this area
