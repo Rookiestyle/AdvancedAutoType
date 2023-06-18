@@ -39,7 +39,7 @@
   </item>
   <item>
     <key>UsernameEnterHotKey</key>
-    <value>Username + Enter</value>
+    <value>User name + Enter</value>
   </item>
   <item>
     <key>Hotkeys</key>
@@ -90,5 +90,37 @@ If you want to skip these entries, please click '{2}'.</value>
   <item>
     <key>SearchAsYouType</key>
     <value>Allow filtering of entries</value>
+  </item>
+  <item>
+    <key>AutoTypeUsernameOnly</key>
+    <value>Global Auto-Type - user name only:</value>
+  </item>
+  <item>
+    <key>AddAutoTypeTitle</key>
+    <value>Add Auto-Type sequence</value>
+  </item>
+  <item>
+    <key>AddAutoTypeDesc</key>
+    <value>{0} provides a shortcut to add Auto-Type sequences to entries in an  easy way.
+Simply open the entry's context menu and pick the window that shall be added.
+If you like to directly edit the new Auto-Type sequence, press [{1}] when adding it.
+
+Below you can define how KeePass shall match the window title</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchExact</key>
+    <value>Exact match (WINDOWTITLE)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchStart</key>
+    <value>Match from start (WINDOWTITLE*)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchEnd</key>
+    <value>Match from end (*WINDOWTITLE)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchBoth</key>
+    <value>Match anywhere (*WINDOWTITLE*)</value>
   </item>
 </Translation>

@@ -4,7 +4,7 @@
     Increment the TranslationVersion every time the translation file is updated
 	Also update the version.info file
   -->
-  <TranslationVersion>7</TranslationVersion>
+  <TranslationVersion>8</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} konnte nicht als Hotkey für alternatives Auto-Type registriert werden</value>
@@ -90,5 +90,37 @@ Klicke '{2}', um nichts zu tun.</value>
   <item>
     <key>SearchAsYouType</key>
     <value>Filtermöglichkeit für gefundene Einträge</value>
+  </item>
+  <item>
+    <key>AutoTypeUsernameOnly</key>
+    <value>Globales Auto-Type - Nur Benutzername:</value>
+  </item>
+  <item>
+    <key>AddAutoTypeTitle</key>
+    <value>Auto-Type Sequenz hinzufügen</value>
+  </item>
+  <item>
+    <key>AddAutoTypeDesc</key>
+    <value>{0} erleichtert das Hinzufügen neuer Auto-Type Sequenzen zu bestehenden Einträgen.
+Öffne dazu das Kontextmenü des Eintrags und wähle den Fenstertitel, der hinzugefügt werden soll.
+Um die neue Auto-Type Sequenz direkt zu bearbeiten, halte [{1}] beim Hinzufügen gedrückt.
+
+Bitte definiere, wie KeePass den neu hinzugefügten Fenstertitel vergleichen soll.</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchExact</key>
+    <value>Genaue Übereinstimmung (FENSTERTITEL)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchStart</key>
+    <value>Beginnt mit (FENSTERTITEL*)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchEnd</key>
+    <value>Endet mit (*FENSTERTITEL)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchBoth</key>
+    <value>Enthält (*FENSTERTITEL*)</value>
   </item>
 </Translation>
