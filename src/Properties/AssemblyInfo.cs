@@ -12,15 +12,15 @@ using System.Runtime.InteropServices;
 KeePass types EITHER everything before OR everything after {AAT}. 
 
 Various other enhancements, check the options")]
-[assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("rookiestyle")]
-[assembly: AssemblyProduct ("KeePass Plugin")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("rookiestyle")]
+[assembly: AssemblyProduct("KeePass Plugin")]
 [assembly: AssemblyCopyright("Copyright 2020-2023")]
-[assembly: AssemblyTrademark ("")]
-[assembly: AssemblyCulture ("")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
 // This sets the default COM visibility of types in the assembly to invisible.
 // If you need to expose a type to COM, use [ComVisible(true)] on that type.
-[assembly: ComVisible (false)]
+[assembly: ComVisible(false)]
 // The assembly version has following format :
 //
 // Major.Minor.Build.Revision
