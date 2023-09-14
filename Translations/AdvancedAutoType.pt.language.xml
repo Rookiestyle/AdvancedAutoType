@@ -4,7 +4,7 @@
     Increment the TranslationVersion every time the translation file is updated
 	Also update the version.info file
   -->
-  <TranslationVersion>3</TranslationVersion>
+  <TranslationVersion>4</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} não pode ser registrado como atalho alternativo para auto-digitação</value>
@@ -83,12 +83,44 @@
   </item>
   <item>
     <key>AWMCheckDuplicateDetails</key>
-    <value>Se você quer editar uma sequencia de Auto-Digitação existente, clique '{0}'.
-Se você quiser adicionar outra sequência do Auto-Digitação, clique em '{1}'.
+    <value>Se você quer editar uma seqüência de Auto-Digitação existente, clique '{0}'.
+Se você quiser adicionar outra seqüência do Auto-Digitação, clique em '{1}'.
 Se você quiser pular essas entradas, clique em '{2}'.</value>
   </item>
   <item>
     <key>SearchAsYouType</key>
     <value>Permitir a filtragem de entradas</value>
+  </item>
+  <item>
+    <key>AutoTypeUsernameOnly</key>
+    <value>Auto-Digitação Global - nome de usuário somente:</value>
+  </item>
+  <item>
+    <key>AddAutoTypeTitle</key>
+    <value>Adicionar seqüência de Auto-Digitação</value>
+  </item>
+  <item>
+    <key>AddAutoTypeDesc</key>
+    <value>{0} fornece um atalho para adicionar seqüências de Auto-Digitação de entradas de maneira fácil.
+Basta abrir o menu de contexto da entrada e escolher a janela que será adicionada.
+Se você deseja editar diretamente a nova seqüência de Auto-Digitação, pressione [{1}] ao adicioná-la.
+
+Abaixo você pode definir como o KeePass deve corresponder ao título da janela</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchExact</key>
+    <value>Correspondência exata (WINDOWTITLE)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchStart</key>
+    <value>Correspondência do início (WINDOWTITLE*)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchEnd</key>
+    <value>Correspondência do final (*WINDOWTITLE)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchBoth</key>
+    <value>Correspondência em qualquer lugar (*WINDOWTITLE*)</value>
   </item>
 </Translation>
