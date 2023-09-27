@@ -337,6 +337,7 @@ namespace AdvancedAutoType
         get
         {
           if (!Valid) return string.Empty;
+          if (WindowTexts == null) return string.Empty; //https://github.com/Rookiestyle/AdvancedAutoType/issues/14 - excpect the unexpected, maybe this changes once again
           if (WindowTexts.Items.Count == 0) return string.Empty;
           return WindowTexts.Items[0] as string;
         }
@@ -347,6 +348,7 @@ namespace AdvancedAutoType
         get
         {
           if (!Valid) return null;
+          if (Images == null) return null; //https://github.com/Rookiestyle/AdvancedAutoType/issues/14 - excpect the unexpected, maybe this changes once again
           if (Images.Count == 0) return null;
           return Images[0];
         }
@@ -401,10 +403,12 @@ namespace AdvancedAutoType
         lMsg.Add("Created EditAutoTypeItemForm, handle: " + f.Handle.ToString());
 
         WindowTexts = (ComboBox)Tools.GetControl("m_cmbWindow", f);
-        Images = (List<Image>)Tools.GetField("m_vWndImages", f);
+        //https://github.com/Rookiestyle/AdvancedAutoType/issues/14
+        Images = (List<Image>)Tools.GetField("m_vWndImages", f); //Works up to KeePass 2.54 including
+        if (Images == null) Images = (List<Image>)Tools.GetField("m_lWndImages", f);
 
-        lMsg.Add("m_cmbWindow: " + WindowTexts == null ? "Not found" : "Found");
-        lMsg.Add("m_vWndImages: " + Images == null ? "Not found" : "Found");
+        lMsg.Add("m_cmbWindow: " + (WindowTexts == null ? "Not found" : "Found"));
+        lMsg.Add("m_vWndImages: " + (Images == null ? "Not found" : "Found"));
 
         if (KeePassLib.Native.NativeLib.IsUnix())
           m_miPopulateWindowsList = f.GetType().GetMethod("PopulateWindowsListUnix", BindingFlags.Instance | BindingFlags.NonPublic);
