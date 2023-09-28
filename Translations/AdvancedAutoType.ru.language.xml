@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Translation>
-  <TranslationVersion>4</TranslationVersion>
+  <!-- 
+    Increment the TranslationVersion every time the translation file is updated
+	Also update the version.info file
+  -->
+  <TranslationVersion>5</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} Не удалось зарегистрировать горячую клавишу для альтернативного автонабора</value>
@@ -8,6 +12,10 @@
   <item>
     <key>ErrorHotKeyPWOnly</key>
     <value>{0} Не удалось зарегистрировать горячую клавишу для автонабора пароля</value>
+  </item>
+  <item>
+    <key>ErrorHotKeyUsernameOnly</key>
+    <value>{0} Не удалось зарегистрировать горячую клавишу для автонабора имени пользователя</value>
   </item>
   <item>
     <key>Options</key>
@@ -28,6 +36,10 @@
   <item>
     <key>PasswordEnterHotKey</key>
     <value>Пароль + Enter</value>
+  </item>
+  <item>
+    <key>UsernameEnterHotKey</key>
+    <value>Имя пользователя + Enter</value>
   </item>
   <item>
     <key>Hotkeys</key>
@@ -74,5 +86,41 @@
     <value>Если вы хотите изменить существующую последовательность автонабора, щелкните '{0}'.
 Если вы хотите добавить другую последовательность автонабора, щелкните '{1}'.
 Если вы хотите пропустить эти записи, пожалуйста, щелкните '{2}'.</value>
+  </item>
+  <item>
+    <key>SearchAsYouType</key>
+    <value>Разрешить фильтрацию записей</value>
+  </item>
+  <item>
+    <key>AutoTypeUsernameOnly</key>
+    <value>Глобальный автонабор - только имя пользователя:</value>
+  </item>
+  <item>
+    <key>AddAutoTypeTitle</key>
+    <value>Добавление последовательностей автонабора</value>
+  </item>
+  <item>
+    <key>AddAutoTypeDesc</key>
+    <value>{0} предусматривает короткий путь для легкого добавления последовательностей автонабора к записям.
+Просто откройте контекстное меню записи и укажите окно, которое следует добавить.
+Если вы желаете отредактировать новую последовательность автонабора напрямую, нажмите [{1}] после добавления.
+
+Ниже вы можете указать, как KeePass следует определять соответствие заголовку окна.</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchExact</key>
+    <value>Точное соответствие (ЗАГОЛОВОКОКНА)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchStart</key>
+    <value>Соответствие с начала (ЗАГОЛОВОКОКНА*)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchEnd</key>
+    <value>Соответствие с конца (*ЗАГОЛОВОКОКНА)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchBoth</key>
+    <value>Соответствие везде (*ЗАГОЛОВОКОКНА*)</value>
   </item>
 </Translation>
