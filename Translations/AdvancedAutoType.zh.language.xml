@@ -4,22 +4,26 @@
     Increment the TranslationVersion every time the translation file is updated
 	Also update the version.info file
   -->
-  <TranslationVersion>1</TranslationVersion>
+  <TranslationVersion>2</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
-    <value>{0} 不能设为 alternate auto-type（该插件）的快捷键</value>
+    <value>{0} 无法注册为备用自动输入快捷键</value>
   </item>
   <item>
     <key>ErrorHotKeyPWOnly</key>
     <value>{0} 不能设为仅输入的快捷键</value>
   </item>
   <item>
+    <key>ErrorHotKeyUsernameOnly</key>
+    <value>{0} 无法注册为仅用户名快捷键</value>
+  </item>
+  <item>
     <key>Options</key>
-    <value>Alternate Auto-Type（候选自动输入）选项</value>
+    <value>高级自动输入选项</value>
   </item>
   <item>
     <key>GlobalAutotypeHotKey</key>
-    <value>全局自动输入快捷键y:</value>
+    <value>全局自动输入快捷键:</value>
   </item>
   <item>
     <key>PasswordOnlyHotKey</key>
@@ -27,11 +31,15 @@
   </item>
   <item>
     <key>AATHotKey</key>
-    <value>Alternate Auto-Type 快捷键:</value>
+    <value>候选自动输入快捷键:</value>
   </item>
   <item>
     <key>PasswordEnterHotKey</key>
-    <value>Password + Enter</value>
+    <value>密码+回车键</value>
+  </item>
+  <item>
+    <key>UsernameEnterHotKey</key>
+    <value>用户名+回车键</value>
   </item>
   <item>
     <key>Hotkeys</key>
@@ -47,15 +55,15 @@
   </item>
   <item>
     <key>AddDBColumn</key>
-    <value>增加数据库列如果包含多个数据库</value>
+    <value>如果显示至少2个数据库的条目，请添加DB列</value>
   </item>
   <item>
     <key>SpecialColumns</key>
-    <value>当点击 username / password 项时只输入该项</value>
+    <value>单击用户名/密码时仅自动输入用户名/密码</value>
   </item>
   <item>
     <key>KeepATOpen</key>
-    <value>不要关闭自动输入条目选择器窗口</value>
+    <value>不要关闭自动输入条目选择表单</value>
   </item>
   <item>
     <key>ExcludeExpiredGroups</key>
@@ -75,12 +83,44 @@
   </item>
   <item>
     <key>AWMCheckDuplicateDetails</key>
-    <value>如果你想编辑现有的自动输入条目，点击 '{0}'.
-如果你想添加另一个自动输入条目，点击  '{1}'.
-如果你想跳过这个条目，点击 '{2}'.</value>
+    <value>如果你想编辑现有的自动输入条目，点击 '{0}'。
+如果你想添加另一个自动输入条目，点击 '{1}'。
+如果你想跳过这个条目，点击 '{2}'。</value>
   </item>
   <item>
     <key>SearchAsYouType</key>
     <value>允许过滤条目</value>
+  </item>
+  <item>
+    <key>AutoTypeUsernameOnly</key>
+    <value>全局自动输入(仅用户名):</value>
+  </item>
+  <item>
+    <key>AddAutoTypeTitle</key>
+    <value>添加自动输入序列</value>
+  </item>
+  <item>
+    <key>AddAutoTypeDesc</key>
+    <value>{0} 提供了一种快捷方式，可以轻松地将自动键入序列添加到条目中。
+只需打开条目的上下文菜单并选择要添加的窗口。
+如果您想直接编辑新的自动类型序列，请在添加时按 [{1}]。
+
+您可以在下面定义 KeePass 如何匹配窗口标题</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchExact</key>
+    <value>精确匹配 (WINDOWTITLE)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchStart</key>
+    <value>从头开始匹配 (WINDOWTITLE*)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchEnd</key>
+    <value>从末尾开始匹配 (*WINDOWTITLE)</value>
+  </item>
+  <item>
+    <key>AddAutoTypeMatchBoth</key>
+    <value>任意匹配 (*WINDOWTITLE*)</value>
   </item>
 </Translation>
