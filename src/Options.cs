@@ -105,7 +105,15 @@ namespace AdvancedAutoType
 
     private void Options_Load(object sender, System.EventArgs e)
     {
-      tpAlternateAutotypeHotkeys.Enabled = !KeePassLib.Native.NativeLib.IsUnix();
+      if (KeePassLib.Native.NativeLib.IsUnix())
+      {
+        foreach(Control c in tpAlternateAutotypeHotkeys.Controls)
+        {
+          if (c == cbUsernameEnter || c == llHotKeyUnix) continue;
+          c.Enabled = false;
+        }
+      }
+      //tpAlternateAutotypeHotkeys.Enabled = !KeePassLib.Native.NativeLib.IsUnix();
       if (!tpAlternateAutotypeHotkeys.Enabled) tcAlternateAutoType.SelectedTab = tpAlternateAutotypeIntegration;
       cbSpecialColumns_CheckedChanged(null, null);
     }
@@ -120,6 +128,14 @@ namespace AdvancedAutoType
       //Move all controls from UserControl in TabPage to TabPage
       //Make UserControl invisible (do NOT remove: OptionsForm_Closed won't work otherwise)
       m_ParentForm = ParentForm;
+
+      llHotKeyUnix.Visible = KeePassLib.Native.NativeLib.IsUnix();
+      llHotKeyUnix.Links.Clear();
+      Control m_linkHotKeyHelp = Tools.GetControl("m_linkHotKeyHelp", m_ParentForm);
+      string sText = m_linkHotKeyHelp != null ? m_linkHotKeyHelp.Text : "Create system-wide hot keys";
+      llHotKeyUnix.Links.Add(0, sText.Length);
+      llHotKeyUnix.Text = sText;
+
       while (Controls.Count > 0) Parent.Controls.Add(Controls[0]);
       Height = Width = 0;
       Visible = false;
@@ -163,6 +179,11 @@ namespace AdvancedAutoType
     private void cbKeepATOpen_CheckedChanged(object sender, EventArgs e)
     {
       if (cbKeepATOpen.Checked) cbSpecialColumns.Checked = true;
+    }
+
+    private void llHotKeyUnix_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+      Tools.OpenUrl("https://github.com/Rookiestyle/AdvancedAutoType/wiki/Unix-Linux-%E2%80%90-Create-system%E2%80%90wide-hot-keys");
     }
   }
 }

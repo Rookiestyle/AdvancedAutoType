@@ -16,6 +16,8 @@ namespace AdvancedAutoType
 {
   public sealed class AdvancedAutoTypeExt : Plugin
   {
+    private const string m_sIpcEventName_AAT = "advanced-auto-type";
+    private const string m_sIpcEventName_UsernameOnly = "auto-type-username";
     #region class members
     private IPluginHost m_host = null;
     ToolStripMenuItem m_menuItem = null;
@@ -83,7 +85,39 @@ namespace AdvancedAutoType
 
       m_host.MainWindow.FormLoadPost += MainWindow_FormLoadPost;
 
+      IpcUtilEx.IpcEvent += OnIpcEvent;
+
       return true;
+    }
+
+    private void OnIpcEvent(object sender, IpcEventArgs ipcEventArgs)
+    {
+      if (ipcEventArgs.Name.Equals(m_sIpcEventName_AAT, StringComparison.InvariantCultureIgnoreCase))
+      {
+        m_host.MainWindow.BeginInvoke(new Action(Ipc_DoAAT));
+      }
+      if (ipcEventArgs.Name.Equals(m_sIpcEventName_UsernameOnly, StringComparison.InvariantCultureIgnoreCase))
+      {
+        m_host.MainWindow.BeginInvoke(new Action(Ipc_DoUsernameOnly));
+      }
+    }
+
+    private void Ipc_DoAAT()
+    {
+      bool bForceAATHotkeyForUnix = Config.AATHotkeyID == 0 && KeePassLib.Native.NativeLib.IsUnix();
+      if (bForceAATHotkeyForUnix) Config.AATHotkeyID = -1;
+      var e = new HotKeyEventArgs(IntPtr.Zero, (IntPtr)Config.AATHotkeyID);
+      HotKeyPressed(null, e);
+      if (bForceAATHotkeyForUnix) Config.AATHotkeyID = 0;
+    }
+
+    private void Ipc_DoUsernameOnly()
+    {
+      bool bForceUsernameOnlyHotkeyForUnix = Config.UsernameOnlyHotkeyID == 0 && KeePassLib.Native.NativeLib.IsUnix();
+      if (bForceUsernameOnlyHotkeyForUnix) Config.UsernameOnlyHotkeyID = -1;
+      var e = new HotKeyEventArgs(IntPtr.Zero, (IntPtr)Config.UsernameOnlyHotkeyID);
+      HotKeyPressed(null, e);
+      if (bForceUsernameOnlyHotkeyForUnix) Config.UsernameOnlyHotkeyID = 0;
     }
 
     private void MainWindow_FormLoadPost(object sender, EventArgs e)
@@ -107,6 +141,7 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
     public override void Terminate()
     {
       if (m_host == null) return;
+      IpcUtilEx.IpcEvent -= OnIpcEvent;
       m_aww.Disable();
       WndProcHook.RemoveHandler(m_host.MainWindow);
       HotkeysDeactivate();

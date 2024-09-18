@@ -32,12 +32,9 @@
 		{
             this.cbPWEnter = new System.Windows.Forms.CheckBox();
             this.lGATP = new System.Windows.Forms.Label();
-            this.tbGAT = new KeePass.UI.HotKeyControlEx();
             this.cbPWHotkey = new System.Windows.Forms.ComboBox();
-            this.tbPWOnly = new KeePass.UI.HotKeyControlEx();
             this.lGAT = new System.Windows.Forms.Label();
             this.lAAT = new System.Windows.Forms.Label();
-            this.tbAAT = new KeePass.UI.HotKeyControlEx();
             this.cbSpecialColumnsRespectPWEnter = new System.Windows.Forms.CheckBox();
             this.cbColumnsRememberSort = new System.Windows.Forms.CheckBox();
             this.cbExcludeExpiredGroups = new System.Windows.Forms.CheckBox();
@@ -49,17 +46,21 @@
             this.tpAlternateAutotypeHotkeys = new System.Windows.Forms.TabPage();
             this.cbUsernameEnter = new System.Windows.Forms.CheckBox();
             this.lGATU = new System.Windows.Forms.Label();
-            this.tbUsernameOnly = new KeePass.UI.HotKeyControlEx();
             this.tpAlternateAutotypeIntegration = new System.Windows.Forms.TabPage();
             this.cbDontHidePasswordsWithAsterisk = new System.Windows.Forms.CheckBox();
             this.cbSpecialColumnsRespectUsernameEnter = new System.Windows.Forms.CheckBox();
             this.cbSearchAsYouType = new System.Windows.Forms.CheckBox();
             this.tpAWM = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.rbAWMExact = new System.Windows.Forms.RadioButton();
-            this.rbAWMStart = new System.Windows.Forms.RadioButton();
-            this.rbAWMEnd = new System.Windows.Forms.RadioButton();
             this.rbAWMBoth = new System.Windows.Forms.RadioButton();
+            this.rbAWMEnd = new System.Windows.Forms.RadioButton();
+            this.rbAWMStart = new System.Windows.Forms.RadioButton();
+            this.rbAWMExact = new System.Windows.Forms.RadioButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.llHotKeyUnix = new System.Windows.Forms.LinkLabel();
+            this.tbUsernameOnly = new KeePass.UI.HotKeyControlEx();
+            this.tbGAT = new KeePass.UI.HotKeyControlEx();
+            this.tbPWOnly = new KeePass.UI.HotKeyControlEx();
+            this.tbAAT = new KeePass.UI.HotKeyControlEx();
             this.tcAlternateAutoType.SuspendLayout();
             this.tpAlternateAutotypeHotkeys.SuspendLayout();
             this.tpAlternateAutotypeIntegration.SuspendLayout();
@@ -89,17 +90,6 @@
             this.lGATP.TabIndex = 13;
             this.lGATP.Text = "Autotype Password:";
             // 
-            // tbGAT
-            // 
-            this.tbGAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbGAT.Location = new System.Drawing.Point(507, 43);
-            this.tbGAT.Margin = new System.Windows.Forms.Padding(5);
-            this.tbGAT.Name = "tbGAT";
-            this.tbGAT.Size = new System.Drawing.Size(439, 38);
-            this.tbGAT.TabIndex = 10;
-            this.tbGAT.TabStop = false;
-            this.tbGAT.TextChanged += new System.EventHandler(this.OnPropagateHotKeys);
-            // 
             // cbPWHotkey
             // 
             this.cbPWHotkey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -112,16 +102,6 @@
             this.cbPWHotkey.Name = "cbPWHotkey";
             this.cbPWHotkey.Size = new System.Drawing.Size(369, 39);
             this.cbPWHotkey.TabIndex = 20;
-            // 
-            // tbPWOnly
-            // 
-            this.tbPWOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPWOnly.Location = new System.Drawing.Point(507, 107);
-            this.tbPWOnly.Margin = new System.Windows.Forms.Padding(5);
-            this.tbPWOnly.Name = "tbPWOnly";
-            this.tbPWOnly.Size = new System.Drawing.Size(439, 38);
-            this.tbPWOnly.TabIndex = 30;
-            this.tbPWOnly.TextChanged += new System.EventHandler(this.OnPropagateHotKeys);
             // 
             // lGAT
             // 
@@ -142,15 +122,6 @@
             this.lAAT.Size = new System.Drawing.Size(362, 32);
             this.lAAT.TabIndex = 9;
             this.lAAT.Text = "Alternate AutoType Hotkey:";
-            // 
-            // tbAAT
-            // 
-            this.tbAAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbAAT.Location = new System.Drawing.Point(507, 331);
-            this.tbAAT.Margin = new System.Windows.Forms.Padding(5);
-            this.tbAAT.Name = "tbAAT";
-            this.tbAAT.Size = new System.Drawing.Size(439, 38);
-            this.tbAAT.TabIndex = 70;
             // 
             // cbSpecialColumnsRespectPWEnter
             // 
@@ -246,6 +217,7 @@
             // 
             // tpAlternateAutotypeHotkeys
             // 
+            this.tpAlternateAutotypeHotkeys.Controls.Add(this.llHotKeyUnix);
             this.tpAlternateAutotypeHotkeys.Controls.Add(this.cbUsernameEnter);
             this.tpAlternateAutotypeHotkeys.Controls.Add(this.lGATU);
             this.tpAlternateAutotypeHotkeys.Controls.Add(this.tbUsernameOnly);
@@ -261,7 +233,7 @@
             this.tpAlternateAutotypeHotkeys.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpAlternateAutotypeHotkeys.Name = "tpAlternateAutotypeHotkeys";
             this.tpAlternateAutotypeHotkeys.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpAlternateAutotypeHotkeys.Size = new System.Drawing.Size(985, 648);
+            this.tpAlternateAutotypeHotkeys.Size = new System.Drawing.Size(985, 592);
             this.tpAlternateAutotypeHotkeys.TabIndex = 0;
             this.tpAlternateAutotypeHotkeys.Text = "tabPage1";
             this.tpAlternateAutotypeHotkeys.UseVisualStyleBackColor = true;
@@ -287,15 +259,6 @@
             this.lGATU.Size = new System.Drawing.Size(273, 32);
             this.lGATU.TabIndex = 16;
             this.lGATU.Text = "Autotype Username:";
-            // 
-            // tbUsernameOnly
-            // 
-            this.tbUsernameOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbUsernameOnly.Location = new System.Drawing.Point(507, 222);
-            this.tbUsernameOnly.Margin = new System.Windows.Forms.Padding(5);
-            this.tbUsernameOnly.Name = "tbUsernameOnly";
-            this.tbUsernameOnly.Size = new System.Drawing.Size(439, 38);
-            this.tbUsernameOnly.TabIndex = 50;
             // 
             // tpAlternateAutotypeIntegration
             // 
@@ -365,6 +328,50 @@
             this.tpAWM.Text = "tpAWM";
             this.tpAWM.UseVisualStyleBackColor = true;
             // 
+            // rbAWMBoth
+            // 
+            this.rbAWMBoth.AutoSize = true;
+            this.rbAWMBoth.Location = new System.Drawing.Point(21, 416);
+            this.rbAWMBoth.Name = "rbAWMBoth";
+            this.rbAWMBoth.Size = new System.Drawing.Size(204, 36);
+            this.rbAWMBoth.TabIndex = 98;
+            this.rbAWMBoth.TabStop = true;
+            this.rbAWMBoth.Text = "rbAWMBoth";
+            this.rbAWMBoth.UseVisualStyleBackColor = true;
+            // 
+            // rbAWMEnd
+            // 
+            this.rbAWMEnd.AutoSize = true;
+            this.rbAWMEnd.Location = new System.Drawing.Point(21, 374);
+            this.rbAWMEnd.Name = "rbAWMEnd";
+            this.rbAWMEnd.Size = new System.Drawing.Size(196, 36);
+            this.rbAWMEnd.TabIndex = 97;
+            this.rbAWMEnd.TabStop = true;
+            this.rbAWMEnd.Text = "rbAWMEnd";
+            this.rbAWMEnd.UseVisualStyleBackColor = true;
+            // 
+            // rbAWMStart
+            // 
+            this.rbAWMStart.AutoSize = true;
+            this.rbAWMStart.Location = new System.Drawing.Point(21, 332);
+            this.rbAWMStart.Name = "rbAWMStart";
+            this.rbAWMStart.Size = new System.Drawing.Size(205, 36);
+            this.rbAWMStart.TabIndex = 96;
+            this.rbAWMStart.TabStop = true;
+            this.rbAWMStart.Text = "rbAWMStart";
+            this.rbAWMStart.UseVisualStyleBackColor = true;
+            // 
+            // rbAWMExact
+            // 
+            this.rbAWMExact.AutoSize = true;
+            this.rbAWMExact.Location = new System.Drawing.Point(21, 290);
+            this.rbAWMExact.Name = "rbAWMExact";
+            this.rbAWMExact.Size = new System.Drawing.Size(216, 36);
+            this.rbAWMExact.TabIndex = 95;
+            this.rbAWMExact.TabStop = true;
+            this.rbAWMExact.Text = "rbAWMExact";
+            this.rbAWMExact.UseVisualStyleBackColor = true;
+            // 
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -378,49 +385,55 @@
             this.textBox1.Size = new System.Drawing.Size(940, 242);
             this.textBox1.TabIndex = 94;
             // 
-            // radioButton1
+            // llHotKeyUnix
             // 
-            this.rbAWMExact.AutoSize = true;
-            this.rbAWMExact.Location = new System.Drawing.Point(21, 290);
-            this.rbAWMExact.Name = "radioButton1";
-            this.rbAWMExact.Size = new System.Drawing.Size(216, 36);
-            this.rbAWMExact.TabIndex = 95;
-            this.rbAWMExact.TabStop = true;
-            this.rbAWMExact.Text = "rbAWMExact";
-            this.rbAWMExact.UseVisualStyleBackColor = true;
+            this.llHotKeyUnix.AutoSize = true;
+            this.llHotKeyUnix.Location = new System.Drawing.Point(32, 393);
+            this.llHotKeyUnix.Name = "llHotKeyUnix";
+            this.llHotKeyUnix.Size = new System.Drawing.Size(179, 32);
+            this.llHotKeyUnix.TabIndex = 71;
+            this.llHotKeyUnix.TabStop = true;
+            this.llHotKeyUnix.Text = "llHotKeyUnix";
+            this.llHotKeyUnix.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llHotKeyUnix_LinkClicked);
             // 
-            // radioButton2
+            // tbUsernameOnly
             // 
-            this.rbAWMStart.AutoSize = true;
-            this.rbAWMStart.Location = new System.Drawing.Point(21, 332);
-            this.rbAWMStart.Name = "radioButton2";
-            this.rbAWMStart.Size = new System.Drawing.Size(205, 36);
-            this.rbAWMStart.TabIndex = 96;
-            this.rbAWMStart.TabStop = true;
-            this.rbAWMStart.Text = "rbAWMStart";
-            this.rbAWMStart.UseVisualStyleBackColor = true;
+            this.tbUsernameOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUsernameOnly.Location = new System.Drawing.Point(507, 222);
+            this.tbUsernameOnly.Margin = new System.Windows.Forms.Padding(5);
+            this.tbUsernameOnly.Name = "tbUsernameOnly";
+            this.tbUsernameOnly.Size = new System.Drawing.Size(439, 38);
+            this.tbUsernameOnly.TabIndex = 50;
             // 
-            // radioButton3
+            // tbGAT
             // 
-            this.rbAWMEnd.AutoSize = true;
-            this.rbAWMEnd.Location = new System.Drawing.Point(21, 374);
-            this.rbAWMEnd.Name = "radioButton3";
-            this.rbAWMEnd.Size = new System.Drawing.Size(196, 36);
-            this.rbAWMEnd.TabIndex = 97;
-            this.rbAWMEnd.TabStop = true;
-            this.rbAWMEnd.Text = "rbAWMEnd";
-            this.rbAWMEnd.UseVisualStyleBackColor = true;
+            this.tbGAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbGAT.Location = new System.Drawing.Point(507, 43);
+            this.tbGAT.Margin = new System.Windows.Forms.Padding(5);
+            this.tbGAT.Name = "tbGAT";
+            this.tbGAT.Size = new System.Drawing.Size(439, 38);
+            this.tbGAT.TabIndex = 10;
+            this.tbGAT.TabStop = false;
+            this.tbGAT.TextChanged += new System.EventHandler(this.OnPropagateHotKeys);
             // 
-            // radioButton4
+            // tbPWOnly
             // 
-            this.rbAWMBoth.AutoSize = true;
-            this.rbAWMBoth.Location = new System.Drawing.Point(21, 416);
-            this.rbAWMBoth.Name = "radioButton4";
-            this.rbAWMBoth.Size = new System.Drawing.Size(204, 36);
-            this.rbAWMBoth.TabIndex = 98;
-            this.rbAWMBoth.TabStop = true;
-            this.rbAWMBoth.Text = "rbAWMBoth";
-            this.rbAWMBoth.UseVisualStyleBackColor = true;
+            this.tbPWOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPWOnly.Location = new System.Drawing.Point(507, 107);
+            this.tbPWOnly.Margin = new System.Windows.Forms.Padding(5);
+            this.tbPWOnly.Name = "tbPWOnly";
+            this.tbPWOnly.Size = new System.Drawing.Size(439, 38);
+            this.tbPWOnly.TabIndex = 30;
+            this.tbPWOnly.TextChanged += new System.EventHandler(this.OnPropagateHotKeys);
+            // 
+            // tbAAT
+            // 
+            this.tbAAT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAAT.Location = new System.Drawing.Point(507, 331);
+            this.tbAAT.Margin = new System.Windows.Forms.Padding(5);
+            this.tbAAT.Name = "tbAAT";
+            this.tbAAT.Size = new System.Drawing.Size(439, 38);
+            this.tbAAT.TabIndex = 70;
             // 
             // Options
             // 
@@ -474,5 +487,6 @@
         internal System.Windows.Forms.RadioButton rbAWMBoth;
         internal System.Windows.Forms.RadioButton rbAWMEnd;
         internal System.Windows.Forms.RadioButton rbAWMStart;
-    }
+    private System.Windows.Forms.LinkLabel llHotKeyUnix;
+  }
 }
