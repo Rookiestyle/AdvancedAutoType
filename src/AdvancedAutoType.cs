@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Windows.Forms;
 using KeePass.Forms;
@@ -23,7 +24,8 @@ namespace AdvancedAutoType
     ToolStripMenuItem m_menuItem = null;
 
     private int m_sequence = 0;
-    private bool m_DBColumnVisible = false;
+    //private bool m_OTPColumnVisible = false;
+    //private bool m_DBColumnVisible = false;
 
     private ColumnHeader m_SortColumn = null;
     private SortOrder m_SortOrder = SortOrder.Ascending;
@@ -120,8 +122,11 @@ namespace AdvancedAutoType
       if (bForceUsernameOnlyHotkeyForUnix) Config.UsernameOnlyHotkeyID = 0;
     }
 
+    OTPStub _otp = null;
     private void MainWindow_FormLoadPost(object sender, EventArgs e)
     {
+      if (_otp == null) _otp = new OTPStub(Tools.GetPluginInstance("KeePassOTP") as Plugin);
+      
       var p = Tools.GetPluginInstance("AlternateAutoType") as Plugin;
       if (p == null) return;
       p.Terminate();
@@ -307,7 +312,12 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
       e.Form.Shown -= OnAutoTypeFormShown;
       ListView lv = Tools.GetControl("m_lvItems", e.Form) as ListView;
       lv.ColumnWidthChanged -= HandleColumns;
-      lv.Columns.RemoveByKey(Config.DBColumn);
+      var lColumns = dAutotypeWindowColumns.Keys;
+      dAutotypeWindowColumns.Clear();
+      foreach (var sCol in lColumns)
+      {
+        lv.Columns.RemoveByKey(sCol);
+      }
 
       UIUtil.ResizeColumns(lv, true);
       string ColumnWidths = UIUtil.GetColumnWidths(lv);
@@ -315,17 +325,18 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
 
       m_SortColumn = null;
       m_SortOrder = SortOrder.Ascending;
-      m_DBColumnVisible = false;
+      //m_DBColumnVisible = false;
+      //m_OTPColumnVisible = false;
     }
 
     private void OnAutoTypeFormShown(object sender, EventArgs e)
     {
-      if (m_host.MainWindow.DocumentManager.GetOpenDatabases().Count >= 1) InitializeAutoTypeListView(sender, e);
-
+      if (m_host.MainWindow.DocumentManager.GetOpenDatabases().Count >= 1) InitializeAutoTypeListView(sender);
+      AddRightClickText(sender as AutoTypeCtxForm);
       if (Config.SearchAsYouType) AddSearchfield(sender as AutoTypeCtxForm);
     }
 
-    private void InitializeAutoTypeListView(object sender, EventArgs e)
+    private void InitializeAutoTypeListView(object sender)
     {
       AutoTypeCtxForm f = sender as AutoTypeCtxForm;
       if (f == null) return;
@@ -358,65 +369,211 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
       {
         if (Config.ColumnsSortable)
         {
-          lv.HeaderStyle = ColumnHeaderStyle.Clickable;
-          //Recreate groups to ensure the first group is shown correct in case KeeTheme is installed
-          List<ListViewGroup> lvg = new List<ListViewGroup>();
-          foreach (ListViewGroup g in lv.Groups)
-            lvg.Add(g);
-          lv.Groups.Clear();
-          foreach (ListViewGroup g in lvg)
-            lv.Groups.Add(g);
-          lv.ColumnClick += SortColumns;
-          Button bTools = (Button)Tools.GetControl("m_btnTools", f);
-          if (bTools != null)
-          {
-            CheckBox cbShowGroups = new CheckBox();
-            cbShowGroups.Name = "cbAAT_ShowGroups";
-            cbShowGroups.Checked = Config.ColumnsRememberSorting && Config.ColumnsSortGrouping;
-            cbShowGroups.Text = PluginTranslate.AATFormShowGroups;
-            cbShowGroups.AutoSize = true;
-            f.Controls.Add(cbShowGroups);
-            bTools.Parent.Controls.Add(cbShowGroups);
-            cbShowGroups.Top = bTools.Bottom - cbShowGroups.Height;
-            cbShowGroups.Left = bTools.Left + bTools.Width + 5;
-            cbShowGroups.CheckedChanged += AutoTypeForm_ShowGroups_CheckedChanged;
-          }
-          int s = (int)Config.ColumnsSortColumn;
-          if (Config.ColumnsRememberSorting && (s != 0) && (Math.Abs(s) <= lv.Columns.Count))
-          {
-            SortColumns(lv, new ColumnClickEventArgs(Math.Abs(s) - 1));
-            if (((s > 0) && (m_SortOrder != SortOrder.Ascending)) || ((s < 0) && (m_SortOrder != SortOrder.Descending)))
-              SortColumns(lv, new ColumnClickEventArgs(Math.Abs(s) - 1));
-          }
+          ATSW_ColumnsSortable(f, lv);
         }
 
+        if (!KeePassLib.Native.NativeLib.IsUnix()) ATSW_RightClick2Edit(f, lv);
         if (Config.SpecialColumns && !KeePassLib.Native.NativeLib.IsUnix())
         {
-          lv.MouseClick += CellClick;
-          lv.ColumnWidthChanged += HandleColumns;
-          HandleColumns(lv, null);
+          ATSW_SpecialColumnsClickable(f, lv);
+          ATSW_OTPColumn(f, lv);
         }
 
         if (Config.AddDBColumn)
         {
-          List<AutoTypeCtx> lEntries = (List<AutoTypeCtx>)Tools.GetField("m_lCtxs", f);
-          string db1 = lEntries[0].Database.IOConnectionInfo.Path;
-          if (lEntries.Any(x => x.Database.IOConnectionInfo.Path != db1))
-          //foreach (AutoTypeCtx entry in lEntries)
-          //{
-          //if (entry.Database.IOConnectionInfo.Path != db1)
-          {
-            m_DBColumnVisible = true;
-            if (!Config.SpecialColumns) lv.ColumnWidthChanged += HandleColumns;
-            HandleColumns(lv, null);
-            Button btnTools = (Button)Tools.GetField("m_btnTools", f);
-            btnTools.Click += OnColumnMenuOpening;
-            //break;
-          }
-          //}
+          ATSW_DBColumn(f, lv);
+        }
+
+        if (dAutotypeWindowColumns.Count > 0)
+        {
+          //if (!Config.ColumnsSortable) lv.ColumnWidthChanged += HandleColumns;
+          HandleColumns(lv, null);
+          lv.ColumnWidthChanged += HandleColumns;
         }
       }
       catch (Exception) { }
+    }
+
+    //AutoTypeSelectionWindow - Add DB column
+    private void ATSW_DBColumn(AutoTypeCtxForm f, ListView lv)
+    {
+      List<AutoTypeCtx> lEntries = (List<AutoTypeCtx>)Tools.GetField("m_lCtxs", f);
+      string db1 = lEntries[0].Database.IOConnectionInfo.Path;
+      if (!lEntries.Any(x => x.Database.IOConnectionInfo.Path != db1)) return;
+      dAutotypeWindowColumns[Config.DBColumn] = true;
+      Button btnTools = (Button)Tools.GetField("m_btnTools", f);
+      btnTools.Click += OnColumnMenuOpening_DBColumn;
+    }
+
+    //AutoTypeSelectionWindow - Add OTP column
+    private void ATSW_OTPColumn(AutoTypeCtxForm f, ListView lv)
+    {
+      if (_otp == null) return;
+      for (var i = 0; i < lv.Items.Count; i++)
+      {
+        var ctx = lv.Items[i].Tag as AutoTypeCtx;
+        if (ctx == null) continue;
+        if (ctx.Entry == null) continue;
+        if (string.IsNullOrEmpty(_otp.GetOTPPlaceholderForAutotype(ctx.Entry))) continue;
+        dAutotypeWindowColumns[Config.OTPColumn] = true;
+        Button btnTools = (Button)Tools.GetField("m_btnTools", f);
+        btnTools.Click += OnColumnMenuOpening_OTPColumn;
+        return;
+      }
+    }
+
+    //AutoTypeSelectionWindow - make columns clickable
+    private void ATSW_RightClick2Edit(AutoTypeCtxForm f, ListView lv)
+    {
+      lv.MouseClick += CellRightClick;
+    }
+
+    private void ATSW_SpecialColumnsClickable(AutoTypeCtxForm f, ListView lv)
+    {
+      lv.MouseClick += CellClick;
+    }
+
+    //AutoTypeSelectionWindow - make columns sortable
+    private void ATSW_ColumnsSortable(AutoTypeCtxForm f, ListView lv)
+    {
+      lv.HeaderStyle = ColumnHeaderStyle.Clickable;
+      //Recreate groups to ensure the first group is shown correct in case KeeTheme is installed
+      List<ListViewGroup> lvg = new List<ListViewGroup>();
+      foreach (ListViewGroup g in lv.Groups)
+        lvg.Add(g);
+      lv.Groups.Clear();
+      foreach (ListViewGroup g in lvg)
+        lv.Groups.Add(g);
+      lv.ColumnClick += SortColumns;
+      Button bTools = (Button)Tools.GetControl("m_btnTools", f);
+      if (bTools != null)
+      {
+        CheckBox cbShowGroups = new CheckBox();
+        cbShowGroups.Name = "cbAAT_ShowGroups";
+        cbShowGroups.Checked = Config.ColumnsRememberSorting && Config.ColumnsSortGrouping;
+        cbShowGroups.Text = PluginTranslate.AATFormShowGroups;
+        cbShowGroups.AutoSize = true;
+        f.Controls.Add(cbShowGroups);
+        KeeThemeStub.Visit(cbShowGroups);
+        bTools.Parent.Controls.Add(cbShowGroups);
+        cbShowGroups.Top = bTools.Bottom - cbShowGroups.Height;
+        cbShowGroups.Left = bTools.Left + bTools.Width + 5;
+        cbShowGroups.CheckedChanged += AutoTypeForm_ShowGroups_CheckedChanged;
+      }
+      int s = (int)Config.ColumnsSortColumn;
+      if (Config.ColumnsRememberSorting && (s != 0) && (Math.Abs(s) <= lv.Columns.Count))
+      {
+        SortColumns(lv, new ColumnClickEventArgs(Math.Abs(s) - 1));
+        if (((s > 0) && (m_SortOrder != SortOrder.Ascending)) || ((s < 0) && (m_SortOrder != SortOrder.Descending)))
+          SortColumns(lv, new ColumnClickEventArgs(Math.Abs(s) - 1));
+      }
+    }
+
+    private void HandleColumns(object sender, ColumnWidthChangedEventArgs e)
+    {
+      ListView lv = sender as ListView;
+
+      //ColumnWidthChanged event is triggered pretty often
+      //Only do something if list contains items and if the event is triggered for the last visible column
+      if (lv.Items.Count == 0) return;
+      if ((e != null) && (e.ColumnIndex != lv.Columns.Count - 1)) return;
+
+      if (bHandlingColumns)
+        return;
+      bHandlingColumns = true;
+      //lv.ColumnWidthChanged -= HandleColumns;
+
+      if (Config.HidePasswordInAutoTypeForm) HidePasswordInAutoTypeForm(lv);
+
+      if (Config.SpecialColumns && !KeePassLib.Native.NativeLib.IsUnix())
+      {
+        HandleOTPColumn(lv);
+        ColorSpecialColumns(lv);
+      }
+
+      if (Config.AddDBColumn) HandleDBColumn(lv);
+
+      //lv.ColumnWidthChanged += HandleColumns;
+      bHandlingColumns = false;
+    }
+
+    private bool ColumnExistsAndVisible(string sCol)
+    {
+      if (!dAutotypeWindowColumns.ContainsKey(sCol)) return false;
+      return dAutotypeWindowColumns[sCol];
+    }
+
+    private void HandleDBColumn(ListView lv)
+    {
+      bool bStopAndReturn;
+      HandleOwnColumn(lv, Config.DBColumn, out bStopAndReturn);
+      if (bStopAndReturn) return;
+      Form f = lv.FindForm();
+      List<AutoTypeCtx> lEntries = (List<AutoTypeCtx>)Tools.GetField("m_lCtxs", f);
+      var h = new ColumnHeader();
+      h.Text = KeePass.Resources.KPRes.Database;
+      h.Name = Config.DBColumn;
+      lv.Columns.Add(h);
+      for (int i = 0; i < lv.Items.Count; i++)
+      {
+        string db = lEntries[i].Database.Name;
+        if (string.IsNullOrEmpty(db))
+          db = KeePassLib.Utility.UrlUtil.GetFileName(lEntries[i].Database.IOConnectionInfo.Path);
+        lv.Items[i].SubItems.Add(db);
+      }
+      UIUtil.ResizeColumns(lv, true);
+    }
+
+    private void HandleOwnColumn(ListView lv, string sColumn, out bool bStopAndReturn)
+    {
+      bStopAndReturn = true;
+      if (!dAutotypeWindowColumns.ContainsKey(sColumn)) return;
+      Form f = lv.FindForm();
+      var iColumnExists = lv.Columns.IndexOfKey(sColumn);
+      if (!ColumnExistsAndVisible(sColumn)) //column shall not be visible
+      {
+        if (iColumnExists >= 0) //column is visible => remove and resize
+        {
+          lv.Columns.RemoveByKey(sColumn);
+          UIUtil.ResizeColumns(lv, true);
+          for (int i = 0; i < lv.Items.Count; i++)
+            lv.Items[i].SubItems.RemoveAt(iColumnExists);
+        }
+        return;
+      }
+      if (iColumnExists >= 0)
+      {
+        UIUtil.ResizeColumns(lv, true);
+        return;
+      }
+      bStopAndReturn = false;
+    }
+
+    private void HandleOTPColumn(ListView lv)
+    {
+      bool bStopAndReturn;
+      HandleOwnColumn(lv, Config.OTPColumn, out bStopAndReturn);
+      if (bStopAndReturn) return;
+      var f = lv.FindForm();
+      List<AutoTypeCtx> lEntries = (List<AutoTypeCtx>)Tools.GetField("m_lCtxs", f);
+      var h = new ColumnHeader();
+      h.Text = "OTP";
+      h.Name = Config.OTPColumn;
+      try
+      {
+        lv.Columns.Add(h);
+      }
+      catch { }
+      List<string> lOTPPlaceholders = new List<string>();
+      for (int i = 0; i < lv.Items.Count; i++)
+      {
+        var ctx = lv.Items[i].Tag as AutoTypeCtx;
+        if (ctx == null) continue;
+        if (ctx.Entry == null) continue;
+        var sPlaceholder = _otp.GetOTPPlaceholderForAutotype(ctx.Entry);
+        lv.Items[i].SubItems.Add(string.IsNullOrEmpty(sPlaceholder) ? string.Empty : sPlaceholder);
+      }
+      UIUtil.ResizeColumns(lv, true);
     }
 
     private class _SearchAsYouTypeData
@@ -424,6 +581,18 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
       internal ListView ShownEntries;
       internal List<ListViewItem> AllEntries;
     }
+
+    private void AddRightClickText(AutoTypeCtxForm f)
+    {
+      var lblText = Tools.GetControl("m_lblText", f) as Label;
+      if (lblText == null)
+      {
+        PluginDebug.AddError("Could not locate m_lblText, rightclicktoedit hint not added");
+        return;
+      }
+      lblText.Text += " " + PluginTranslate.RightClickToEdit;
+    }
+
     private void AddSearchfield(AutoTypeCtxForm f)
     {
       var lvShownEntries = Tools.GetControl("m_lvItems", f) as ListView;
@@ -437,6 +606,7 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
       TextBox tbSearch = new TextBox();
       c.Controls.Add(lSearch);
       c.Controls.Add(tbSearch);
+      KeeThemeStub.Visit(lSearch, tbSearch);
       lSearch.Text = KeePass.Resources.KPRes.FindEntries;
       lSearch.AutoSize = true;
       tbSearch.Left = lvShownEntries.Left + lSearch.Width + DpiUtil.ScaleIntX(10);
@@ -563,25 +733,8 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
       else if (Config.ColumnsRememberSorting) Config.ColumnsSortGrouping = false;
     }
 
-    private void HandleColumns(object sender, ColumnWidthChangedEventArgs e)
-    {
-      ListView lv = sender as ListView;
-
-      //ColumnWidthChanged event is triggered pretty often
-      //Only do something if list contains items and if the event is triggered for the last visible column
-      if (lv.Items.Count == 0) return;
-      if ((e != null) && (e.ColumnIndex != lv.Columns.Count - 1)) return;
-
-      lv.ColumnWidthChanged -= HandleColumns;
-
-      if (Config.HidePasswordInAutoTypeForm) HidePasswordInAutoTypeForm(lv);
-
-      if (Config.SpecialColumns && !KeePassLib.Native.NativeLib.IsUnix()) ColorSpecialColumns(lv);
-
-      if (Config.AddDBColumn) HandleDBColumn(lv);
-
-      lv.ColumnWidthChanged += HandleColumns;
-    }
+    private bool bHandlingColumns = false;
+    private Dictionary<string, bool> dAutotypeWindowColumns = new Dictionary<string, bool>();
 
     private void HidePasswordInAutoTypeForm(ListView lv)
     {
@@ -605,12 +758,15 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
       if (lv.Items.Count < 1) return;
       int colUsername = -1;
       int colPassword = -1;
+      int colOTP = -1;
       foreach (ColumnHeader col in lv.Columns)
       {
         if (col.Text == KeePass.Resources.KPRes.UserName)
           colUsername = col.Index;
         if (col.Text == KeePass.Resources.KPRes.Password)
           colPassword = col.Index;
+        if (col.Name == Config.OTPColumn)
+          colOTP = col.Index;
       }
 
       Color b = lv.Items[0].BackColor;
@@ -625,57 +781,80 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
       foreach (ListViewItem li in lv.Items)
       {
         li.UseItemStyleForSubItems = false;
-        AdjustColors(li, colUsername, b, f);
-        AdjustColors(li, colPassword, b, f);
+        for (int i = 1; i < li.SubItems.Count; i++)
+        {
+          if (i == colUsername || i == colPassword || i == colOTP)
+          {
+            AdjustColors(li, i, b, f);
+            //AdjustColors(li, i, b, f);
+            //if (colOTP != -1) AdjustColors(li, colOTP, b, f);
+          }
+          else
+          {
+            AdjustColors(li, i, li.SubItems[0].BackColor, li.SubItems[0].ForeColor);
+          }
+        }
       }
     }
 
     private void AdjustColors(ListViewItem li, int i, Color b, Color f)
     {
       if (i < 0) return;
+      if (i >= li.SubItems.Count) return;
       li.SubItems[i].BackColor = b;
       li.SubItems[i].ForeColor = f;
     }
 
-    private void HandleDBColumn(ListView lv)
+    private void CellRightClick(object sender, MouseEventArgs e)
     {
-      Form f = lv.FindForm();
-      bool DBColumnVisible = (lv.Columns.IndexOfKey(Config.DBColumn) >= 0);
-      if (!m_DBColumnVisible) //column shall not be visible
+      if (e.Button != MouseButtons.Right) return;
+      AutoTypeCtx ctx = null;
+      int col = -1;
+      Form f = null;
+      ListViewHitTestInfo info = null;
+      GetAutotypeEntryDetails(sender, e, out f, out col, out ctx, out info);
+      if (ctx == null) return;
+      PwEntryForm dlg = new PwEntryForm();
+      dlg.InitEx(ctx.Entry, PwEditMode.EditExistingEntry, ctx.Database, KeePass.Program.MainForm.ClientIcons,
+        false, false);
+      dlg.MultipleValuesEntryContext = null;
+
+      bool bOK = (dlg.ShowDialog() == DialogResult.OK);
+      var bMod = (bOK && dlg.HasModifiedEntry);
+      UIUtil.DestroyForm(dlg);
+      if (bMod)
+        m_host.MainWindow.UpdateUI(false, null, true, null, false, null, true);
+      if (KeePass.Program.Config.Application.AutoSaveAfterEntryEdit && bMod)
       {
-        if (DBColumnVisible) //column is visible => remove and resize
+        KeePass.Program.MainForm.SaveDatabase(ctx.Database, null);
+      }
+        (sender as ListView).SelectedItems.Clear(); //ugly hack to avoid KeePass performing the standard behaviour
+      f.DialogResult = DialogResult.None;
+      f.Activate();
+
+      if (bMod) //Entry was modified, 'refresh' AutoType form
+      {
+        f.Close();
+        Action aReopenAutoTypeWindow = new Action(() =>
         {
-          lv.Columns.RemoveByKey(Config.DBColumn);
-          UIUtil.ResizeColumns(lv, true);
-        }
-        return;
+          var fIsAutoTyping = m_host.MainWindow.GetType().GetField("m_bIsAutoTyping", BindingFlags.NonPublic | BindingFlags.Instance);
+          while (fIsAutoTyping != null && (bool)fIsAutoTyping.GetValue(m_host.MainWindow));
+          if (fIsAutoTyping != null) System.Threading.Thread.Sleep(100);
+          m_host.MainWindow.ExecuteGlobalAutoType();
+        });
+        m_host.MainWindow.BeginInvoke(aReopenAutoTypeWindow);
       }
-      if (DBColumnVisible)
-      {
-        UIUtil.ResizeColumns(lv, true);
-        return;
-      }
-      List<AutoTypeCtx> lEntries = (List<AutoTypeCtx>)Tools.GetField("m_lCtxs", f);
-      ColumnHeader h = new ColumnHeader();
-      h.Text = KeePass.Resources.KPRes.Database;
-      h.Name = Config.DBColumn;
-      lv.Columns.Add(h);
-      for (int i = 0; i < lv.Items.Count; i++)
-      {
-        string db = lEntries[i].Database.Name;
-        if (string.IsNullOrEmpty(db))
-          db = KeePassLib.Utility.UrlUtil.GetFileName(lEntries[i].Database.IOConnectionInfo.Path);
-        lv.Items[i].SubItems.Add(db);
-      }
-      UIUtil.ResizeColumns(lv, true);
     }
 
     private void CellClick(object sender, MouseEventArgs e)
     {
-      Form f = (sender as Control).FindForm();
-      ListViewHitTestInfo info = (sender as ListView).HitTest(e.X, e.Y);
-      int col = info.Item.SubItems.IndexOf(info.SubItem);
-      if ((col < 0) || ((sender as ListView).Columns.Count <= col)) return;
+      if (e.Button == MouseButtons.Right) return;
+      AutoTypeCtx ctx = null;
+      int col = -1;
+      Form f = null;
+      ListViewHitTestInfo info = null;
+      GetAutotypeEntryDetails(sender, e, out f, out col, out ctx, out info);
+      if (ctx == null) return;
       string column = (sender as ListView).Columns[col].Text;
       string sequence = string.Empty;
       if (column == KeePass.Resources.KPRes.UserName)
@@ -688,9 +867,12 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
         sequence = "{PASSWORD}";
         if (Config.SpecialColumnsRespectPWEnter) sequence += "{ENTER}";
       }
+      else if ((sender as ListView).Columns[col].Name == Config.OTPColumn)
+      {
+        sequence = info.SubItem.Text;
+      }
       else return;
-      AutoTypeCtx ctx = info.Item.Tag as AutoTypeCtx;
-      if (ctx == null) return;
+
       if (Config.KeepATOpen)
       {
         (sender as ListView).SelectedItems.Clear(); //ugly hack to avoid KeePass performing the standard behaviour
@@ -702,19 +884,53 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
       {
         ctx.Sequence = sequence;
       }
+
     }
 
-    private void OnColumnMenuOpening(object sender, EventArgs e)
+    private void GetAutotypeEntryDetails(object sender, MouseEventArgs e, out Form f, out int col, out AutoTypeCtx ctx, out ListViewHitTestInfo info)
+    {
+      ctx = null;
+      col = -1;
+      f = (sender as Control).FindForm();
+      info = (sender as ListView).HitTest(e.X, e.Y);
+      if (info == null) return;
+      col = info.Item.SubItems.IndexOf(info.SubItem);
+      if ((col < 0) || ((sender as ListView).Columns.Count <= col)) return;
+      ctx = info.Item.Tag as AutoTypeCtx;
+    }
+      
+    private ToolStripMenuItem GetOwnMenuItem(ListView lv, string sText, string sName)
+    {
+      ToolStripMenuItem tsmiNew = new ToolStripMenuItem(sText);
+      var iColIndex = lv.Columns.IndexOfKey(sName);
+      tsmiNew.Checked = iColIndex >= 0;
+      tsmiNew.Name = sName + "Toggle";
+      tsmiNew.Click += (o, x) =>
+      {
+        dAutotypeWindowColumns[sName] = !tsmiNew.Checked;
+        HandleColumns(lv, null);
+      }; 
+      return tsmiNew;
+    }
+
+    private void OnColumnMenuOpening_OTPColumn(object sender, EventArgs e)
     {
       Form f = (sender as Control).FindForm();
+      ListView lv = Tools.GetControl("m_lvItems", f) as ListView;
       ToolStripMenuItem tsmi = (ToolStripMenuItem)Tools.GetField("m_tsmiColumns", f);
 
-      ToolStripMenuItem db = new ToolStripMenuItem(KeePass.Resources.KPRes.Database);
+      ToolStripMenuItem tsmiOtp = GetOwnMenuItem(lv, "OTP", Config.OTPColumn);
+      tsmi.DropDownItems.Add(tsmiOtp);
+    }
+    
+    private void OnColumnMenuOpening_DBColumn(object sender, EventArgs e)
+    {
+      Form f = (sender as Control).FindForm();
       ListView lv = Tools.GetControl("m_lvItems", f) as ListView;
-      db.Checked = lv.Columns.ContainsKey(Config.DBColumn);
-      db.Name = Config.DBColumn + "Toggle";
-      db.Click += (o, x) => { m_DBColumnVisible = !db.Checked; HandleColumns(lv, null); };
-      tsmi.DropDownItems.Add(db);
+      ToolStripMenuItem tsmi = (ToolStripMenuItem)Tools.GetField("m_tsmiColumns", f);
+
+      ToolStripMenuItem tsmiDb = GetOwnMenuItem(lv, KeePass.Resources.KPRes.Database, Config.DBColumn);
+      tsmi.DropDownItems.Add(tsmiDb);
     }
     #endregion
 

@@ -86,7 +86,7 @@ namespace PluginTranslation
     /// <summary>
     /// Auto-Type ONLY username / password when clicking username / password
     /// </summary>
-    public static readonly string SpecialColumns = @"Auto-Type ONLY username / password when clicking username / password";
+    public static readonly string SpecialColumns = @"Auto-Type ONLY username / password / OTP when clicking username / password / OTP";
     /// <summary>
     /// Don't close Auto-Type Entry Selection form
     /// </summary>
@@ -151,6 +151,10 @@ Below you can define how KeePass shall match the window title";
     /// Match from end (*STRING)
     /// </summary>
     public static readonly string AddAutoTypeMatchEnd = @"Match from end (*WINDOWTITLE)";
+    /// <summary>
+    /// Right-click entry to edit.
+    /// </summary>
+    public static readonly string RightClickToEdit = @"Right-click entry to edit.";
     /// <summary>
     /// Match anywhere (*STRING*)
     /// </summary>

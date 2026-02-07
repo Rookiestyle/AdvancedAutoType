@@ -59,7 +59,7 @@
   </item>
   <item>
     <key>SpecialColumns</key>
-    <value>Auto-Type ONLY username / password when clicking username / password</value>
+    <value>Auto-Type ONLY username / password / OTP when clicking username / password / OTP</value>
   </item>
   <item>
     <key>KeepATOpen</key>
@@ -118,6 +118,10 @@ Below you can define how KeePass shall match the window title</value>
   <item>
     <key>AddAutoTypeMatchEnd</key>
     <value>Match from end (*WINDOWTITLE)</value>
+  </item>
+  <item>
+    <key>RightClickToEdit</key>
+    <value>Right-click entry to edit.</value>
   </item>
   <item>
     <key>AddAutoTypeMatchBoth</key>

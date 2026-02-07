@@ -15,6 +15,7 @@ namespace AdvancedAutoType
     public static readonly string SortIcon = "AlternateAutoTypeExtSortIcon";
     public static readonly string DBColumn = "AlternateAutoTypeExtDBColumn";
     public static readonly string PWColumn = "AlternateAutoTypeExtPWColumn";
+    public static readonly string OTPColumn = "AlternateAutoTypeExtOTPColumn";
     public static string Placeholder = "{AAT}";
 
     private static PropertyInfo m_piHotKeyGlobalAutoTypePassword = null;

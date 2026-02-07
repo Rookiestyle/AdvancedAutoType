@@ -4,7 +4,7 @@
     Increment the TranslationVersion every time the translation file is updated
 	Also update the version.info file
   -->
-  <TranslationVersion>8</TranslationVersion>
+  <TranslationVersion>10</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} konnte nicht als Hotkey für alternatives Auto-Type registriert werden</value>
@@ -59,7 +59,7 @@
   </item>
   <item>
     <key>SpecialColumns</key>
-    <value>Auto-Type NUR für Benutzername / Passwort beim Klick auf Benutzername / Passwort</value>
+    <value>Auto-Type NUR für Benutzername / Passwort / OTP beim Klick auf Benutzername / Passwort / OTP</value>
   </item>
   <item>
     <key>KeepATOpen</key>
@@ -118,6 +118,10 @@ Bitte definiere, wie KeePass den neu hinzugefügten Fenstertitel vergleichen sol
   <item>
     <key>AddAutoTypeMatchEnd</key>
     <value>Endet mit (*FENSTERTITEL)</value>
+  </item>
+  <item>
+    <key>RightClickToEdit</key>
+    <value>Rechtsklicke einen Eintrag, um ihn zu bearbeiten.</value>
   </item>
   <item>
     <key>AddAutoTypeMatchBoth</key>
