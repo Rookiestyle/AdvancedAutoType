@@ -4,7 +4,7 @@
     Increment the TranslationVersion every time the translation file is updated
 	Also update the version.info file
   -->
-  <TranslationVersion>4</TranslationVersion>
+  <TranslationVersion>5</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
     <value>{0} não pode ser registrado como atalho alternativo para auto-digitação</value>
@@ -118,6 +118,10 @@ Abaixo você pode definir como o KeePass deve corresponder ao título da janela<
   <item>
     <key>AddAutoTypeMatchEnd</key>
     <value>Correspondência do final (*WINDOWTITLE)</value>
+  </item>
+  <item>
+    <key>RightClickToEdit</key>
+    <value>Clique com o botão direito na entrada para editar.</value>
   </item>
   <item>
     <key>AddAutoTypeMatchBoth</key>
