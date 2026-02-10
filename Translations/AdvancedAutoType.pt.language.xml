@@ -120,6 +120,10 @@ Abaixo você pode definir como o KeePass deve corresponder ao título da janela<
     <value>Correspondência do final (*WINDOWTITLE)</value>
   </item>
   <item>
+    <key>RightClickToEdit</key>
+    <value>Clique com o botão direito na entrada para editar.</value>
+  </item>
+  <item>
     <key>AddAutoTypeMatchBoth</key>
     <value>Correspondência em qualquer lugar (*WINDOWTITLE*)</value>
   </item>
