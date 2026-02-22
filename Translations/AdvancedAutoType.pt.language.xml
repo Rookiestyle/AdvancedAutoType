@@ -4,10 +4,10 @@
     Increment the TranslationVersion every time the translation file is updated
 	Also update the version.info file
   -->
-  <TranslationVersion>5</TranslationVersion>
+  <TranslationVersion>6</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
-    <value>{0} não pode ser registrado como atalho alternativo para auto-digitação</value>
+    <value>{0} não pode ser registrado como atalho alternativo para autodigitação</value>
   </item>
   <item>
     <key>ErrorHotKeyPWOnly</key>
@@ -19,11 +19,11 @@
   </item>
   <item>
     <key>Options</key>
-    <value>Configuração da Auto-Digitação Alternativa</value>
+    <value>Configuração da Autodigitação Alternativa</value>
   </item>
   <item>
     <key>GlobalAutotypeHotKey</key>
-    <value>Atalho Global da Auto-Digitação:</value>
+    <value>Atalho Global da Autodigitação:</value>
   </item>
   <item>
     <key>PasswordOnlyHotKey</key>
@@ -31,7 +31,7 @@
   </item>
   <item>
     <key>AATHotKey</key>
-    <value>Atalho para Auto-Digitação Alternativa:</value>
+    <value>Atalho para Autodigitação Alternativa:</value>
   </item>
   <item>
     <key>PasswordEnterHotKey</key>
@@ -47,7 +47,7 @@
   </item>
   <item>
     <key>Integration</key>
-    <value>Seleção de Entrada de Auto-Digitação de formulário aperfeiçoados</value>
+    <value>Seleção de Entrada de Autodigitação de formulário aperfeiçoados</value>
   </item>
   <item>
     <key>ColumnsSortable</key>
@@ -59,11 +59,11 @@
   </item>
   <item>
     <key>SpecialColumns</key>
-    <value>Auto-Digitação SOMENTE nome de usuário / senha quando clicando em nome de usuário / senha</value>
+    <value>Autodigitação SOMENTE nome de usuário / senha quando clicando em nome de usuário / senha</value>
   </item>
   <item>
     <key>KeepATOpen</key>
-    <value>Não feche formulário de Seleção de Entrada para Auto-Digitação</value>
+    <value>Não feche formulário de Seleção de Entrada para Autodigitação</value>
   </item>
   <item>
     <key>ExcludeExpiredGroups</key>
@@ -79,12 +79,12 @@
   </item>
   <item>
     <key>AWMCheckDuplicateInfo</key>
-    <value>Este título da janela já está definido como seqüência de Auto-Digitação.</value>
+    <value>Este título da janela já está definido como seqüência de Autodigitação.</value>
   </item>
   <item>
     <key>AWMCheckDuplicateDetails</key>
-    <value>Se você quer editar uma seqüência de Auto-Digitação existente, clique '{0}'.
-Se você quiser adicionar outra seqüência do Auto-Digitação, clique em '{1}'.
+    <value>Se você quer editar uma seqüência de Autodigitação existente, clique '{0}'.
+Se você quiser adicionar outra seqüência do Autodigitação, clique em '{1}'.
 Se você quiser pular essas entradas, clique em '{2}'.</value>
   </item>
   <item>
@@ -93,17 +93,17 @@ Se você quiser pular essas entradas, clique em '{2}'.</value>
   </item>
   <item>
     <key>AutoTypeUsernameOnly</key>
-    <value>Auto-Digitação Global - nome de usuário somente:</value>
+    <value>Autodigitação Global - nome de usuário somente:</value>
   </item>
   <item>
     <key>AddAutoTypeTitle</key>
-    <value>Adicionar seqüência de Auto-Digitação</value>
+    <value>Adicionar seqüência de Autodigitação</value>
   </item>
   <item>
     <key>AddAutoTypeDesc</key>
-    <value>{0} fornece um atalho para adicionar seqüências de Auto-Digitação de entradas de maneira fácil.
+    <value>{0} fornece um atalho para adicionar seqüências de Autodigitação de entradas de maneira fácil.
 Basta abrir o menu de contexto da entrada e escolher a janela que será adicionada.
-Se você deseja editar diretamente a nova seqüência de Auto-Digitação, pressione [{1}] ao adicioná-la.
+Se você deseja editar diretamente a nova seqüência de Autodigitação, pressione [{1}] ao adicioná-la.
 
 Abaixo você pode definir como o KeePass deve corresponder ao título da janela</value>
   </item>
