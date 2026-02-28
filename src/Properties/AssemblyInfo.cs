@@ -27,7 +27,7 @@ Various other enhancements, check the options")]
 //
 // You can specify all the values or you can use the default the Revision and 
 // Build Numbers by using the '*' as shown below:
-[assembly: AssemblyVersion("2.3")]
-[assembly: AssemblyFileVersion("2.3")]
+[assembly: AssemblyVersion("2.3.1")]
+[assembly: AssemblyFileVersion("2.3.1")]
 [assembly: Guid("78C152F3-EAF8-4FFC-9BE3-F5DC0CD66E5D")]
 

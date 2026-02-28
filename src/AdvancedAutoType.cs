@@ -384,7 +384,7 @@ Please ignore any error messages related to AlternateAutotype, close KeePass and
           ATSW_DBColumn(f, lv);
         }
 
-        if (dAutotypeWindowColumns.Count > 0)
+        if (dAutotypeWindowColumns.Count > 0 || Config.HidePasswordInAutoTypeForm)
         {
           //if (!Config.ColumnsSortable) lv.ColumnWidthChanged += HandleColumns;
           HandleColumns(lv, null);
