@@ -4,92 +4,92 @@
     Increment the TranslationVersion every time the translation file is updated
 	Also update the version.info file
   -->
-  <TranslationVersion>2</TranslationVersion>
+  <TranslationVersion>3</TranslationVersion>
   <item>
     <key>ErrorHotKeyAAT</key>
-    <value>{0} 无法注册为备用自动输入快捷键</value>
+    <value>{0} 无法注册为备用自动输入热键</value>
   </item>
   <item>
     <key>ErrorHotKeyPWOnly</key>
-    <value>{0} 不能设为仅输入的快捷键</value>
+    <value>{0} 无法注册为仅密码热键</value>
   </item>
   <item>
     <key>ErrorHotKeyUsernameOnly</key>
-    <value>{0} 无法注册为仅用户名快捷键</value>
+    <value>{0} 无法注册为仅用户名热键</value>
   </item>
   <item>
     <key>Options</key>
-    <value>高级自动输入选项</value>
+    <value>高级自动输入配置</value>
   </item>
   <item>
     <key>GlobalAutotypeHotKey</key>
-    <value>全局自动输入快捷键:</value>
+    <value>全局自动输入热键:</value>
   </item>
   <item>
     <key>PasswordOnlyHotKey</key>
-    <value>仅输入密码</value>
+    <value>仅密码</value>
   </item>
   <item>
     <key>AATHotKey</key>
-    <value>候选自动输入快捷键:</value>
+    <value>备用自动输入热键:</value>
   </item>
   <item>
     <key>PasswordEnterHotKey</key>
-    <value>密码+回车键</value>
+    <value>密码 + 回车</value>
   </item>
   <item>
     <key>UsernameEnterHotKey</key>
-    <value>用户名+回车键</value>
+    <value>用户名 + 回车</value>
   </item>
   <item>
     <key>Hotkeys</key>
-    <value>快捷键</value>
+    <value>热键</value>
   </item>
   <item>
     <key>Integration</key>
-    <value>自动输入条目选择器增强</value>
+    <value>自动输入记录选取对话框增强</value>
   </item>
   <item>
     <key>ColumnsSortable</key>
-    <value>点击列名来排列条目</value>
+    <value>点击列标题对记录排序</value>
   </item>
   <item>
     <key>AddDBColumn</key>
-    <value>如果显示至少2个数据库的条目，请添加DB列</value>
+    <value>当显示来自至少 2 个数据库的记录时添加数据库列</value>
   </item>
   <item>
     <key>SpecialColumns</key>
-    <value>单击用户名/密码时仅自动输入用户名/密码</value>
+    <value>点击用户名/密码/OTP 时仅自动输入用户名/密码/OTP</value>
   </item>
   <item>
     <key>KeepATOpen</key>
-    <value>不要关闭自动输入条目选择表单</value>
+    <value>不关闭自动输入记录选取对话框</value>
   </item>
   <item>
     <key>ExcludeExpiredGroups</key>
-    <value>排除过期组中的条目</value>
+    <value>排除过期群组中的记录</value>
   </item>
   <item>
     <key>AATFormShowGroups</key>
-    <value>按组名分类</value>
+    <value>按排序列分组</value>
   </item>
   <item>
     <key>ColumnsSortRemember</key>
-    <value>保存排序设置</value>
+    <value>记住排序设置</value>
   </item>
   <item>
     <key>AWMCheckDuplicateInfo</key>
-    <value>这个窗口的标题已经被定义为自动类型的序列。</value>
+    <value>该窗口标题已被定义为自动输入序列。</value>
   </item>
   <item>
     <key>AWMCheckDuplicateDetails</key>
-    <value>如果你想编辑现有的自动输入条目，点击 '{0}'。
-如果你想添加另一个自动输入条目，点击 '{1}'。
-如果你想跳过这个条目，点击 '{2}'。</value>
+    <value>如果要编辑现有的自动输入序列，请点击 '{0}'。
+如果要添加另一个自动输入序列，请点击 '{1}'。
+如果要跳过这些记录，请点击 '{2}'。</value>
   </item>
   <item>
     <key>SearchAsYouType</key>
-    <value>允许过滤条目</value>
+    <value>允许筛选记录</value>
   </item>
   <item>
     <key>AutoTypeUsernameOnly</key>
@@ -101,26 +101,30 @@
   </item>
   <item>
     <key>AddAutoTypeDesc</key>
-    <value>{0} 提供了一种快捷方式，可以轻松地将自动键入序列添加到条目中。
-只需打开条目的上下文菜单并选择要添加的窗口。
-如果您想直接编辑新的自动类型序列，请在添加时按 [{1}]。
+    <value>{0} 提供了一种快捷方式，可轻松地将自动输入序列添加到记录中。
+只需打开记录的上下文菜单，然后选择要添加的窗口。
+如果您希望在添加时直接编辑新的自动输入序列，请按住 [{1}]。
 
-您可以在下面定义 KeePass 如何匹配窗口标题</value>
+您可以在下方定义 KeePass 应如何匹配窗口标题</value>
   </item>
   <item>
     <key>AddAutoTypeMatchExact</key>
-    <value>精确匹配 (WINDOWTITLE)</value>
+    <value>精确匹配（WINDOWTITLE）</value>
   </item>
   <item>
     <key>AddAutoTypeMatchStart</key>
-    <value>从头开始匹配 (WINDOWTITLE*)</value>
+    <value>从开头匹配（WINDOWTITLE*）</value>
   </item>
   <item>
     <key>AddAutoTypeMatchEnd</key>
-    <value>从末尾开始匹配 (*WINDOWTITLE)</value>
+    <value>从末尾匹配（*WINDOWTITLE）</value>
+  </item>
+  <item>
+    <key>RightClickToEdit</key>
+    <value>右键单击记录即可编辑。</value>
   </item>
   <item>
     <key>AddAutoTypeMatchBoth</key>
-    <value>任意匹配 (*WINDOWTITLE*)</value>
+    <value>任意位置匹配（*WINDOWTITLE*）</value>
   </item>
 </Translation>
